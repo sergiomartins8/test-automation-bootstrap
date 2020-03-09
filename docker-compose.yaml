@@ -1,0 +1,80 @@
+version: "3"
+
+services:
+
+  sonarqube:
+    container_name: sonarqube
+    build:
+      dockerfile: Dockerfile
+      context: .
+    ports:
+      - "9090:9000"
+    networks:
+      - sonarnet
+    environment:
+      - sonar.jdbc.url=jdbc:postgresql://sonar-db:5432/sonar
+    volumes:
+      - sonarqube_conf:/opt/sonarqube/conf
+      - sonarqube_data:/opt/sonarqube/data
+    links:
+      - sonar-db
+
+  sonar-db:
+    image: postgres:9.6-alpine
+    networks:
+      - sonarnet
+    environment:
+      - POSTGRES_USER=sonar
+      - POSTGRES_PASSWORD=sonar
+    volumes:
+      - postgresql:/var/lib/postgresql
+      - postgresql_data:/var/lib/postgresql/data
+
+  mockserver:
+    image: jamesdbloom/mockserver:mockserver-5.7.2
+    container_name: mockserver
+    ports:
+      - "3000:1080"
+      - "3001:1090"
+
+  selenium-hub:
+    image: selenium/hub:3.141
+    container_name: selenium-hub
+    ports:
+      - "4444:4444"
+    expose:
+      - 4444
+
+  chrome:
+    image: selenium/node-chrome:3.141
+    container_name: chrome
+    ports:
+      - "5900:5900"
+    volumes:
+      - /dev/shm:/dev/shm
+    depends_on:
+      - selenium-hub
+    environment:
+      - HUB_HOST=selenium-hub
+      - HUB_PORT=4444
+
+  firefox:
+    image: selenium/node-firefox:3.141
+    container_name: firefox
+    volumes:
+      - /dev/shm:/dev/shm
+    depends_on:
+      - selenium-hub
+    environment:
+      - HUB_HOST=selenium-hub
+      - HUB_PORT=4444
+
+networks:
+  sonarnet:
+    driver: bridge
+
+volumes:
+  sonarqube_conf:
+  sonarqube_data:
+  postgresql:
+  postgresql_data:

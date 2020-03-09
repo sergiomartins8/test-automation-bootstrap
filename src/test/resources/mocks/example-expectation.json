@@ -1,0 +1,10 @@
+{
+  "request": {
+    "path": "/login",
+    "method": "GET"
+  },
+  "response": {
+    "statusCode": 200,
+    "body": {}
+  }
+}
