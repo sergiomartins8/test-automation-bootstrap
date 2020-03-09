@@ -1,0 +1,7 @@
+.idea/
+.settings/
+build/
+.classpath
+target/
+.project
+ui-automation-bootstrap.iml
