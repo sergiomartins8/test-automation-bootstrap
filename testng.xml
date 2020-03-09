@@ -1,6 +1,8 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="UI-AUTOMATION-BOOTSTRAP" verbose="2">
-<test name="Test Example">
+
+<suite name="ui-automation-bootstrap" verbose="2">
+
+<test name="Example">
     <packages>
         <package name="tests.*"/>
     </packages>

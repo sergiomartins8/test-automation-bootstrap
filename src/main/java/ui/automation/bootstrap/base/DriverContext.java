@@ -1,9 +1,15 @@
 package ui.automation.bootstrap.base;
 
-import org.openqa.selenium.JavascriptExecutor;
+import io.github.bonigarcia.wdm.WebDriverManager;
+import org.openqa.selenium.Capabilities;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import ui.automation.bootstrap.utils.constants.Constants;
+
+import java.net.MalformedURLException;
+import java.net.URL;
 
 public final class DriverContext {
 
@@ -11,21 +17,64 @@ public final class DriverContext {
 
     public static Browser browser;
 
-    public static void setDriver(RemoteWebDriver driverThreadLocal) {
-        remoteWebDriverThreadLocal.set(driverThreadLocal);
+    private DriverContext() {
+    }
+
+    public static void initializeRemoteWebDriver(BrowserType browserType, boolean runTestsLocal, String remoteWebDriverUrl) {
+        RemoteWebDriver driver;
+
+        switch (browserType) {
+            case chrome: {
+                driver = setupChromeDriver(runTestsLocal, remoteWebDriverUrl);
+                break;
+            }
+            case firefox: {
+                driver = setupFirefoxDriver(runTestsLocal, remoteWebDriverUrl);
+                break;
+            }
+            default:
+                throw new UnsupportedOperationException("The current required browser implementation is not ready yet.");
+        }
+
+        remoteWebDriverThreadLocal.set(driver);
+        browser = new Browser(DriverContext.getRemoteWebDriver());
+    }
+
+    public static void quitRemoteWebDriver() {
+        remoteWebDriverThreadLocal.get().quit();
     }
 
     public static RemoteWebDriver getRemoteWebDriver() {
         return remoteWebDriverThreadLocal.get();
     }
 
-    public static void waitPageIsLoaded() {
-        JavascriptExecutor jsExecutor = (JavascriptExecutor) getRemoteWebDriver();
-        boolean isPageLoaded = jsExecutor.executeScript("return document.readyState").toString().equals("complete");
+    private static RemoteWebDriver setupChromeDriver(boolean runTestsLocal, String remoteWebDriverUrl) {
+        WebDriverManager.chromedriver().setup();
+        RemoteWebDriver driver = null;
+        if (runTestsLocal) {
+            driver = new ChromeDriver();
+        } else
+            try {
+                Capabilities capabilities = new ChromeOptions();
+                driver = new RemoteWebDriver(new URL(remoteWebDriverUrl), capabilities);
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            }
+        return driver;
+    }
 
-        if (!isPageLoaded) {
-            WebDriverWait wait = new WebDriverWait(getRemoteWebDriver(), Constants.TIME_OUT_SECONDS);
-            wait.until(webDriver -> jsExecutor.executeScript("return document.readyState").toString().equals("complete"));
-        }
+    private static RemoteWebDriver setupFirefoxDriver(boolean runTestsLocal, String remoteWebDriverUrl) {
+        WebDriverManager.firefoxdriver().setup();
+        RemoteWebDriver driver = null;
+        if (runTestsLocal) {
+            driver = new FirefoxDriver();
+        } else
+            try {
+                Capabilities capabilities = new FirefoxOptions();
+                driver = new RemoteWebDriver(new URL(remoteWebDriverUrl), capabilities);
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            }
+        return driver;
     }
 }

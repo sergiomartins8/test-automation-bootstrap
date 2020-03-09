@@ -1,4 +1,4 @@
-package ui.automation.bootstrap.utils.configs;
+package ui.automation.bootstrap.utils.config;
 
 import ui.automation.bootstrap.base.BrowserType;
 
@@ -20,7 +20,7 @@ public final class Config {
         this.remoteWebDriverUrl = builder.remoteWebDriverUrl;
     }
 
-    public boolean isRunTestsLocal() {
+    public boolean runTestsLocal() {
         return runTestsLocal;
     }
 

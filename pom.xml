@@ -29,6 +29,24 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>2.22.2</version>
                 <configuration>
+                    <properties>
+                        <property>
+                            <name>parallel</name>
+                            <value>${parallel}</value>
+                        </property>
+                        <property>
+                            <name>threadCount</name>
+                            <value>${threadCount}</value>
+                        </property>
+                        <property>
+                            <name>listener</name>
+                            <value>${listener}</value>
+                        </property>
+                        <property>
+                            <name>testnames</name>
+                            <value>${testnames}</value>
+                        </property>
+                    </properties>
                     <suiteXmlFiles>
                         <suiteXmlFile>testng.xml</suiteXmlFile>
                     </suiteXmlFiles>
