@@ -8,7 +8,9 @@ public abstract class Base extends FrameworkBootstrap {
     @BeforeMethod
     public void setupWebDriver() {
         logger().info("Initialize webdriver");
-        DriverContext.initializeRemoteWebDriver(config.getBrowserType(), config.runTestsLocal(), config.getRemoteWebDriverUrl());
+        DriverContext.initializeRemoteWebDriver(getConfig().getBrowserType(),
+                getConfig().runTestsLocal(),
+                getConfig().getRemoteWebDriverUrl());
     }
 
     @AfterMethod

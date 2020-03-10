@@ -14,28 +14,25 @@ import java.net.URL;
 public final class DriverContext {
 
     private static ThreadLocal<RemoteWebDriver> remoteWebDriverThreadLocal = new ThreadLocal<>();
-
-    public static Browser browser;
+    private static Browser browser;
 
     private DriverContext() {
     }
 
-    public static void initializeRemoteWebDriver(BrowserType browserType, boolean runTestsLocal, String remoteWebDriverUrl) {
+    public static void initializeRemoteWebDriver(BrowserType browserType,
+                                                 boolean runTestsLocal,
+                                                 String remoteWebDriverUrl) {
         RemoteWebDriver driver;
-
         switch (browserType) {
-            case chrome: {
+            case chrome:
                 driver = setupChromeDriver(runTestsLocal, remoteWebDriverUrl);
                 break;
-            }
-            case firefox: {
+            case firefox:
                 driver = setupFirefoxDriver(runTestsLocal, remoteWebDriverUrl);
                 break;
-            }
             default:
-                throw new UnsupportedOperationException("The current required browser implementation is not ready yet.");
+                throw new UnsupportedOperationException("The required browser is not supported");
         }
-
         remoteWebDriverThreadLocal.set(driver);
         browser = new Browser(DriverContext.getRemoteWebDriver());
     }
@@ -48,18 +45,23 @@ public final class DriverContext {
         return remoteWebDriverThreadLocal.get();
     }
 
+    public static Browser getBrowser() {
+        return browser;
+    }
+
     private static RemoteWebDriver setupChromeDriver(boolean runTestsLocal, String remoteWebDriverUrl) {
         WebDriverManager.chromedriver().setup();
         RemoteWebDriver driver = null;
         if (runTestsLocal) {
             driver = new ChromeDriver();
-        } else
+        } else {
             try {
                 Capabilities capabilities = new ChromeOptions();
                 driver = new RemoteWebDriver(new URL(remoteWebDriverUrl), capabilities);
             } catch (MalformedURLException e) {
                 e.printStackTrace();
             }
+        }
         return driver;
     }
 
@@ -68,13 +70,14 @@ public final class DriverContext {
         RemoteWebDriver driver = null;
         if (runTestsLocal) {
             driver = new FirefoxDriver();
-        } else
+        } else {
             try {
                 Capabilities capabilities = new FirefoxOptions();
                 driver = new RemoteWebDriver(new URL(remoteWebDriverUrl), capabilities);
             } catch (MalformedURLException e) {
                 e.printStackTrace();
             }
+        }
         return driver;
     }
 }

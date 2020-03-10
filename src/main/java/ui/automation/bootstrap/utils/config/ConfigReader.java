@@ -26,12 +26,14 @@ public final class ConfigReader {
 
         if (runTestsLocal) {
             return localConfiguration();
-        } else
+        } else {
             return remoteConfiguration();
+        }
     }
 
     private static Config localConfiguration() {
-        InputStream inputStream = ConfigReader.class.getClassLoader().getResourceAsStream("config.local.properties");
+        InputStream inputStream = ConfigReader.class.getClassLoader()
+                .getResourceAsStream("config.local.properties");
         Properties properties = new Properties();
 
         try {
@@ -51,7 +53,8 @@ public final class ConfigReader {
         String environment = System.getProperty("environment") != null
                 ? System.getProperty("environment") : "config.qa.properties";
 
-        InputStream inputStream = ConfigReader.class.getClassLoader().getResourceAsStream("config." + environment + ".properties");
+        InputStream inputStream = ConfigReader.class.getClassLoader()
+                .getResourceAsStream("config." + environment + ".properties");
         Properties properties = new Properties();
 
         try {

@@ -8,7 +8,7 @@ import ui.automation.bootstrap.utils.logging.Loggable;
 
 public abstract class FrameworkBootstrap implements Loggable {
 
-    public static Config config;
+    private static Config config;
 
     @BeforeSuite
     public void initializeFramework() {
@@ -16,6 +16,10 @@ public abstract class FrameworkBootstrap implements Loggable {
         config = ConfigReader.populateConfigs();
         initializeSelenide();
         logger().info("Framework is initialized");
+    }
+
+    public static Config getConfig() {
+        return config;
     }
 
     private void initializeSelenide() {

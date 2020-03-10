@@ -5,5 +5,5 @@ public final class Constants {
     private Constants() {
     }
 
-    public static long TIME_OUT_SECONDS = 10;
+    public static final long TIME_OUT_SECONDS = 10;
 }
