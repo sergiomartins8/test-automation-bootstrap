@@ -1,10 +1,10 @@
-package ui.automation.bootstrap.base;
+package base;
 
 import com.codeborne.selenide.Configuration;
 import org.testng.annotations.BeforeSuite;
-import ui.automation.bootstrap.utils.config.Config;
-import ui.automation.bootstrap.utils.config.ConfigReader;
-import ui.automation.bootstrap.utils.logging.Loggable;
+import utils.config.Config;
+import utils.config.ConfigReader;
+import utils.logging.Loggable;
 
 public abstract class FrameworkBootstrap implements Loggable {
 

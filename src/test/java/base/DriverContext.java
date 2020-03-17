@@ -1,7 +1,9 @@
-package ui.automation.bootstrap.base;
+package base;
 
+import com.codeborne.selenide.WebDriverRunner;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.Capabilities;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -11,9 +13,10 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
+
 public final class DriverContext {
 
-    private static ThreadLocal<RemoteWebDriver> remoteWebDriverThreadLocal = new ThreadLocal<>();
     private static Browser browser;
 
     private DriverContext() {
@@ -33,16 +36,17 @@ public final class DriverContext {
             default:
                 throw new UnsupportedOperationException("The required browser is not supported");
         }
-        remoteWebDriverThreadLocal.set(driver);
+
+        WebDriverRunner.setWebDriver(driver);
         browser = new Browser(DriverContext.getRemoteWebDriver());
     }
 
     public static void quitRemoteWebDriver() {
-        remoteWebDriverThreadLocal.get().quit();
+        getWebDriver().quit();
     }
 
-    public static RemoteWebDriver getRemoteWebDriver() {
-        return remoteWebDriverThreadLocal.get();
+    public static WebDriver getRemoteWebDriver() {
+        return getWebDriver();
     }
 
     public static Browser getBrowser() {

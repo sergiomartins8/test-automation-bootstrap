@@ -1,4 +1,4 @@
-package ui.automation.bootstrap.base;
+package base;
 
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;

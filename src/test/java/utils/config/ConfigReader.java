@@ -1,6 +1,6 @@
-package ui.automation.bootstrap.utils.config;
+package utils.config;
 
-import ui.automation.bootstrap.base.BrowserType;
+import base.BrowserType;
 
 import java.io.IOException;
 import java.io.InputStream;

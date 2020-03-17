@@ -1,4 +1,4 @@
-package ui.automation.bootstrap.base;
+package base;
 
 public enum BrowserType {
     chrome,

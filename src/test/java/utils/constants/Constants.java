@@ -1,4 +1,4 @@
-package ui.automation.bootstrap.utils.constants;
+package utils.constants;
 
 public final class Constants {
 
