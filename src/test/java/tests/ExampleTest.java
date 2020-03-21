@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 import pageobjects.pages.ExamplePage;
 
 import static com.codeborne.selenide.Selenide.open;
-import static org.testng.Assert.assertTrue;
+import static org.testng.Assert.fail;
 
 public class ExampleTest extends BaseTest {
 
@@ -16,7 +16,6 @@ public class ExampleTest extends BaseTest {
     public void setup() {
         logger().debug("Setup test");
         examplePage = new ExamplePage();
-        open("");
     }
 
     @AfterMethod
@@ -24,16 +23,18 @@ public class ExampleTest extends BaseTest {
         logger().debug("Teardown test");
     }
 
-    @Test
+    @Test(description = "Open up a google page and search for the word 'dogs'")
     public void testExampleOne() {
+        open(""); // empty string opens the base URL defined on <config.${environment}.properties>
+
         examplePage.exampleComponent()
                 .waitPageLoaded()
                 .exampleAction();
 
-        assertTrue(true);
+        fail();
     }
 
-    @Test
+    @Test(description = "Test based on mock server expectations")
     public void testExampleTwo() {
         logger().info("Example info log");
         logger().warn("Example warn log");

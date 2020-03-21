@@ -5,3 +5,4 @@ build/
 target/
 .project
 ui-automation-bootstrap.iml
+reports/

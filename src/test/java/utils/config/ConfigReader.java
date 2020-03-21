@@ -12,7 +12,8 @@ public final class ConfigReader {
     }
 
     public static Config populateConfigs() {
-        InputStream inputStream = ConfigReader.class.getClassLoader().getResourceAsStream("tests.properties");
+        InputStream inputStream = ConfigReader.class.getClassLoader()
+                .getResourceAsStream("tests.properties");
         Properties properties = new Properties();
 
         try {
@@ -33,7 +34,7 @@ public final class ConfigReader {
 
     private static Config localConfiguration() {
         InputStream inputStream = ConfigReader.class.getClassLoader()
-                .getResourceAsStream("config.local.properties");
+                .getResourceAsStream("config/config.local.properties");
         Properties properties = new Properties();
 
         try {
@@ -51,7 +52,7 @@ public final class ConfigReader {
 
     private static Config remoteConfiguration() {
         String environment = System.getProperty("environment") != null
-                ? System.getProperty("environment") : "config.qa.properties";
+                ? System.getProperty("environment") : "config/config.qa.properties";
 
         InputStream inputStream = ConfigReader.class.getClassLoader()
                 .getResourceAsStream("config." + environment + ".properties");

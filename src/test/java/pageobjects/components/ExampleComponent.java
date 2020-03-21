@@ -9,7 +9,7 @@ public class ExampleComponent extends BaseComponent<ExampleComponent> {
     }
 
     public ExampleComponent exampleAction() {
-        self().sendKeys("lol", Keys.ENTER);
+        self().sendKeys("dogs", Keys.ENTER);
         return this;
     }
 }
