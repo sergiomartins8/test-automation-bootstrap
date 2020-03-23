@@ -10,6 +10,8 @@ public final class Config {
     private final boolean screenshots;
     private final boolean headless;
     private final String remoteWebDriverUrl;
+    private final String mockServerAddress;
+    private final int mockServerPort;
 
     private Config(Builder builder) {
         this.runTestsLocal = builder.runTestsLocal;
@@ -18,6 +20,8 @@ public final class Config {
         this.screenshots = builder.screenshots;
         this.headless = builder.headless;
         this.remoteWebDriverUrl = builder.remoteWebDriverUrl;
+        this.mockServerAddress = builder.mockServerAddress;
+        this.mockServerPort = builder.mockServerPort;
     }
 
     public boolean runTestsLocal() {
@@ -44,6 +48,14 @@ public final class Config {
         return remoteWebDriverUrl;
     }
 
+    public String getMockServerAddress() {
+        return mockServerAddress;
+    }
+
+    public int getMockServerPort() {
+        return mockServerPort;
+    }
+
     public static class Builder {
 
         private final boolean runTestsLocal;
@@ -52,6 +64,8 @@ public final class Config {
         private boolean screenshots;
         private boolean headless;
         private String remoteWebDriverUrl;
+        private String mockServerAddress;
+        private int mockServerPort;
 
         public Builder(boolean runTestsLocal, BrowserType browserType) {
             this.runTestsLocal = runTestsLocal;
@@ -75,6 +89,16 @@ public final class Config {
 
         public Builder withRemoteWebDriverUrl(String remoteWebDriverUrl) {
             this.remoteWebDriverUrl = remoteWebDriverUrl;
+            return this;
+        }
+
+        public Builder withMockServerAddress(String mockServerAddress) {
+            this.mockServerAddress = mockServerAddress;
+            return this;
+        }
+
+        public Builder withMockServerPort(int mockServerPort) {
+            this.mockServerPort = mockServerPort;
             return this;
         }
 

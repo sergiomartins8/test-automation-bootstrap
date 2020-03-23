@@ -1,6 +1,7 @@
 package base;
 
 import com.codeborne.selenide.Configuration;
+import org.mockserver.client.MockServerClient;
 import org.testng.annotations.BeforeSuite;
 import utils.config.Config;
 import utils.config.ConfigReader;
@@ -12,10 +13,9 @@ public abstract class FrameworkBootstrap implements Loggable {
 
     @BeforeSuite
     public void initializeFramework() {
-        logger().info("Initializing framework");
         config = ConfigReader.populateConfigs();
+        initializeMockServer();
         initializeSelenide();
-        logger().info("Framework is initialized");
     }
 
     public static Config getConfig() {
@@ -26,5 +26,9 @@ public abstract class FrameworkBootstrap implements Loggable {
         Configuration.baseUrl = config.getBaseUrl();
         Configuration.screenshots = config.takeScreenshots();
         Configuration.headless = config.isHeadless();
+    }
+
+    private void initializeMockServer() {
+        MockContext.setMockServerClient(new MockServerClient(config.getMockServerAddress(), config.getMockServerPort()));
     }
 }

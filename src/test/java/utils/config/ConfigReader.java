@@ -22,8 +22,8 @@ public final class ConfigReader {
             e.printStackTrace();
         }
 
-        boolean runTestsLocal = Boolean.parseBoolean(properties.getProperty("run.tests.local"))
-                || System.getProperty("environment").equals("local");
+        boolean runTestsLocal = System.getProperty("environment") != null && System.getProperty("environment").equals("local")
+                || Boolean.parseBoolean(properties.getProperty("run.tests.local"));
 
         if (runTestsLocal) {
             return localConfiguration();
@@ -47,6 +47,8 @@ public final class ConfigReader {
                 .withBaseUrl(properties.getProperty("base.url"))
                 .withScreenshots(Boolean.parseBoolean(properties.getProperty("screenshots")))
                 .withHeadless(Boolean.parseBoolean(properties.getProperty("headless")))
+                .withMockServerAddress(properties.getProperty("mock.server.url"))
+                .withMockServerPort(Integer.parseInt(properties.getProperty("mock.server.port")))
                 .build();
     }
 
@@ -69,6 +71,8 @@ public final class ConfigReader {
                 .withScreenshots(Boolean.parseBoolean(properties.getProperty("screenshots")))
                 .withHeadless(Boolean.parseBoolean(properties.getProperty("headless")))
                 .withRemoteWebDriverUrl(properties.getProperty("remote.webdriver.url"))
+                .withMockServerAddress(properties.getProperty("mock.server.url"))
+                .withMockServerPort(Integer.parseInt(properties.getProperty("mock.server.port")))
                 .build();
     }
 }

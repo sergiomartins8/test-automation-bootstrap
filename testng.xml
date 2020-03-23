@@ -3,6 +3,7 @@
 <suite name="ui-automation-bootstrap" verbose="2">
     <listeners>
         <listener class-name="utils.listeners.ExtentReportListener"/>
+        <listener class-name="utils.listeners.MockListener"/>
     </listeners>
     <test name="Example">
         <packages>
