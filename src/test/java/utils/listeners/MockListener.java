@@ -32,27 +32,6 @@ public class MockListener implements ITestListener, Loggable {
         });
     }
 
-    @Override
-    public void onTestSuccess(ITestResult result) {
-        extractMockAnnotation(result).ifPresent(mock -> {
-            MockContext.resetMockServerClient();
-        });
-    }
-
-    @Override
-    public void onTestFailure(ITestResult result) {
-        extractMockAnnotation(result).ifPresent(mock -> {
-            MockContext.resetMockServerClient();
-        });
-    }
-
-    @Override
-    public void onTestSkipped(ITestResult result) {
-        extractMockAnnotation(result).ifPresent(mock -> {
-            MockContext.resetMockServerClient();
-        });
-    }
-
     private Optional<Mock> extractMockAnnotation(ITestResult result) {
         return Optional.ofNullable(result.getMethod()
                 .getConstructorOrMethod()

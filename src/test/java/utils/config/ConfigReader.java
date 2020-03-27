@@ -54,10 +54,10 @@ public final class ConfigReader {
 
     private static Config remoteConfiguration() {
         String environment = System.getProperty("environment") != null
-                ? System.getProperty("environment") : "config/config.qa.properties";
+                ? System.getProperty("environment") : "qa";
 
         InputStream inputStream = ConfigReader.class.getClassLoader()
-                .getResourceAsStream("config." + environment + ".properties");
+                .getResourceAsStream("config/config." + environment + ".properties");
         Properties properties = new Properties();
 
         try {

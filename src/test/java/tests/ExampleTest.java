@@ -10,7 +10,6 @@ import utils.listeners.MockListener;
 import utils.mocks.Mock;
 
 import static com.codeborne.selenide.Selenide.open;
-import static org.testng.Assert.fail;
 
 @Listeners({ExtentReportListener.class,
         MockListener.class})
@@ -37,7 +36,7 @@ public class ExampleTest extends BaseTest {
                 .waitPageLoaded()
                 .exampleAction();
 
-        fail();
+//        fail();
     }
 
     @Mock(path = {"/mocks/example-expectation.json"})
