@@ -14,6 +14,13 @@ import static java.util.Objects.requireNonNull;
 import static org.mockserver.model.HttpRequest.request;
 import static org.mockserver.model.HttpResponse.response;
 
+/**
+ * {@link ITestListener} implementation responsible for mocking requests and responses during runtime
+ * based on the {@link Mock} annotation.
+ * <p>
+ * The mocks are injected recurring to the {@link MockContext}.
+ * </p>
+ */
 public class MockListener implements ITestListener, Loggable {
 
     @Override

@@ -15,6 +15,9 @@ import static com.codeborne.selenide.Selenide.open;
         MockListener.class})
 public class ExampleTest extends BaseTest {
 
+    /**
+     * Instance for the {@link ExamplePage} page object.
+     */
     private ExamplePage examplePage;
 
     @BeforeMethod

@@ -11,6 +11,9 @@ import utils.logging.Loggable;
 import utils.reports.ExtentManager;
 import utils.reports.ExtentTestReport;
 
+/**
+ * {@link ITestListener} implementation responsible for the test result reports.
+ */
 public class ExtentReportListener implements ITestListener, Loggable {
 
     @Override

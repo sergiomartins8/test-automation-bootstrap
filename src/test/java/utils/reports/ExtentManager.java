@@ -4,10 +4,13 @@ package utils.reports;
 import com.relevantcodes.extentreports.ExtentReports;
 
 /**
- * Singleton ExtentManager
+ * Singleton ExtentManager.
  */
 public class ExtentManager {
 
+    /**
+     * Extent report instance.
+     */
     private static ExtentReports extentReports;
 
     public static synchronized ExtentReports getInstance() {

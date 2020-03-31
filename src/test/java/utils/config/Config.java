@@ -2,15 +2,49 @@ package utils.config;
 
 import base.BrowserType;
 
+/**
+ * Builder Config.
+ */
 public final class Config {
 
+    /**
+     * True if tests are executed locally.
+     */
     private final boolean runTestsLocal;
+
+    /**
+     * Browser type in which the tests are executed.
+     */
     private final BrowserType browserType;
+
+    /**
+     * Solution's base url to be used across the framework.
+     */
     private final String baseUrl;
+
+    /**
+     * Allow Selenide to take screenshots on test failure.
+     */
     private final boolean screenshots;
+
+    /**
+     * Tells if the tests are going to be executed in headless mode.
+     */
     private final boolean headless;
+
+    /**
+     * Holds the remote web driver URL for the selenium grid.
+     */
     private final String remoteWebDriverUrl;
+
+    /**
+     * Mock server url.
+     */
     private final String mockServerAddress;
+
+    /**
+     * Mock server port.
+     */
     private final int mockServerPort;
 
     private Config(Builder builder) {
@@ -58,13 +92,44 @@ public final class Config {
 
     public static class Builder {
 
+        /**
+         * {@code runTestsLocal} builder.
+         */
         private final boolean runTestsLocal;
+
+        /**
+         * {@code browserType} builder.
+         */
         private final BrowserType browserType;
+
+        /**
+         * {@code baseUrl} builder.
+         */
         private String baseUrl;
+
+        /**
+         * {@code screenshots} builder.
+         */
         private boolean screenshots;
+
+        /**
+         * {@code headless} builder.
+         */
         private boolean headless;
+
+        /**
+         * {@code remoteWebDriverUrl} builder.
+         */
         private String remoteWebDriverUrl;
+
+        /**
+         * {@code mockServerAddress} builder.
+         */
         private String mockServerAddress;
+
+        /**
+         * {@code mockServerPort} builder.
+         */
         private int mockServerPort;
 
         public Builder(boolean runTestsLocal, BrowserType browserType) {

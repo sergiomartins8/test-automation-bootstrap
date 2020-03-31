@@ -15,8 +15,19 @@ import java.net.URL;
 
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 
+/**
+ * Holds methods that initialize (and teardown) the required driver; locally or remotely.
+ * Also, an instance to the {@link Browser} in which browser actions can be performed.
+ * <p>
+ * Browser actions are performed through {@link DriverContext}
+ * e.g. {@link DriverContext#getBrowser().action()}
+ * </p>
+ */
 public final class DriverContext {
 
+    /**
+     * Browser instance which is going to receive the webdriver.
+     */
     private static Browser browser;
 
     private DriverContext() {

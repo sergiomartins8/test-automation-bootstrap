@@ -5,7 +5,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
 import java.io.InputStream;
 
-public class MockParser {
+/**
+ * Single responsibility of parsing json files into objects.
+ */
+public final class MockParser {
 
     public static MockDefinition toObject(String path) {
         ObjectMapper mapper = new ObjectMapper();
