@@ -31,7 +31,7 @@ public final class ConfigReader {
     private static Config localConfiguration() {
         Properties properties = getPropertiesFromResource("config/config.local.properties");
 
-        return new Config.Builder(true, BrowserType.valueOf(properties.getProperty("browser.type")))
+        return new Config.Builder(true, getBrowserType(properties))
                 .withBaseUrl(properties.getProperty("base.url"))
                 .withScreenshots(Boolean.parseBoolean(properties.getProperty("screenshots")))
                 .withHeadless(Boolean.parseBoolean(properties.getProperty("headless")))
@@ -46,7 +46,7 @@ public final class ConfigReader {
 
         Properties properties = getPropertiesFromResource("config/config." + environment + ".properties");
 
-        return new Config.Builder(false, BrowserType.valueOf(properties.getProperty("browser.type")))
+        return new Config.Builder(false, getBrowserType(properties))
                 .withBaseUrl(properties.getProperty("base.url"))
                 .withScreenshots(Boolean.parseBoolean(properties.getProperty("screenshots")))
                 .withHeadless(Boolean.parseBoolean(properties.getProperty("headless")))
@@ -73,5 +73,14 @@ public final class ConfigReader {
             e.printStackTrace();
         }
         return properties;
+    }
+
+    /**
+     * @param properties environment configuration
+     * @return {@link BrowserType} based on system properties or (if null) the environment configuration
+     */
+    private static BrowserType getBrowserType(Properties properties) {
+        return System.getProperty("browser") != null
+                ? BrowserType.valueOf(System.getProperty("browser")) : BrowserType.valueOf(properties.getProperty("browser.type"));
     }
 }
