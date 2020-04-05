@@ -39,36 +39,39 @@ The goal is to build a solid and generic foundation so that Test Automation Engi
 * _[WebDriverManager](https://github.com/bonigarcia/webdrivermanager)_ - Downloads the required driver during runtime. May be configured on `DriverContext` under `/base`
 * _[MockServer](https://www.mock-server.com/) 🐳_ - Enables the ability to mock _http_ requests and responses (check [mocking](#mocking-requests-and-responses) section)
 * _[ExtentReports](https://extentreports.com/)_ - Provides full test reports. Takes screenshots upon test failure by default (check [reports](#reports) section)
-* _[Sonarqube](https://www.sonarqube.org/) 🐳_ - A static analysis tool. Executable through `$ mvn sonar:sonar -Dsonar.host.url=http://<<docker_ip>>:9090`
+* _[SonarQube](https://www.sonarqube.org/) 🐳_ - A static analysis tool. Executable through `$ mvn sonar:sonar -Dsonar.host.url=http://<<docker_ip>>:9090`
 * _[SeleniumGrid](https://github.com/SeleniumHQ/docker-selenium) 🐳_ - Allows to scale the test executing as well as providing the required browser types
 * _[Checkstyle](https://maven.apache.org/plugins/maven-checkstyle-plugin/)_ - Code linter. Executable through `$ mvn validate`
 
-> _🐳 stands for currently dockerized_
+> _🐳 stands for dockerized_
 
 ## Getting Started
 
 ```shell script
 $ git clone https://github.com/sergiomartins8/ui-automation-bootstrap.git
+$ cd ui-automation-bootstrap/
 $ docker-compose up -d
 $ mvn test -Dtestnames=Example
 ```
 
-### Inject runtime properties
+### Runtime properties
 
 Configurable on `pom.xml`
 
 ````shell script
-$ mvn test -Dtestnames=Example [-Dparallel=methods|classes|tests] [-DthreadCount=n] [-Dlistener="utils.listeners.ExampleListener"] [-Denvironment="$env"]
+$ mvn test -Dtestnames=Example [-Dbrowser=chrome|firefox] [-Dparallel=methods|classes|tests] [-DthreadCount=n] [-Dlistener="utils.listeners.ExampleListener"] [-Denvironment="$env"]
 ````
 
 > **testnames** (mandatory) - Tests to be executed (check `testng.xml`)
-
+>
+> **browser** (optional, default `chrome`) - Browser to execute tests
+>
 > **parallel** (optional, default `false`) - Tells testng the method of parallel test execution
-
+>
 > **threadCount** (optional, default `1`) - How many threads to use during test execution
-
+>
 > **listener** (optional, default `MockListener` and `ExtentReportListener`) - Additional listener to be used during test execution (check `testng.xml`)
-
+>
 > **environment** (optional, default `qa`) - Environment configuration to be loaded. However, it's overwritten when `run.tests.local=true`, falling back to default `local`.
 
 ## Documentation
