@@ -1,6 +1,6 @@
 package utils.reports;
 
-import com.relevantcodes.extentreports.ExtentTest;
+import com.aventstack.extentreports.ExtentTest;
 import utils.listeners.ExtentReportListener;
 
 import java.util.HashMap;
@@ -14,18 +14,18 @@ public class ExtentTestReport {
     /**
      * Holds the extent tests and corresponding threads in which they were executed.
      */
-    private static Map<Long, ExtentTest> extentTestMap = new HashMap<>();
+    private static final Map<Long, ExtentTest> EXTENT_TEST_MAP = new HashMap<>();
 
     public static synchronized ExtentTest getTest() {
-        return extentTestMap.get(Thread.currentThread().getId());
+        return EXTENT_TEST_MAP.get(Thread.currentThread().getId());
     }
 
-    public static synchronized void endTest() {
-        ExtentManager.getInstance().endTest(extentTestMap.get(Thread.currentThread().getId()));
+    public static synchronized void remoteTest() {
+        ExtentManager.getInstance().removeTest(EXTENT_TEST_MAP.get(Thread.currentThread().getId()));
     }
 
-    public static synchronized void startTest(String testName, String desc) {
-        ExtentTest test = ExtentManager.getInstance().startTest(testName, desc);
-        extentTestMap.put(Thread.currentThread().getId(), test);
+    public static synchronized void createTest(String testName, String desc) {
+        ExtentTest test = ExtentManager.getInstance().createTest(testName, desc);
+        EXTENT_TEST_MAP.put(Thread.currentThread().getId(), test);
     }
 }

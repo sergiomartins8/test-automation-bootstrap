@@ -107,9 +107,9 @@ Using _[MockServer](https://www.mock-server.com/)_ it's possible to inject mocks
 
 Reports are automatically generated using _[ExtentReports](https://extentreports.com/)_ when using the `ExtentReportListener` under `/reports`. 
 
-In addition and by default, screenshots are taken upon test failure and attached to the report.
+In addition, and by default, screenshots are taken upon test failure and attached to the report.
 
-![](docs/test_failed_report.png)
+![](docs/reports.gif)
 
 ## _kuddos_
 
