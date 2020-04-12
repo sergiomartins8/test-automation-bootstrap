@@ -26,15 +26,23 @@ public class MockListener implements ITestListener, Loggable {
     @Override
     public void onTestStart(ITestResult result) {
         extractMockAnnotation(result).ifPresent(mock -> {
-            for (String mockPath : mock.path()) {
-                MockDefinition mockDefinition = MockParser.toObject(mockPath);
+            for (String path : mock.path()) {
+                MockDefinition mockDefinition = MockParser.toObject(path);
                 MockContext.getMockServerClient()
                         .when(request()
                                 .withMethod(requireNonNull(mockDefinition).getRequest().getMethod())
-                                .withPath(mockDefinition.getRequest().getPath()))
+                                .withPath(mockDefinition.getRequest().getPath())
+                                .withQueryStringParameters(mockDefinition.getRequest().getQueryStringParameters())
+                                .withCookies(mockDefinition.getRequest().getCookies())
+                                .withBody(mockDefinition.getRequest().getBody())
+                                .withHeaders(mockDefinition.getRequest().getHeaders())
+                        )
                         .respond(response()
                                 .withStatusCode(mockDefinition.getResponse().getStatusCode())
-                                .withBody(mockDefinition.getResponse().getBody()));
+                                .withBody(mockDefinition.getResponse().getBody())
+                                .withHeaders(mockDefinition.getResponse().getHeaders())
+                                .withCookies(mockDefinition.getResponse().getCookies())
+                        );
             }
         });
     }
