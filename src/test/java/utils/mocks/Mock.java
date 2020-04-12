@@ -8,9 +8,9 @@ import java.lang.annotation.Target;
 /**
  * Annotation to inject mocks during runtime.
  * <p>
- * Accepts a String array which contains the paths to the mocks.
- * e.g. {@code @Mock({"path1", "path2", ...})}
  * Mocks are required to be json files.
+ * <p>
+ * e.g. {@code @Mock({"path1", "path2", ...})}
  * </p>
  */
 @Target(ElementType.METHOD)
