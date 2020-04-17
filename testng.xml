@@ -1,10 +1,6 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
 <suite name="ui-automation-bootstrap" verbose="2" parallel="false" thread-count="1">
-    <listeners>
-        <listener class-name="utils.listeners.ExtentReportListener"/>
-        <listener class-name="utils.listeners.MockListener"/>
-    </listeners>
     <test name="Example">
         <packages>
             <package name="tests.*"/>

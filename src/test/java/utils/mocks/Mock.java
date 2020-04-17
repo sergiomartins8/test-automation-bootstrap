@@ -7,14 +7,16 @@ import java.lang.annotation.Target;
 
 /**
  * Annotation to inject mocks during runtime.
- * <p>
  * Mocks are required to be json files.
- * <p>
- * e.g. {@code @Mock({"path1", "path2", ...})}
- * </p>
+ * <br>
+ * Example: {@code @Mock({"path1", "path2", ...})}
  */
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Mock {
+
+    /**
+     * String array containing the json mock files' paths.
+     */
     String[] path();
 }

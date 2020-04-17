@@ -4,9 +4,6 @@ package utils.reports;
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
 
-/**
- * Singleton ExtentManager.
- */
 public class ExtentManager {
 
     /**
@@ -14,6 +11,11 @@ public class ExtentManager {
      */
     private static ExtentReports extentReports;
 
+    /**
+     * Call this method to get the extent report singleton instance.
+     *
+     * @return extent reports instance
+     */
     public static synchronized ExtentReports getInstance() {
         if (extentReports == null) {
             extentReports = new ExtentReports();

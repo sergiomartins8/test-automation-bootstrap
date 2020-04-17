@@ -1,28 +1,31 @@
 package base;
 
 import org.mockserver.client.MockServerClient;
-import utils.listeners.MockListener;
+import utils.config.CustomConfiguration;
+
+import java.net.URI;
 
 /**
- * Single responsibility is to hold a mock server object so that it can be used by the {@link MockListener}.
- * Initialization and teardown of the {@link MockContext} is responsibility of the {@link FrameworkBootstrap} class.
+ * Context for objects for mocking purposes.
  */
-public final class MockContext {
+public class MockContext {
+
+    private static MockServerClient mockServerClient;
 
     /**
-     * Thread safe implementation that holds the mock server client.
+     * Initializes the mock server client based on {@link CustomConfiguration} settings.
      */
-    private static ThreadLocal<MockServerClient> mockServerClientThreadLocal = new ThreadLocal<>();
-
-    public static MockServerClient getMockServerClient() {
-        return mockServerClientThreadLocal.get();
-    }
-
-    public static void setMockServerClient(MockServerClient mockServerClient) {
-        mockServerClientThreadLocal.set(mockServerClient);
+    public static void initializeMockServerClient() {
+        MockContext.mockServerClient = new MockServerClient(
+                URI.create(CustomConfiguration.mockServerAddress).getHost(),
+                URI.create(CustomConfiguration.mockServerAddress).getPort());
     }
 
     public static void resetMockServerClient() {
-        mockServerClientThreadLocal.get().reset();
+        mockServerClient.reset();
+    }
+
+    public static MockServerClient getMockServerClient() {
+        return mockServerClient;
     }
 }

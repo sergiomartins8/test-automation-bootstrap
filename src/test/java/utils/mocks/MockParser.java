@@ -7,7 +7,7 @@ import java.io.InputStreamReader;
 /**
  * Single responsibility of parsing json files into {@link MockDefinition} objects.
  */
-public final class MockParser {
+public class MockParser {
 
     public static MockDefinition toObject(String jsonPath) {
         return new Gson().fromJson(new InputStreamReader(MockParser.class.getResourceAsStream(jsonPath)), MockDefinition.class);

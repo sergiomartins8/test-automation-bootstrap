@@ -6,16 +6,10 @@ import java.util.List;
  * Concrete definition of a mocked query parameter.
  */
 @SuppressWarnings("unused")
-public final class MockQueryStringParameter {
+public class MockQueryStringParameter {
 
-    /**
-     * Query parameter name.
-     */
     private String name;
 
-    /**
-     * Query parameter values.
-     */
     private List<String> values;
 
     public String getName() {

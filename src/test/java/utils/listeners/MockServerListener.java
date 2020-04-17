@@ -15,19 +15,20 @@ import static org.mockserver.model.HttpRequest.request;
 import static org.mockserver.model.HttpResponse.response;
 
 /**
- * {@link ITestListener} implementation responsible for mocking requests and responses during runtime
- * based on the {@link Mock} annotation.
- * <p>
- * The mocks are injected recurring to the {@link MockContext}.
- * </p>
+ * {@link ITestListener} implementation responsible for mocking requests and responses
+ * during runtime, based on the {@link Mock} annotation.
+ * <br>
+ * The {@link MockContext} object holds the mock server details.
  */
-public class MockListener implements ITestListener, Loggable {
+public class MockServerListener implements ITestListener, Loggable {
 
     @Override
     public void onTestStart(ITestResult result) {
         extractMockAnnotation(result).ifPresent(mock -> {
             for (String path : mock.path()) {
+                logger().debug("Mocking file on path: " + path);
                 MockDefinition mockDefinition = MockParser.toObject(path);
+                logger().debug("Mocking content: " + mockDefinition.prettyPrint());
                 MockContext.getMockServerClient()
                         .when(request()
                                 .withMethod(requireNonNull(mockDefinition).getRequest().getMethod())

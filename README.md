@@ -1,6 +1,6 @@
 # ui-automation-bootstrap
 
-A foundation for selenium based ui automation projects using _[selenide](https://github.com/selenide/selenide)_ ✨
+A template for selenium based ui automation projects using _[selenide](https://github.com/selenide/selenide)_ ✨
 
 [![badge-jdk](https://img.shields.io/badge/jdk-8-green.svg)](http://www.oracle.com/technetwork/java/javase/downloads/index.html)
 ![Languages](https://img.shields.io/github/languages/top/sergiomartins8/ui-automation-bootstrap)
@@ -34,16 +34,16 @@ public void testExample() {
 
 ## About
 
-The goal is to build a solid and generic foundation so that Test Automation Engineers as myself are able to bootstrap new or on going ui Selenium based automation projects with ease.
+The goal is to build a solid and generic template so that Test Automation Engineers as myself are able to bootstrap new or ongoing ui Selenium based automation projects with ease.
 
 ##### Using the goods of 
 * _[Selenide](https://github.com/selenide/selenide)_ - A selenium wrapper for concise UI tests
 * _[WebDriverManager](https://github.com/bonigarcia/webdrivermanager)_ - Downloads the required driver during runtime. May be configured on `DriverContext` under `/base`
-* _[MockServer](https://www.mock-server.com/) 🐳_ - Enables the ability to mock _http_ requests and responses (check [mocking](#mocking-requests-and-responses) section)
-* _[ExtentReports](https://extentreports.com/)_ - Provides full test reports. Takes screenshots upon test failure by default (check [reports](#reports) section)
-* _[SonarQube](https://www.sonarqube.org/) 🐳_ - A static analysis tool. Executable through `$ mvn sonar:sonar -Dsonar.host.url=http://<<docker_ip>>:9090`
+* _[MockServer](https://www.mock-server.com/) 🐳_ - Enables the ability to mock _http_ requests and responses (check [MockServerListener](#mockserverlistener) section)
+* _[ExtentReports](https://extentreports.com/)_ - Provides full test reports. Takes screenshots upon test failure by default (check [ExtentReportListener](#extentreportlistener) section)
+* _[SonarQube](https://www.sonarqube.org/) 🐳_ - A static analysis tool. Executable through: `$ mvn sonar:sonar -Dsonar.host.url=http://<<docker_ip>>:9090`
 * _[SeleniumGrid](https://github.com/SeleniumHQ/docker-selenium) 🐳_ - Allows to scale the test executing as well as providing the required browser types
-* _[Checkstyle](https://maven.apache.org/plugins/maven-checkstyle-plugin/)_ - Code linter. Executable through `$ mvn validate`
+* _[Checkstyle](https://maven.apache.org/plugins/maven-checkstyle-plugin/)_ - Code linter. Executable through: `$ mvn validate`
 
 > _🐳 stands for dockerized_
 
@@ -53,62 +53,57 @@ The goal is to build a solid and generic foundation so that Test Automation Engi
 $ git clone https://github.com/sergiomartins8/ui-automation-bootstrap.git
 $ cd ui-automation-bootstrap/
 $ docker-compose up -d
-$ mvn test -Dtestnames=Example
+$ mvn test [-Dselenide.remote=http://localhost:4444/wd/hub]
 ```
-
-### Runtime properties
-
-Configurable on `pom.xml`
-
-````shell script
-$ mvn test -Dtestnames=Example [-Dbrowser=chrome|firefox] [-Dparallel=methods|classes|tests] [-DthreadCount=n] [-Dlistener="utils.listeners.ExampleListener"] [-Denvironment="$env"]
-````
-
-> **testnames** (mandatory) - Tests to be executed (check `testng.xml`)
->
-> **browser** (optional, default `chrome`) - Browser to execute tests
->
-> **parallel** (optional, default `false`) - Tells testng the method of parallel test execution
->
-> **threadCount** (optional, default `1`) - How many threads to use during test execution
->
-> **listener** (optional, default `MockListener` and `ExtentReportListener`) - Additional listener to be used during test execution (check `testng.xml`)
->
-> **environment** (optional, default `qa`) - Environment configuration to be loaded. However, it's overwritten when `run.tests.local=true`, falling back to default `local`.
 
 ## Documentation
 
-### Configuration overview
+#### System properties
 
-Default configurations available under `resources/`:
+````shell script
+$ mvn test [-Dmock.server.url=<url> -Dmock.server.port=<port>] \
+           [-Dparallel=<method>] \
+           [-DthreadCount=<n>] \
+           [-Dlistener=<listener1, listener2, ...>]
+````
 
-|variable|path|default|description|
-|----|----|----|----|
-|`run.tests.local`|`tests.properties`|`true`|Running tests locally to avoid using the `RemoteWebDriver` (May be configured)|
-|`browser.type`|`config/${environment}`|`chrome`|Chooses in which browser tests rare executed|
-|`base.url`|`config/${environment}`|`http://google.com`|Base url; e.g. `open("")` with an empty string opens the browser on the base url|
-|`screenshots`|`config/${environment}`|`false`|Selenide screenshots on test failure (However, screenshots are taken by the `ExtentReportListener`) by default|
-|`headless`|`config/${environment}`|`false` on local config otherwise `true`|Test execution in headless mode|
-|`remote.webdriver.url`|`config/${environment}`|`http://localhost:4444/wd/hub` (http://<<docker_ip>>:4444/wd/hub)|Selenium hub deployed through `docker-compose.yaml`|
-|`mock.server.url`|`config/${environment}`|`localhost` (<<docker_ip>>)|Mock server ip deployed through `docker-compose.yaml`|
-|`mock.server.port`|`config/${environment}`|`3000`|Mock server port exposed to the outside (check `docker-compose.yaml`)|
+| Property                          | Description                                                                   | Default                                    |
+| --------------------------------- | ---------------------------------                                             | -----------------------------------------  |
+| `mock.server.address`             | Mock server address                                                           | `null` _(Mock server it not used)_         |
+| `parallel`                        | Enables parallel threads                                                      | `false`                                    |
+| `threadCount`                     | The default number of threads to use when running tests in parallel           | `1`                                        |
+| `listener`                        | A comma-separated list of java classes that can be found on your classpath    | `null` _(Listeners not being used)_        |
 
-> If you add new configurations make sure you edit the `Config` builder and `ConfigReader` accordingly, under `utils/config/`.
+#### More system properties
 
-### Mocking requests and responses
+Using the goods of selenide, you can also inject its system properties.
 
-Using _[MockServer](https://www.mock-server.com/)_ it's possible to inject mocks during runtime using the `@Mock` annotation, which is extracted by the `MockListener` (under `utils/listeners/`):
+##### Example:
+```shell script
+mvn test -Dselenide.remote=http://localhost:4444/wd/hub \
+         -Dselenide.headless=true \
+         -Dselenide.browser=firefox \
+         -Dselenide.baseUrl=http:/google.com
+```
+
+More about selenide's configuration settings and documentation [here](https://selenide.org/javadoc/current/com/codeborne/selenide/Configuration.html).
+
+### Listeners
+
+There are a couple listeners available _(however, disabled by default)_. 
+The `MockServerListener` and `ExtentReportListener`, located under `utils/listeners`.
+
+#### MockServerListener
+
+Using _[MockServer](https://www.mock-server.com/)_, it allows injecting mocks during runtime listening to `@Mock` annotations.
 
 ````java
 @Mock(path = {"path1", "path2", ...})
 ````
 
-> Make sure you edit `MockListener` accordingly to match your needs.
+#### ExtentReportListener
 
-### Reports
-
-Reports are automatically generated using _[ExtentReports](https://extentreports.com/)_ when using the `ExtentReportListener` under `/reports`. 
-
+Using _[ExtentReports](https://extentreports.com/)_, it automatically generates reports after test execution. Stored under `reports/ExtentReport.html`. 
 In addition, and by default, screenshots are taken upon test failure and attached to the report.
 
 ![](docs/reports.gif)

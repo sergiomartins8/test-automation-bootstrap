@@ -1,5 +1,6 @@
 package base;
 
+import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.WebDriverRunner;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.Capabilities;
@@ -17,32 +18,35 @@ import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 
 /**
  * Holds methods that initialize (and teardown) the required driver; locally or remotely.
- * Also, an instance to the {@link Browser} in which browser actions can be performed.
- * <p>
- * Browser actions are performed through {@link DriverContext}
- * e.g. {@link DriverContext#getBrowser().action()}
- * </p>
+ * <br>
+ * Also, an instance to the {@link Browser} in which browser actions can be performed
  */
 public final class DriverContext {
 
     /**
-     * Browser instance which is going to receive the webdriver.
+     * Browser instance.
      */
-    private static Browser browser;
+    public static Browser browser;
 
+    /**
+     * Private constructor to avoid instantiation.
+     */
     private DriverContext() {
     }
 
-    public static void initializeRemoteWebDriver(BrowserType browserType,
-                                                 boolean runTestsLocal,
-                                                 String remoteWebDriverUrl) {
+    /**
+     * Initializes the webdriver accordingly to the requested browser.
+     *
+     * @throws UnsupportedOperationException in case of the required browser is not covered within the current switch case.
+     */
+    public static void initializeRemoteWebDriver() {
         RemoteWebDriver driver;
-        switch (browserType) {
-            case chrome:
-                driver = setupChromeDriver(runTestsLocal, remoteWebDriverUrl);
+        switch (Configuration.browser) {
+            case "chrome":
+                driver = setupChromeDriver();
                 break;
-            case firefox:
-                driver = setupFirefoxDriver(runTestsLocal, remoteWebDriverUrl);
+            case "firefox":
+                driver = setupFirefoxDriver();
                 break;
             default:
                 throw new UnsupportedOperationException("The required browser is not supported");
@@ -60,19 +64,15 @@ public final class DriverContext {
         return getWebDriver();
     }
 
-    public static Browser getBrowser() {
-        return browser;
-    }
-
-    private static RemoteWebDriver setupChromeDriver(boolean runTestsLocal, String remoteWebDriverUrl) {
+    private static RemoteWebDriver setupChromeDriver() {
         WebDriverManager.chromedriver().setup();
         RemoteWebDriver driver = null;
-        if (runTestsLocal) {
+        if (Configuration.remote == null) {
             driver = new ChromeDriver();
         } else {
             try {
                 Capabilities capabilities = new ChromeOptions();
-                driver = new RemoteWebDriver(new URL(remoteWebDriverUrl), capabilities);
+                driver = new RemoteWebDriver(new URL(Configuration.remote), capabilities);
             } catch (MalformedURLException e) {
                 e.printStackTrace();
             }
@@ -80,15 +80,15 @@ public final class DriverContext {
         return driver;
     }
 
-    private static RemoteWebDriver setupFirefoxDriver(boolean runTestsLocal, String remoteWebDriverUrl) {
+    private static RemoteWebDriver setupFirefoxDriver() {
         WebDriverManager.firefoxdriver().setup();
         RemoteWebDriver driver = null;
-        if (runTestsLocal) {
+        if (Configuration.remote == null) {
             driver = new FirefoxDriver();
         } else {
             try {
                 Capabilities capabilities = new FirefoxOptions();
-                driver = new RemoteWebDriver(new URL(remoteWebDriverUrl), capabilities);
+                driver = new RemoteWebDriver(new URL(Configuration.remote), capabilities);
             } catch (MalformedURLException e) {
                 e.printStackTrace();
             }

@@ -6,14 +6,8 @@ package utils.mocks.model;
 @SuppressWarnings("unused")
 public class MockCookie {
 
-    /**
-     * Cookie name.
-     */
     private String name;
 
-    /**
-     * Cookie value.
-     */
     private String value;
 
     public String getName() {

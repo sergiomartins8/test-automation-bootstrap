@@ -5,6 +5,9 @@ package utils.constants;
  */
 public final class Constants {
 
+    /**
+     * Private constructor to avoid instantiation.
+     */
     private Constants() {
     }
 
