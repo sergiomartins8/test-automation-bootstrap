@@ -1,7 +1,10 @@
 package pageobjects.selectors;
 
-public final class ExampleSelector {
+public class ExampleSelector {
 
+    /**
+     * Private constructor to avoid instantiation.
+     */
     private ExampleSelector() {
     }
 

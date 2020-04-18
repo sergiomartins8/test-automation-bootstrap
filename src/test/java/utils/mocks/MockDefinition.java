@@ -1,16 +1,16 @@
 package utils.mocks;
 
+import com.google.gson.GsonBuilder;
 import utils.mocks.model.MockRequest;
 import utils.mocks.model.MockResponse;
 
-/***
+/**
  * Concrete definition of a mock.
- * <p>
+ * <br>
  * A mock is represented by a {@link MockRequest} and by a {@link MockResponse}
- * </p>
  */
 @SuppressWarnings("unused")
-public final class MockDefinition {
+public class MockDefinition {
 
     /**
      * Represents the mocked request.
@@ -36,5 +36,14 @@ public final class MockDefinition {
 
     public void setRequest(MockRequest request) {
         this.request = request;
+    }
+
+    /**
+     * Similar to a `toString()` implementation. Useful for debugging purposes.
+     *
+     * @return current object in a pretty json format.
+     */
+    public String prettyPrint() {
+        return new GsonBuilder().setPrettyPrinting().create().toJson(this);
     }
 }

@@ -1,6 +1,5 @@
 package utils.mocks.model;
 
-import com.beust.jcommander.internal.Lists;
 import com.google.gson.Gson;
 import org.mockserver.model.Cookie;
 import org.mockserver.model.Header;
@@ -13,48 +12,30 @@ import java.util.stream.Collectors;
 
 /**
  * Concrete definition of a mocked request.
- * <p>
+ * <br>
  * A mock request is represented by a path and a mapping request (e.g. GET, POST)
+ * <br>
  * Optionally, it also may contain a list of query parameters, a list of cookies, a body and a list of headers
- * <p>
+ * <br>
  * Each query parameter is represented by {@link MockQueryStringParameter}
- * <p>
+ * <br>
  * Each cookie is represented by {@link MockCookie}
- * <p>
+ * <br>
  * Each header is represented by {@link MockHeader}
- * </p>
  */
 @SuppressWarnings("unused")
-public final class MockRequest {
+public class MockRequest {
 
-    /**
-     * Mapping request path.
-     */
     private String path;
 
-    /**
-     * Type of mapping request (e.g. GET, POST).
-     */
     private String method;
 
-    /**
-     * List of query parameters.
-     */
     private List<MockQueryStringParameter> queryStringParameters;
 
-    /**
-     * List of cookies.
-     */
     private List<MockCookie> cookies;
 
-    /**
-     * Request body.
-     */
     private Object body;
 
-    /**
-     * List of headers.
-     */
     private List<MockHeader> headers;
 
     public String getPath() {
@@ -76,7 +57,7 @@ public final class MockRequest {
     /**
      * Returns an empty list if the expectation/mock json file has no query parameters defined.
      *
-     * @return List of parameters
+     * @return list of parameters
      */
     public List<Parameter> getQueryStringParameters() {
         return Optional.ofNullable(queryStringParameters)
@@ -93,7 +74,7 @@ public final class MockRequest {
     /**
      * Returns an empty list if the expectation/mock json file has no cookies defined.
      *
-     * @return List of cookies
+     * @return list of cookies
      */
     public List<Cookie> getCookies() {
         return Optional.ofNullable(cookies)
@@ -115,7 +96,7 @@ public final class MockRequest {
     public String getBody() {
         return Optional.ofNullable(body)
                 .map(mockBody -> new Gson().toJson(mockBody))
-                .orElse("{}");
+                .orElse("");
     }
 
     public void setBody(Object body) {
@@ -125,14 +106,14 @@ public final class MockRequest {
     /**
      * Returns an empty list if the expectation/mock json file has no headers defined.
      *
-     * @return List of headers
+     * @return list of headers
      */
     public List<Header> getHeaders() {
         return Optional.ofNullable(headers)
                 .map(mockHeaders -> mockHeaders.stream()
                         .map(mockHeader -> new Header(mockHeader.getName(), mockHeader.getValues()))
                         .collect(Collectors.toList()))
-                .orElse(Lists.newArrayList());
+                .orElse(Collections.emptyList());
     }
 
     public void setHeaders(List<MockHeader> headers) {

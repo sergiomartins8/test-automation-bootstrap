@@ -4,16 +4,10 @@ package utils.mocks.model;
  * Concrete definition of a mocked header.
  */
 @SuppressWarnings("unused")
-public final class MockHeader {
+public class MockHeader {
 
-    /**
-     * Header name.
-     */
     private String name;
 
-    /**
-     * Header values.
-     */
     private String values;
 
     public String getName() {

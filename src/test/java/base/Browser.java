@@ -4,17 +4,14 @@ import org.openqa.selenium.WebDriver;
 
 /**
  * Holds actions that a user is able to perform on a browser.
- * <p>
+ * <br>
  * Browser actions are performed through {@link DriverContext}
- * e.g. {@link DriverContext#getBrowser().action()}
- * </p>
+ * <br>
+ * Example: {@code DriverContext.browser.maximize()}
  */
-public final class Browser {
+public class Browser {
 
-    /**
-     * Webdriver instance which the browser is using.
-     */
-    private WebDriver driver;
+    private final WebDriver driver;
 
     public Browser(WebDriver driver) {
         this.driver = driver;

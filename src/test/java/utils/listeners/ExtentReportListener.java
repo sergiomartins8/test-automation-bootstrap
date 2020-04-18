@@ -50,7 +50,6 @@ public class ExtentReportListener implements ITestListener, Loggable {
 
         ExtentTestReport.getTest().fail(MarkupHelper.createLabel(iTestResult.getThrowable().getMessage(), ExtentColor.RED));
 
-        // ExtentReports log and screenshot for failed tests
         try {
             ExtentTestReport.getTest().fail("Screenshot - ",
                     MediaEntityBuilder.createScreenCaptureFromBase64String(getScreenshotBase64()).build());

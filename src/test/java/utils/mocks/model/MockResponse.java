@@ -1,6 +1,5 @@
 package utils.mocks.model;
 
-import com.beust.jcommander.internal.Lists;
 import com.google.gson.Gson;
 import org.mockserver.model.Cookie;
 import org.mockserver.model.Header;
@@ -12,17 +11,17 @@ import java.util.stream.Collectors;
 
 /**
  * Concrete definition of a mocked response.
- * <p>
+ * <br>
  * A mocked response is represented by a body and a status code.
+ * <br>
  * Optionally, it also may contain a list of headers and a list of cookies.
- * <p>
+ * <br>
  * Each header is represented by {@link MockHeader}
- * <p>
+ * <br>
  * Each cookie is represented by {@link MockCookie}
- * </p>
  */
 @SuppressWarnings("unused")
-public final class MockResponse {
+public class MockResponse {
 
     /**
      * Holds the whole response body.
@@ -44,10 +43,15 @@ public final class MockResponse {
      */
     private List<MockCookie> cookies;
 
+    /**
+     * Returns an empty body if the expectation/mock json file has no body defined.
+     *
+     * @return response body
+     */
     public String getBody() {
         return Optional.ofNullable(body)
                 .map(mockBody -> new Gson().toJson(mockBody))
-                .orElse("{}");
+                .orElse("");
     }
 
     public void setBody(Object body) {
@@ -72,7 +76,7 @@ public final class MockResponse {
                 .map(mockHeaders -> mockHeaders.stream()
                         .map(mockHeader -> new Header(mockHeader.getName(), mockHeader.getValues()))
                         .collect(Collectors.toList()))
-                .orElse(Lists.newArrayList());
+                .orElse(Collections.emptyList());
     }
 
     public void setHeaders(List<MockHeader> headers) {
@@ -95,5 +99,4 @@ public final class MockResponse {
     public void setCookies(List<MockCookie> cookies) {
         this.cookies = cookies;
     }
-
 }
