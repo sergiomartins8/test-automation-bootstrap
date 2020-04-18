@@ -6,7 +6,7 @@
 
     <groupId>io.github.sergiomartins8</groupId>
     <artifactId>ui-automation-bootstrap</artifactId>
-    <version>1.4.0</version>
+    <version>0.4.0</version>
 
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
