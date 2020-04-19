@@ -121,10 +121,10 @@ Available [here](/CHANGELOG.md).
 
 ## Contributing
 
-Open source from the first commit. If you're interested in helping out with this soon to be awesome automation template, please do so 🙇‍
+Open source from the first commit ✨
 
-Dive into ui-automation-bootstrap [Contribution Guide](CONTRIBUTING.md).
+Dive into ui-automation-bootstrap [contribution guide](CONTRIBUTING.md).
 
 ## Kuddos
 
-Feel free reach me out on linkedin/[@sergiomartins8](https://www.linkedin.com/in/sergiomartins8/) ‍🙌
+Feel free to reach me out on linkedin[@sergiomartins8](https://www.linkedin.com/in/sergiomartins8/) ‍🙌
