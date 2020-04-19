@@ -60,7 +60,7 @@ Use it and customize it for your needs 🚀
 
 ## Documentation
 
-#### Usage
+### Usage
 
 ```shell script
 Usage: $ mvn test [options]
@@ -77,7 +77,7 @@ Options:
 $ mvn clean test -Dmock.server.address=localhost:3000 -Dlistener=utils/listeners/MockServerListener.java
 ````
 
-#### Usage (cont.)
+### Usage (cont.)
 
 Using the goods of selenide, you can also use its system properties alongside with the custom ones available.
 
@@ -91,7 +91,7 @@ mvn test -Dparallel=methods \
          -Dselenide.baseUrl=http:/google.com
 ```
 
-More about selenide's configuration settings and documentation [here](https://selenide.org/javadoc/current/com/codeborne/selenide/Configuration.html).
+> More about selenide's configuration settings and documentation [here](https://selenide.org/javadoc/current/com/codeborne/selenide/Configuration.html).
 
 ### Listeners
 
