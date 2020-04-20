@@ -4,12 +4,10 @@ A template for selenium based ui automation projects using _[selenide](https://g
 
 [![badge-jdk](https://img.shields.io/badge/jdk-8-green.svg)](http://www.oracle.com/technetwork/java/javase/downloads/index.html)
 ![Languages](https://img.shields.io/github/languages/top/sergiomartins8/ui-automation-bootstrap)
-![Forks](https://img.shields.io/github/forks/sergiomartins8/ui-automation-bootstrap?style=social)
-![Stars](https://img.shields.io/github/stars/sergiomartins8/ui-automation-bootstrap?style=social)
 [![Contributors badge](https://img.shields.io/github/contributors/sergiomartins8/ui-automation-bootstrap)](https://github.com/sergiomartins8/ui-automation-bootstrap/graphs/contributors)
 [![Issues](https://img.shields.io/github/issues/sergiomartins8/ui-automation-bootstrap)](https://github.com/sergiomartins8/ui-automation-bootstrap/issues)
 [![License badge](https://img.shields.io/github/license/sergiomartins8/ui-automation-bootstrap)](http://www.apache.org/licenses/LICENSE-2.0)
-![(Checkstyle)](https://github.com/sergiomartins8/ui-automation-bootstrap/workflows/(Unnamed%20workflow)/badge.svg)
+![Validate checkstyle](https://github.com/sergiomartins8/ui-automation-bootstrap/workflows/Validate%20checkstyle/badge.svg)
 
 * [About](#about)
 * [Getting Started](#getting-started)
