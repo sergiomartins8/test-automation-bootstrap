@@ -3,8 +3,6 @@ package base;
 import org.mockserver.client.MockServerClient;
 import utils.config.CustomConfiguration;
 
-import java.net.URI;
-
 /**
  * Context for objects for mocking purposes.
  */
@@ -17,8 +15,8 @@ public class MockContext {
      */
     public static void initializeMockServerClient() {
         MockContext.mockServerClient = new MockServerClient(
-                URI.create(CustomConfiguration.mockServerAddress).getHost(),
-                URI.create(CustomConfiguration.mockServerAddress).getPort());
+                getMockServerHost(),
+                getMockServerPort());
     }
 
     public static void resetMockServerClient() {
@@ -27,5 +25,13 @@ public class MockContext {
 
     public static MockServerClient getMockServerClient() {
         return mockServerClient;
+    }
+
+    private static String getMockServerHost() {
+        return CustomConfiguration.mockServerAddress.split(":")[0];
+    }
+
+    private static int getMockServerPort() {
+        return Integer.parseInt(CustomConfiguration.mockServerAddress.split(":")[1]);
     }
 }

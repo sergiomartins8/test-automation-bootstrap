@@ -7,7 +7,7 @@ A template for selenium based ui automation projects using _[selenide](https://g
 [![Contributors badge](https://img.shields.io/github/contributors/sergiomartins8/ui-automation-bootstrap)](https://github.com/sergiomartins8/ui-automation-bootstrap/graphs/contributors)
 [![Issues](https://img.shields.io/github/issues/sergiomartins8/ui-automation-bootstrap)](https://github.com/sergiomartins8/ui-automation-bootstrap/issues)
 [![License badge](https://img.shields.io/github/license/sergiomartins8/ui-automation-bootstrap)](http://www.apache.org/licenses/LICENSE-2.0)
-![Validate checkstyle](https://github.com/sergiomartins8/ui-automation-bootstrap/workflows/checkstyle/badge.svg)
+![Validate checkstyle](https://github.com/sergiomartins8/ui-automation-bootstrap/workflows/ci/badge.svg)
 
 * [About](#about)
 * [Getting Started](#getting-started)
@@ -73,7 +73,7 @@ Options:
 
 ##### Example:
 ````shell script
-$ mvn clean test -Dmock.server.address=localhost:3000 -Dlistener=utils/listeners/MockServerListener.java
+$ mvn clean test -Dmock.server.address=0.0.0.0:3000 -Dlistener=utils/listeners/MockServerListener.java
 ````
 
 ### Usage (cont.)
@@ -84,7 +84,7 @@ Using the goods of selenide, you can also use its system properties alongside wi
 ```shell script
 $ mvn test -Dparallel=methods \
            -DthreadCount=2 \
-           -Dselenide.remote=http://localhost:4444/wd/hub \
+           -Dselenide.remote=http://0.0.0.0:4444/wd/hub \
            -Dselenide.headless=true \
            -Dselenide.browser=firefox \
            -Dselenide.baseUrl=http:/google.com

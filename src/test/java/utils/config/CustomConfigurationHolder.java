@@ -7,7 +7,7 @@ public class CustomConfigurationHolder implements Loggable {
     private final String mockServerAddress = System.getProperty("mock.server.address");
 
     public String mockServerAddress() {
-        logger().debug("Mock server address: " + mockServerAddress);
+        logger().info("Mock server address: " + mockServerAddress);
         return mockServerAddress;
     }
 }
