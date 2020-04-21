@@ -7,7 +7,7 @@ A template for selenium based ui automation projects using _[selenide](https://g
 [![Contributors](https://img.shields.io/github/contributors/sergiomartins8/ui-automation-bootstrap)](https://github.com/sergiomartins8/ui-automation-bootstrap/graphs/contributors)
 [![Issues](https://img.shields.io/github/issues/sergiomartins8/ui-automation-bootstrap)](https://github.com/sergiomartins8/ui-automation-bootstrap/issues)
 [![License](https://img.shields.io/github/license/sergiomartins8/ui-automation-bootstrap)](http://www.apache.org/licenses/LICENSE-2.0)
-[![Actions](https://github.com/sergiomartins8/ui-automation-bootstrap/workflows/ci/badge.svg)](https://github.com/sergiomartins8/ui-automation-bootstrap/actions?query=workflow%3Aci)
+[![Actions](https://github.com/sergiomartins8/ui-automation-bootstrap/workflows/github-actions/badge.svg)](https://github.com/sergiomartins8/ui-automation-bootstrap/actions?query=workflow%3Agithub-actions)
 
 * [About](#about)
 * [Getting Started](#getting-started)
