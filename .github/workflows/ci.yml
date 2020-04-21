@@ -35,6 +35,6 @@ jobs:
           -Dlistener=utils/listeners/MockServerListener.java,utils/listeners/ExtentReportListener.java
       - name: Publish reports
         uses: actions/upload-artifact@v1
-          with:
-            name: extent-report
-            path: reports/ExtentReport.html
+        with:
+          name: extent-report
+          path: reports/ExtentReport.html
