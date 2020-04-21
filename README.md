@@ -2,12 +2,12 @@
 
 A template for selenium based ui automation projects using _[selenide](https://github.com/selenide/selenide)_ ✨
 
-[![badge-jdk](https://img.shields.io/badge/jdk-8-green.svg)](http://www.oracle.com/technetwork/java/javase/downloads/index.html)
+[![jdk](https://img.shields.io/badge/jdk-8-green.svg)](http://www.oracle.com/technetwork/java/javase/downloads/index.html)
 ![Languages](https://img.shields.io/github/languages/top/sergiomartins8/ui-automation-bootstrap)
-[![Contributors badge](https://img.shields.io/github/contributors/sergiomartins8/ui-automation-bootstrap)](https://github.com/sergiomartins8/ui-automation-bootstrap/graphs/contributors)
+[![Contributors](https://img.shields.io/github/contributors/sergiomartins8/ui-automation-bootstrap)](https://github.com/sergiomartins8/ui-automation-bootstrap/graphs/contributors)
 [![Issues](https://img.shields.io/github/issues/sergiomartins8/ui-automation-bootstrap)](https://github.com/sergiomartins8/ui-automation-bootstrap/issues)
-[![License badge](https://img.shields.io/github/license/sergiomartins8/ui-automation-bootstrap)](http://www.apache.org/licenses/LICENSE-2.0)
-![Validate checkstyle](https://github.com/sergiomartins8/ui-automation-bootstrap/workflows/ci/badge.svg)
+[![License](https://img.shields.io/github/license/sergiomartins8/ui-automation-bootstrap)](http://www.apache.org/licenses/LICENSE-2.0)
+[![Actions](https://github.com/sergiomartins8/ui-automation-bootstrap/workflows/ci/badge.svg)](https://github.com/sergiomartins8/ui-automation-bootstrap/actions?query=workflow%3Aci)
 
 * [About](#about)
 * [Getting Started](#getting-started)
