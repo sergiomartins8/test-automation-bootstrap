@@ -128,4 +128,4 @@ Dive into ui-automation-bootstrap [contribution guide](docs/CONTRIBUTING.md).
 
 ## Kuddos
 
-Feel free to reach me out on linkedin[@sergiomartins8](https://www.linkedin.com/in/sergiomartins8/) ‍🙌
+Feel free to reach out on linkedin[@sergiomartins8](https://www.linkedin.com/in/sergiomartins8/) ‍🙌
