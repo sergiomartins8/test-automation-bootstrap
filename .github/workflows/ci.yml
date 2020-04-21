@@ -17,9 +17,9 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 1.8
-      - name: Validate
+      - name: Validate checkstyle
         run: mvn -B validate
-      - name: Build the docker-compose stack
+      - name: Deploy docker-compose stack
         run: docker-compose up -d
       - name: Waiting containers
         uses: jakejarvis/wait-action@master
@@ -33,8 +33,9 @@ jobs:
           -Dselenide.remote=http://0.0.0.0:4444/wd/hub \
           -Dmock.server.address=0.0.0.0:3000 \
           -Dlistener=utils/listeners/MockServerListener.java,utils/listeners/ExtentReportListener.java
-      - name: Publish reports
+      - name: Publish reports (if failure)
         uses: actions/upload-artifact@v1
+        if: failure()
         with:
           name: extent-report
           path: reports/ExtentReport.html
