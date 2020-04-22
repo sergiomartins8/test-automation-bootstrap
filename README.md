@@ -2,12 +2,12 @@
 
 A template for selenium based ui automation projects using _[selenide](https://github.com/selenide/selenide)_ ✨
 
-[![badge-jdk](https://img.shields.io/badge/jdk-8-green.svg)](http://www.oracle.com/technetwork/java/javase/downloads/index.html)
+[![jdk](https://img.shields.io/badge/jdk-8-green.svg)](http://www.oracle.com/technetwork/java/javase/downloads/index.html)
 ![Languages](https://img.shields.io/github/languages/top/sergiomartins8/ui-automation-bootstrap)
-[![Contributors badge](https://img.shields.io/github/contributors/sergiomartins8/ui-automation-bootstrap)](https://github.com/sergiomartins8/ui-automation-bootstrap/graphs/contributors)
+[![Contributors](https://img.shields.io/github/contributors/sergiomartins8/ui-automation-bootstrap)](https://github.com/sergiomartins8/ui-automation-bootstrap/graphs/contributors)
 [![Issues](https://img.shields.io/github/issues/sergiomartins8/ui-automation-bootstrap)](https://github.com/sergiomartins8/ui-automation-bootstrap/issues)
-[![License badge](https://img.shields.io/github/license/sergiomartins8/ui-automation-bootstrap)](http://www.apache.org/licenses/LICENSE-2.0)
-![Validate checkstyle](https://github.com/sergiomartins8/ui-automation-bootstrap/workflows/checkstyle/badge.svg)
+[![License](https://img.shields.io/github/license/sergiomartins8/ui-automation-bootstrap)](http://www.apache.org/licenses/LICENSE-2.0)
+[![Actions](https://github.com/sergiomartins8/ui-automation-bootstrap/workflows/github-actions/badge.svg)](https://github.com/sergiomartins8/ui-automation-bootstrap/actions?query=workflow%3Agithub-actions)
 
 * [About](#about)
 * [Getting Started](#getting-started)
@@ -73,7 +73,7 @@ Options:
 
 ##### Example:
 ````shell script
-$ mvn clean test -Dmock.server.address=localhost:3000 -Dlistener=utils/listeners/MockServerListener.java
+$ mvn clean test -Dmock.server.address=0.0.0.0:3000 -Dlistener=utils/listeners/MockServerListener.java
 ````
 
 ### Usage (cont.)
@@ -84,7 +84,7 @@ Using the goods of selenide, you can also use its system properties alongside wi
 ```shell script
 $ mvn test -Dparallel=methods \
            -DthreadCount=2 \
-           -Dselenide.remote=http://localhost:4444/wd/hub \
+           -Dselenide.remote=http://0.0.0.0:4444/wd/hub \
            -Dselenide.headless=true \
            -Dselenide.browser=firefox \
            -Dselenide.baseUrl=http:/google.com
@@ -128,4 +128,4 @@ Dive into ui-automation-bootstrap [contribution guide](docs/CONTRIBUTING.md).
 
 ## Kuddos
 
-Feel free to reach me out on linkedin[@sergiomartins8](https://www.linkedin.com/in/sergiomartins8/) ‍🙌
+Feel free to reach out on linkedin[@sergiomartins8](https://www.linkedin.com/in/sergiomartins8/) ‍🙌
