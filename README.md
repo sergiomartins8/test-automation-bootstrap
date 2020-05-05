@@ -2,8 +2,7 @@
 
 A template for selenium based ui automation projects using _[selenide](https://github.com/selenide/selenide)_ ✨
 
-[![jdk](https://img.shields.io/badge/jdk-8-green.svg)](http://www.oracle.com/technetwork/java/javase/downloads/index.html)
-![languages](https://img.shields.io/github/languages/top/sergiomartins8/ui-automation-bootstrap)
+[![version](https://img.shields.io/maven-central/v/com.github.sergiomartins8/ui-automation-bootstrap?label=release)](https://search.maven.org/search?q=g:com.github.sergiomartins8)
 [![contributors](https://img.shields.io/github/contributors/sergiomartins8/ui-automation-bootstrap)](https://github.com/sergiomartins8/ui-automation-bootstrap/graphs/contributors)
 [![issues](https://img.shields.io/github/issues/sergiomartins8/ui-automation-bootstrap)](https://github.com/sergiomartins8/ui-automation-bootstrap/issues)
 [![license](https://img.shields.io/github/license/sergiomartins8/ui-automation-bootstrap)](http://www.apache.org/licenses/LICENSE-2.0)
