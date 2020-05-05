@@ -55,21 +55,21 @@ Usage: $ mvn archetype:generate -DarchetypeGroupId=com.github.sergiomartins8 \
                                 [args] [options] [features]
 
 Args (mandatory):
-   -DarchetypeVersion    # ui-automation-bootstrap's release version
-   -DgroupId             # your custom group id
-   -DartifactId          # your custom artifact id
+   -DarchetypeVersion      # ui-automation-bootstrap's release version
+   -DgroupId               # your custom group id
+   -DartifactId            # your custom artifact id
 
 Options:
-   -DjavaVersion         # your java version (choices: 8, 11) [8]
-   -Dpackage             # your package name [io.company]
-   -Dversion             # your project's version [1.0.0-SNAPSHOT]
+   -DjavaVersion           # your java version (choices: 8, 11) [8]
+   -Dpackage               # your package name [io.company]
+   -Dversion               # your project's version [1.0.0-SNAPSHOT]
 
 Features:
-   -Dreports             # integration with Extent Reports [false]
-   -Dcheckstyle          # integration with a default checkstyle [false]
-   -Dsonarqube           # integration with SonarQube [false]
-   -Dmockserver          # integration with Mock Server [false]
-   -Dgithub-actions      # integration with a default CI pipeline using github actions [false]
+   -Dreports               # integration with Extent Reports [false]
+   -Dcheckstyle            # integration with a default checkstyle [false]
+   -Dsonarqube             # integration with SonarQube [false]
+   -Dmockserver            # integration with Mock Server [false]
+   -Dgithub-actions        # integration with a default CI pipeline using github actions [false]
 ```
 
 ##### Example
