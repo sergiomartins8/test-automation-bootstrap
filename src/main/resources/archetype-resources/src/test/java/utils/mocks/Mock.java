@@ -11,7 +11,7 @@ import java.lang.annotation.Target;
  * <br>
  * Example: {@code @Mock({"path1", "path2", ...})}
  */
-@Target(ElementType.METHOD)
+@Target({ElementType.METHOD, ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Mock {
 
