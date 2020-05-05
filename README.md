@@ -1,4 +1,7 @@
+# ui-automation-bootstrap
+
 ![](docs/img/my_unicorn.png)
+
 
 A template for selenium based ui automation projects using _[selenide](https://github.com/selenide/selenide)_ ✨
 
