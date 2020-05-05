@@ -47,7 +47,7 @@ $ mvn test -Dparallel=methods \
 Using [ExtentReports](https://extentreports.com/), you are able to automatically generate reports after test execution. These are stored under `reports/ExtentReport.html`. 
 Furthermore, and by default, screenshots are taken upon test failure and attached to the report.
 
-![](docs/img/reports.gif)
+![](img/reports.gif)
 
 > ⚠️ Requires the extent report listener property to be set.
 >
