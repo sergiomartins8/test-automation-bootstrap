@@ -21,7 +21,7 @@ This is a sample test where a user logs in, waits the page to be loaded and chec
 @Test
 @Mock(path = {"/mocks/example-expectation.json"})
 public void testExample() {
-    open("example.com/login")
+    open("http://awesome.example.com/login")
     new LoginPage()
             .login("username", "password")
             .waitPageLoaded()
