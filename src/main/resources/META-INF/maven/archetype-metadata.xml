@@ -1,0 +1,95 @@
+<archetype-descriptor name="ui-automation-bootstrap">
+    <requiredProperties>
+
+        <!-- *** basic properties *** -->
+        <!-- Maven artifact groupId for all projects -->
+        <requiredProperty key="groupId">
+            <validationRegex>^[a-zA-Z0-9\.\-_]+$</validationRegex>
+        </requiredProperty>
+
+        <!-- Maven artifact "root" artifactId, is suffixed for the individual modules -->
+        <requiredProperty key="artifactId">
+            <validationRegex>^[a-zA-Z0-9\.\-_]+$</validationRegex>
+        </requiredProperty>
+
+        <!-- Maven artifact version - e.g. 1.0.0-SNAPSHOT -->
+        <requiredProperty key="version">
+            <defaultValue>1.0.0-SNAPSHOT</defaultValue>
+            <validationRegex>^\d+(\.\d+){0,2}(\-SNAPSHOT)?$</validationRegex>
+        </requiredProperty>
+
+        <!-- Java class package name -->
+        <requiredProperty key="package">
+            <defaultValue>io.company</defaultValue>
+            <validationRegex>^[a-z]+(\.[a-zA-Z_][a-zA-Z0-9_]*)*$</validationRegex>
+        </requiredProperty>
+
+        <!-- .gitignore file -->
+        <requiredProperty key="gitignore">
+            <defaultValue>.gitignore</defaultValue>
+        </requiredProperty>
+
+        <!-- *** feature flags *** -->
+        <!-- Java version (8 or 11) -->
+        <requiredProperty key="javaVersion">
+            <defaultValue>8</defaultValue>
+            <validationRegex>^(8|11)$</validationRegex>
+        </requiredProperty>
+
+        <!-- Use mockserver -->
+        <requiredProperty key="mockserver">
+            <defaultValue>false</defaultValue>
+            <validationRegex>^(true|false)$</validationRegex>
+        </requiredProperty>
+
+        <!-- Use extentReports -->
+        <requiredProperty key="reports">
+            <defaultValue>false</defaultValue>
+            <validationRegex>^(true|false)$</validationRegex>
+        </requiredProperty>
+
+        <!-- Use sonarqube -->
+        <requiredProperty key="sonarqube">
+            <defaultValue>false</defaultValue>
+            <validationRegex>^(true|false)$</validationRegex>
+        </requiredProperty>
+
+        <!-- Use checkstyle -->
+        <requiredProperty key="checkstyle">
+            <defaultValue>false</defaultValue>
+            <validationRegex>^(true|false)$</validationRegex>
+        </requiredProperty>
+
+        <!-- Use github actions -->
+        <requiredProperty key="github-actions">
+            <defaultValue>false</defaultValue>
+            <validationRegex>^(true|false)$</validationRegex>
+        </requiredProperty>
+    </requiredProperties>
+
+    <fileSets>
+        <fileSet filtered="true" encoding="UTF-8">
+            <directory/>
+            <includes>
+                <include>*.xml</include>
+                <include>.github/</include>
+                <include>__gitignore__</include>
+                <include>sonar.properties</include>
+                <include>Dockerfile</include>
+                <include>docker-compose.yaml</include>
+            </includes>
+        </fileSet>
+        <fileSet filtered="true" packaged="true" encoding="UTF-8">
+            <directory>src/main/java</directory>
+        </fileSet>
+        <fileSet filtered="true" packaged="true" encoding="UTF-8">
+            <directory>src/test/java</directory>
+        </fileSet>
+        <fileSet filtered="true" encoding="UTF-8">
+            <directory>src/main/resources</directory>
+        </fileSet>
+        <fileSet filtered="true" encoding="UTF-8">
+            <directory>src/test/resources</directory>
+        </fileSet>
+    </fileSets>
+</archetype-descriptor>
