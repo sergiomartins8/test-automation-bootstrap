@@ -37,8 +37,8 @@ services:
     image: jamesdbloom/mockserver:mockserver-5.7.2
     container_name: mockserver
     ports:
-      - "3000:1080"
-      - "3001:1090"
+      - "1080:1080"
+      - "1090:1090"
 #end
 
   selenium-hub:
