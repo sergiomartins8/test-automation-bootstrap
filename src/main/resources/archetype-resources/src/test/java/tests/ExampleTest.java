@@ -41,7 +41,7 @@ public class ExampleTest extends BaseTest {
     @Test(description = "Test based on mock server expectations")
     public void testExampleTwo() {
         // This is just an example of the expectation currently being mocked by using MockServer on ${localhost}
-        open("http://mockserver:3000/login");
+        open("http://mockserver:1080/login");
 
         logger().info("Example info log");
         logger().warn("Example warn log");

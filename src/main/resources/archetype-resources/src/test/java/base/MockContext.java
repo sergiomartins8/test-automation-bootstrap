@@ -4,26 +4,24 @@ import org.mockserver.client.MockServerClient;
 import ${package}.utils.config.CustomConfiguration;
 
 /**
- * Context for objects for mocking purposes.
+ * Holds methods that allow mock external dependency services.
  */
 public class MockContext {
 
     private static MockServerClient mockServerClient;
 
     /**
-     * Initializes the mock server client based on {@link CustomConfiguration} settings.
+     * Instantiates {@link #mockServerClient} object if it needs to be instantiated.
+     * <br>
+     * Synchronized enssures the singleton client instance.
+     *
+     * @return mock server client instance
      */
-    public static void initializeMockServerClient() {
-        MockContext.mockServerClient = new MockServerClient(
-                getMockServerHost(),
-                getMockServerPort());
-    }
+    public static synchronized MockServerClient getMockServerClient() {
+        if (mockServerClient == null) {
+            mockServerClient = new MockServerClient(getMockServerHost(), getMockServerPort());
+        }
 
-    public static void resetMockServerClient() {
-        mockServerClient.reset();
-    }
-
-    public static MockServerClient getMockServerClient() {
         return mockServerClient;
     }
 
