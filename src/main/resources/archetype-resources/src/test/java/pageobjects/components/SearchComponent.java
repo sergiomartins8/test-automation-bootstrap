@@ -8,7 +8,7 @@ public class SearchComponent extends BaseComponent<SearchComponent> {
         super(selector);
     }
 
-    public SearchComponent search(String word) {
+    public SearchComponent searchFor(String word) {
         self().sendKeys(word, Keys.ENTER);
         return this;
     }
