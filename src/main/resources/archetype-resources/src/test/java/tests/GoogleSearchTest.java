@@ -4,20 +4,25 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ${package}.pageobjects.pages.GoogleSearchPage;
-#if (${mockserver} == 'true')
-import ${package}.utils.mocks.Mock;
-#end
+import ${package}.pageobjects.pages.GoogleResultsPage;
 
+import static com.codeborne.selenide.CollectionCondition.sizeGreaterThan;
+import static com.codeborne.selenide.Condition.value;
 import static com.codeborne.selenide.Selenide.open;
 
 public class GoogleSearchTest extends BaseTest {
 
     private GoogleSearchPage googleSearchPage;
+    private GoogleResultsPage googleResultsPage;
 
+    /**
+     * Initialize private objects.
+     */
     @BeforeMethod
     public void setup() {
         logger().debug("Setup test");
-        examplePage = new ExamplePage();
+        googleSearchPage = new GoogleSearchPage();
+        googleResultsPage = new GoogleResultsPage();
     }
 
     @AfterMethod
@@ -26,25 +31,24 @@ public class GoogleSearchTest extends BaseTest {
     }
 
     @Test(description = "Open up a google page and search for the word 'dogs'")
-    public void testExampleOne() {
+    public void shouldUserCanSearch() {
         open("http://google.com");
 
         googleSearchPage.searchComponent()
                 .waitPageLoaded()
                 .search("dogs");
 
-//        fail();
+        googleResultsPage.searchComponent()
+                .waitPageLoaded()
+                .self()
+                .shouldHave(value("dogs"));
     }
-#if (${mockserver} == 'true')
 
-    @Mock(path = {"/mocks/example-expectation.json"})
-    @Test(description = "Test based on mock server expectations")
-    public void testExampleTwo() {
-        // This is just an example of the expectation currently being mocked by using MockServer on ${localhost}
-        open("http://mockserver:1080/login");
+    @Test
+    public void shouldSearchResultsBeDisplayed() {
+        open("http://www.google.pt/search?source=hp&q=dogs&oq=dogs");
 
-        logger().info("Example info log");
-        logger().warn("Example warn log");
+        googleResultsPage.getResults()
+                .shouldHave(sizeGreaterThan(1));
     }
-#end
 }
