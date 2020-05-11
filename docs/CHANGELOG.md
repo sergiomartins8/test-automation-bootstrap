@@ -1,5 +1,8 @@
 ## Change Log
 
+### v1.1.0 (2020/05/09 17:49 +00:00)
+- [#20](https://github.com/sergiomartins8/ui-automation-bootstrap/pull/20) 🐛 Fix firefox integration tests (#20) (@sergiomartins8)
+
 ### v1.0.0 (2020/05/06 06:59 +00:00)
 - [#18](https://github.com/sergiomartins8/ui-automation-bootstrap/pull/18) ☀️ Moving to archetype (#18) (@sergiomartins8)
 - [#16](https://github.com/sergiomartins8/ui-automation-bootstrap/pull/16) 🤖 Github actions CI (#16) (Sérgio Martins)

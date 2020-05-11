@@ -11,6 +11,7 @@ def packageName = request.getProperties().get("package")
 def packagePath = packageName.replace(".", "/")
 
 def base = new File(projectPath, "src/test/java/" + packagePath + "/base")
+def tests = new File(projectPath, "src/test/java/" + packagePath + "/tests")
 def utils = new File(projectPath, "src/test/java/" + packagePath + "/utils")
 def resources = new File(projectPath, "src/test/resources")
 
@@ -18,6 +19,7 @@ if (mockserver != 'true') {
     assert new File(base, "MockContext.java").delete()
     assert new File(utils, "mocks").deleteDir()
     assert new File(utils, "listeners/MockServerListener.java").delete()
+    assert new File(tests, "ExampleMockedTest.java").delete()
     assert new File(resources, "mocks").deleteDir()
 }
 
