@@ -5,7 +5,7 @@ on:
     branches: [ master ]
 
 jobs:
-  cd:
+  build:
     runs-on: ubuntu-latest
 
     steps:
@@ -16,9 +16,6 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 1.8
-          server-id: ossrh
-          server-username: MAVEN_USERNAME
-          server-password: MAVEN_PASSWORD
 
       - name: Initialize containers
         run: docker-compose up -d
@@ -31,15 +28,5 @@ jobs:
       - name: Check available containers
         run: docker ps
 
-      - name: Install gpg secret key
-        run: |
-          echo -e "${{ secrets.OSSRH_GPG_SECRET_KEY }}" | gpg --batch --import
-          gpg --list-secret-keys --keyid-format LONG
-
-      - name: Deploy archetype
-        env:
-          MAVEN_USERNAME: ${{ secrets.OSSRH_USERNAME }}
-          MAVEN_PASSWORD: ${{ secrets.OSSRH_TOKEN }}
-        run: |
-          mvn -B clean deploy \
-          -Dgpg.passphrase=${{ secrets.OSSRH_GPG_SECRET_KEY_PASSWORD }}
+      - name: Tests
+        run: mvn -B clean integration-test
