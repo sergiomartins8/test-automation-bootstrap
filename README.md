@@ -5,8 +5,8 @@
 
 A template for selenium based ui automation projects using _[selenide](https://github.com/selenide/selenide)_ ✨
 
-[![release-candidate](https://github.com/sergiomartins8/ui-automation-bootstrap/workflows/release-candidate/badge.svg)](https://github.com/sergiomartins8/ui-automation-bootstrap/actions?query=workflow%3Arelease-candidate)
 [![version](https://img.shields.io/maven-central/v/com.github.sergiomartins8/ui-automation-bootstrap?label=release)](https://search.maven.org/search?q=g:com.github.sergiomartins8)
+[![release-candidate](https://github.com/sergiomartins8/ui-automation-bootstrap/workflows/release-candidate/badge.svg)](https://github.com/sergiomartins8/ui-automation-bootstrap/actions?query=workflow%3Arelease-candidate)
 [![contributors](https://img.shields.io/github/contributors/sergiomartins8/ui-automation-bootstrap)](https://github.com/sergiomartins8/ui-automation-bootstrap/graphs/contributors)
 [![issues](https://img.shields.io/github/issues/sergiomartins8/ui-automation-bootstrap)](https://github.com/sergiomartins8/ui-automation-bootstrap/issues)
 [![license](https://img.shields.io/github/license/sergiomartins8/ui-automation-bootstrap)](http://www.apache.org/licenses/LICENSE-2.0)
@@ -72,6 +72,7 @@ Features:
    -Dsonarqube             # integration with SonarQube [false]
    -Dmockserver            # integration with Mock Server [false]
    -Dgithub-actions        # integration with a default CI pipeline using github actions [false]
+   -Djenkins               # integration with a default CI pipeline using jenkins [false]
 ```
 
 ##### Example
@@ -79,7 +80,7 @@ Features:
 ```shell script
 $ mvn archetype:generate -DarchetypeGroupId=com.github.sergiomartins8 \ 
                          -DarchetypeArtifactId=ui-automation-bootstrap \
-                         -DarchetypeVersion=1.2.0 \
+                         -DarchetypeVersion=1.3.0 \
                          -DgroupId=awesome.group.id \
                          -DartifactId=awesome-template \
                          -Dcheckstyle=true \

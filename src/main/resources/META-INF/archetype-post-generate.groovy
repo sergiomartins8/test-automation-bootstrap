@@ -5,6 +5,7 @@ def reports = request.getProperties().get("reports")
 def sonarqube = request.getProperties().get("sonarqube")
 def checkstyle = request.getProperties().get("checkstyle")
 def githubActions = request.getProperties().get("github-actions")
+def jenkins = request.getProperties().get("jenkins")
 
 def packageName = request.getProperties().get("package")
 
@@ -40,6 +41,10 @@ if (checkstyle != 'true') {
 
 if (githubActions != 'true') {
     assert new File(projectPath, ".github").deleteDir()
+}
+
+if (jenkins != 'true') {
+    assert new File(projectPath, "Jenkinsfile").delete()
 }
 
 // delete empty dirs

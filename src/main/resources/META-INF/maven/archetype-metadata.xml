@@ -65,6 +65,12 @@
             <defaultValue>false</defaultValue>
             <validationRegex>^(true|false)$</validationRegex>
         </requiredProperty>
+
+        <!-- Use github actions -->
+        <requiredProperty key="jenkins">
+            <defaultValue>false</defaultValue>
+            <validationRegex>^(true|false)$</validationRegex>
+        </requiredProperty>
     </requiredProperties>
 
     <fileSets>
@@ -77,6 +83,7 @@
                 <include>sonar.properties</include>
                 <include>Dockerfile</include>
                 <include>docker-compose.yaml</include>
+                <include>Jenkinsfile</include>
             </includes>
         </fileSet>
         <fileSet filtered="true" packaged="true" encoding="UTF-8">
