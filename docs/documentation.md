@@ -13,9 +13,9 @@ These are mostly guidelines, not rules. Use your best judgment, and feel free to
 
 [SonarQube](#sonarqube)
 
-[Github-actions](#github-actions)
+[Github-actions](#github-actions-)
 
-[Jenkins](#jenkins)
+[Jenkins](#jenkins-)
 
 ## Default
 
