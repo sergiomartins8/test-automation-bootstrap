@@ -13,7 +13,9 @@ These are mostly guidelines, not rules. Use your best judgment, and feel free to
 
 [SonarQube](#sonarqube)
 
-[Github-actions](#github-actions)
+[Github-actions](#github-actions-)
+
+[Jenkins](#jenkins-)
 
 ## Default
 
@@ -91,6 +93,7 @@ Executable through: `$ mvn sonar:sonar -Dsonar.host.url=http://<<docker_ip>>:909
 ## Github-actions 🤖
 
 Use this feature if you are using github for your source code. It provides a pretty handy continuous integration pipeline using [github-actions](https://help.github.com/en/actions), under `.github/workflows/`.
+Executable using `-Dgithub-actions=true`.
 
 ##### Snippet
 ```yaml
@@ -129,4 +132,36 @@ jobs:
           path: reports/ExtentReport.html
 ```
 
-You will probably want to set up your continuous deployment steps in the end. Feel free to do so and, in addition, [contribute](CONTRIBUTING.md) with some suggestions 👼
+## Jenkins 🤖
+
+This feature creates a Jenkinsfile example for you!
+Executable using: `-Djenkins=true`.
+
+##### Snippet
+```groovy
+podTemplate(label: "jenkins-slave-base-pod", serviceAccount: "jenkins", containers: [
+        containerTemplate(
+                name: "base",
+                image: "sergiomartins8/jenkins-slave-base:1.0",
+                ttyEnabled: true,
+                command: "cat"
+        )
+],
+        volumes: [
+                hostPathVolume(mountPath: "/var/run/docker.sock", hostPath: "/var/run/docker.sock")
+        ]
+) {
+    node("jenkins-slave-base-pod") {
+        container("base") {
+            stage("Checkout") {
+                checkout scm
+            }
+    
+            (...)
+
+        }
+    }
+}
+```
+
+> Note that the example uses Jenkins on Kubernetes. Follow this [article](https://medium.com/@sergiomartins8/highly-scalable-jenkins-on-minikube-8cc289a31850) to have a similar environment in no time!
