@@ -1,6 +1,7 @@
 ## Change Log
 
-### upcoming (2020/05/20 12:39 +00:00)
+### v1.3.0 (2020/05/21 08:32 +00:00)
+- [#23](https://github.com/sergiomartins8/ui-automation-bootstrap/pull/23) ☀️ Jenkins Integration (#23) (@sergiomartins8)
 - [#22](https://github.com/sergiomartins8/ui-automation-bootstrap/pull/22) 🤖 Revamp CI/CD pipelines (#22) (@sergiomartins8)
 
 ### v1.2.0 (2020/05/11 15:28 +00:00)
