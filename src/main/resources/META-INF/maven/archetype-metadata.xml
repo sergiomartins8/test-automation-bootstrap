@@ -66,6 +66,12 @@
             <validationRegex>^(true|false)$</validationRegex>
         </requiredProperty>
 
+        <!-- Use travis -->
+        <requiredProperty key="travis">
+            <defaultValue>false</defaultValue>
+            <validationRegex>^(true|false)$</validationRegex>
+        </requiredProperty>
+
         <!-- Use github actions -->
         <requiredProperty key="jenkins">
             <defaultValue>false</defaultValue>
@@ -79,10 +85,11 @@
             <includes>
                 <include>*.xml</include>
                 <include>.github/</include>
+                <include>.travis.yml/</include>
                 <include>__gitignore__</include>
                 <include>sonar.properties</include>
                 <include>Dockerfile</include>
-                <include>docker-compose.yaml</include>
+                <include>docker-compose.yml</include>
                 <include>Jenkinsfile</include>
             </includes>
         </fileSet>

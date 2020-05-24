@@ -72,15 +72,16 @@ Features:
    -Dsonarqube             # integration with SonarQube [false]
    -Dmockserver            # integration with Mock Server [false]
    -Dgithub-actions        # integration with a default CI pipeline using github actions [false]
+   -Dtravis                # integration with a default CI pipeline using travis [false]
    -Djenkins               # integration with a default CI pipeline using jenkins [false]
 ```
 
 ##### Example
 
 ```shell script
-$ mvn archetype:generate -DarchetypeGroupId=com.github.sergiomartins8 \ 
+$ mvn archetype:generate -DarchetypeGroupId=com.github.sergiomartins8 \
                          -DarchetypeArtifactId=ui-automation-bootstrap \
-                         -DarchetypeVersion=1.3.0 \
+                         -DarchetypeVersion=1.4.0 \
                          -DgroupId=awesome.group.id \
                          -DartifactId=awesome-template \
                          -Dcheckstyle=true \
