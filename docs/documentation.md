@@ -15,6 +15,8 @@ These are mostly guidelines, not rules. Use your best judgment, and feel free to
 
 [Github-actions](#github-actions-)
 
+[Travis](#travis-)
+
 [Jenkins](#jenkins-)
 
 ## Default
@@ -131,6 +133,27 @@ jobs:
           name: extent-report
           path: reports/ExtentReport.html
 ```
+
+## Travis 🤖
+
+Use this feature if you are using github for your source code. It creates a travis configuration file example for you!
+Executable using: `-Dtravis=true`.
+
+##### Snippet
+````yaml
+(...)
+
+services:
+  - docker
+
+before_install:
+  - docker-compose up --build -d
+
+script: |
+  mvn -B clean test \
+  -Dselenide.remote=http://0.0.0.0:4444/wd/hub \
+  -Dlistener=io/company/utils/listeners/ExtentReportListener.java
+````
 
 ## Jenkins 🤖
 

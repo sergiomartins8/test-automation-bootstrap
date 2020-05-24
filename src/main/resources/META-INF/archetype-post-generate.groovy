@@ -5,6 +5,7 @@ def reports = request.getProperties().get("reports")
 def sonarqube = request.getProperties().get("sonarqube")
 def checkstyle = request.getProperties().get("checkstyle")
 def githubActions = request.getProperties().get("github-actions")
+def travis = request.getProperties().get("travis")
 def jenkins = request.getProperties().get("jenkins")
 
 def packageName = request.getProperties().get("package")
@@ -41,6 +42,10 @@ if (checkstyle != 'true') {
 
 if (githubActions != 'true') {
     assert new File(projectPath, ".github").deleteDir()
+}
+
+if (travis != 'true') {
+    assert new File(projectPath, ".travis.yml").delete()
 }
 
 if (jenkins != 'true') {
