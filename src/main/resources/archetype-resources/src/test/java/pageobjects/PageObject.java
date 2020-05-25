@@ -1,9 +1,5 @@
 package ${package}.pageobjects;
 
-import ${package}.base.DriverContext;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import ${package}.utils.constants.Constants;
 import ${package}.utils.logging.Loggable;
 
 /**
@@ -14,22 +10,4 @@ import ${package}.utils.logging.Loggable;
  * @param <T> represents the type of the concrete page object
  */
 public abstract class PageObject<T extends PageObject<T>> implements Loggable {
-
-    private static WebDriverWait wait;
-
-    public PageObject() {
-        wait = new WebDriverWait(DriverContext.getRemoteWebDriver(), Constants.TIME_OUT_SECONDS);
-    }
-
-    /**
-     * Waits the page to be fully loaded.
-     *
-     * @return concrete page object of type <b>T</b>, after waiting for the page to be loaded
-     */
-    public T waitPageLoaded() {
-        wait.until(webDriver -> ((JavascriptExecutor) DriverContext.getRemoteWebDriver())
-                .executeScript("return document.readyState")
-                .equals("complete"));
-        return (T) this;
-    }
 }

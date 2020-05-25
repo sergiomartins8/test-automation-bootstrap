@@ -1,4 +1,4 @@
-package ${package}.base;
+package ${package}.utils.mocks;
 
 import org.mockserver.client.MockServerClient;
 import ${package}.utils.config.CustomConfiguration;

@@ -22,15 +22,16 @@ This is a sample test where a user logs in, waits the page to be loaded and chec
 
 ```java
 @Test
-@Mock(path = {"/mocks/example-expectation.json"})
-public void testExample() {
-    open("http://awesome.example.com/login")
-    new LoginPage()
-            .login("username", "password")
-            .waitPageLoaded()
-            .sideBar()
+@Mock(path = {"/mocks/example-google-search-expectation.json"})
+public void shouldPerformSearch() {
+    open("http://google.com");
+
+    googleSearchPage.searchComponent()
+            .searchFor("dogs");
+
+    googleResultsPage.searchComponent()
             .self()
-            .shouldBe(Condition.visible);
+            .shouldHave(value("dogs"));
 }
 ```
 
@@ -40,11 +41,10 @@ The goal is to build a solid and generic template so that Test Automation Engine
 
 ##### Using the goods of 
 * _[Selenide](https://github.com/selenide/selenide)_ - A selenium wrapper for concise UI tests
-* _[WebDriverManager](https://github.com/bonigarcia/webdrivermanager)_ - Downloads the required driver during runtime
 * _[MockServer](https://www.mock-server.com/) 🐳_ - Enables the ability to mock _http_ requests and responses
 * _[ExtentReports](https://extentreports.com/)_ - Provides full test reports. Takes screenshots upon test failure by default
 * _[SonarQube](https://www.sonarqube.org/) 🐳_ - A static analysis tool
-* _[SeleniumGrid](https://github.com/SeleniumHQ/docker-selenium) 🐳_ - Allows to scale the test executing as well as providing the required browser types
+* _[SeleniumGrid](https://github.com/SeleniumHQ/docker-selenium) 🐳_ - Allows to scale the test execution as well as providing the required browser types
 * _[Checkstyle](https://maven.apache.org/plugins/maven-checkstyle-plugin/)_ - Code linter
 
 > _🐳 stands for dockerized_
@@ -81,7 +81,7 @@ Features:
 ```shell script
 $ mvn archetype:generate -DarchetypeGroupId=com.github.sergiomartins8 \
                          -DarchetypeArtifactId=ui-automation-bootstrap \
-                         -DarchetypeVersion=1.4.0 \
+                         -DarchetypeVersion=1.5.0 \
                          -DgroupId=awesome.group.id \
                          -DartifactId=awesome-template \
                          -Dcheckstyle=true \

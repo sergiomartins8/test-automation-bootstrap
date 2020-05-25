@@ -1,6 +1,5 @@
 package ${package}.utils.listeners;
 
-import ${package}.base.DriverContext;
 import com.aventstack.extentreports.MediaEntityBuilder;
 import com.aventstack.extentreports.markuputils.ExtentColor;
 import com.aventstack.extentreports.markuputils.MarkupHelper;
@@ -14,6 +13,8 @@ import ${package}.utils.reports.ExtentManager;
 import ${package}.utils.reports.ExtentTestReport;
 
 import java.io.IOException;
+
+import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 
 /**
  * {@link ITestListener} implementation responsible for the test result reports.
@@ -65,8 +66,7 @@ public class ExtentReportListener implements ITestListener, Loggable {
     }
 
     private String getScreenshotBase64() {
-        return "data:image/png;base64," + ((TakesScreenshot) DriverContext
-                .getRemoteWebDriver())
+        return "data:image/png;base64," + ((TakesScreenshot) getWebDriver())
                 .getScreenshotAs(OutputType.BASE64);
     }
 }
