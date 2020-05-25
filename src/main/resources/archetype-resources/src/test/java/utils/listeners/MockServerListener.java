@@ -1,10 +1,10 @@
 package ${package}.utils.listeners;
 
-import ${package}.base.MockContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
 import ${package}.utils.logging.Loggable;
 import ${package}.utils.mocks.Mock;
+import ${package}.utils.mocks.MockContext;
 import ${package}.utils.mocks.MockDefinition;
 import ${package}.utils.mocks.MockParser;
 
