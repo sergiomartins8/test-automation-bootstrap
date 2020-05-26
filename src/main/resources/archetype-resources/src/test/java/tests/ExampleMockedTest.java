@@ -1,7 +1,7 @@
 package ${package}.tests;
 
-import org.testng.annotations.Test;
 import ${package}.utils.mocks.Mock;
+import org.testng.annotations.Test;
 
 import static com.codeborne.selenide.Selenide.open;
 

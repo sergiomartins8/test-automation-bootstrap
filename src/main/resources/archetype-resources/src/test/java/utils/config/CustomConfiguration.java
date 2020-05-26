@@ -14,6 +14,20 @@ public class CustomConfiguration {
      * Default configuration settings holder.
      */
     private static final CustomConfigurationHolder DEFAULTS = new CustomConfigurationHolder();
+#if (${mockserver} == 'false')
+
+    /**
+     * Implement custom configurations:
+     * <br>
+     * EXAMPLE: {@code public static String myCustomConfiguration = DEFAULTS.getCustomConfiguration();}
+     * <br>
+     * Use them anywhere:
+     * EXAMPLE: {@code CustomConfiguration.myCustomConfiguration}
+     * <br>
+     * Change them anytime:
+     * EXAMPLE: {@code CustomConfiguration.myCustomConfiguration = "NEW_CONFIGURATION_VALUE";}
+     */
+#end
 #if (${mockserver} == 'true')
 
     /**
