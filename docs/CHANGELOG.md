@@ -1,6 +1,10 @@
 ## Change Log
 
-### v1.4.0 (2020/05/24 14:27 +00:00)
+### v1.5.0 (2020/05/26 10:16 +00:00)
+- [#26](https://github.com/sergiomartins8/ui-automation-bootstrap/pull/26) ⬆️ Upgrade to selenide:5.12.1 (#26) (@sergiomartins8)
+- [#25](https://github.com/sergiomartins8/ui-automation-bootstrap/pull/25) 🔥 Revamp structure (#25) (@sergiomartins8)
+
+### v1.4.0 (2020/05/24 14:38 +00:00)
 - [#24](https://github.com/sergiomartins8/ui-automation-bootstrap/pull/24) ☀️ Travis Integration (#24) (@sergiomartins8)
 
 ### v1.3.0 (2020/05/21 08:32 +00:00)
@@ -17,7 +21,7 @@
 - [#18](https://github.com/sergiomartins8/ui-automation-bootstrap/pull/18) ☀️ Moving to archetype (#18) (@sergiomartins8)
 - [#16](https://github.com/sergiomartins8/ui-automation-bootstrap/pull/16) 🤖 Github actions CI (#16) (Sérgio Martins)
 - [#15](https://github.com/sergiomartins8/ui-automation-bootstrap/pull/15) CI/CD - github actions (#15) (Sérgio Martins)
-- [#13](https://github.com/sergiomartins8/ui-automation-bootstrap/pull/13) revamp current system properties management (#13) (Sérgio Martins)
+- [#10](https://github.com/sergiomartins8/ui-automation-bootstrap/pull/10) revamp mock listener and mock model (#10) (Sérgio Martins)
 - [#8](https://github.com/sergiomartins8/ui-automation-bootstrap/pull/8) Upgrade Extent Reports to version 4 (#8) (Sérgio Martins)
 - [#7](https://github.com/sergiomartins8/ui-automation-bootstrap/pull/7) add browser to system properties (#7) (Sérgio Martins)
-- [#10](https://github.com/sergiomartins8/ui-automation-bootstrap/pull/10) revamp mock listener and mock model (#10) (Sérgio Martins)
+- [#13](https://github.com/sergiomartins8/ui-automation-bootstrap/pull/13) revamp current system properties management (#13) (Sérgio Martins)
