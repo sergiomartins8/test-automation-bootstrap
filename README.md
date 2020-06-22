@@ -81,7 +81,7 @@ Features:
 ```shell script
 $ mvn archetype:generate -DarchetypeGroupId=com.github.sergiomartins8 \
                          -DarchetypeArtifactId=ui-automation-bootstrap \
-                         -DarchetypeVersion=1.5.0 \
+                         -DarchetypeVersion=1.6.0 \
                          -DgroupId=awesome.group.id \
                          -DartifactId=awesome-template \
                          -Dcheckstyle=true \
