@@ -1,5 +1,11 @@
 ## Change Log
 
+### v1.6.1 (2020/07/02 08:53 +00:00)
+- [#29](https://github.com/sergiomartins8/ui-automation-bootstrap/pull/29) 🐛 Fix logback configuration to default package (#29) (@sergiomartins8)
+
+### v1.6.0 (2020/06/22 18:02 +00:00)
+- [#27](https://github.com/sergiomartins8/ui-automation-bootstrap/pull/27) ⬆️ Upgrade to selenide:5.12.2 (#27) (@sergiomartins8)
+
 ### v1.5.0 (2020/05/26 10:16 +00:00)
 - [#26](https://github.com/sergiomartins8/ui-automation-bootstrap/pull/26) ⬆️ Upgrade to selenide:5.12.1 (#26) (@sergiomartins8)
 - [#25](https://github.com/sergiomartins8/ui-automation-bootstrap/pull/25) 🔥 Revamp structure (#25) (@sergiomartins8)
@@ -21,7 +27,7 @@
 - [#18](https://github.com/sergiomartins8/ui-automation-bootstrap/pull/18) ☀️ Moving to archetype (#18) (@sergiomartins8)
 - [#16](https://github.com/sergiomartins8/ui-automation-bootstrap/pull/16) 🤖 Github actions CI (#16) (Sérgio Martins)
 - [#15](https://github.com/sergiomartins8/ui-automation-bootstrap/pull/15) CI/CD - github actions (#15) (Sérgio Martins)
+- [#13](https://github.com/sergiomartins8/ui-automation-bootstrap/pull/13) revamp current system properties management (#13) (Sérgio Martins)
 - [#10](https://github.com/sergiomartins8/ui-automation-bootstrap/pull/10) revamp mock listener and mock model (#10) (Sérgio Martins)
 - [#8](https://github.com/sergiomartins8/ui-automation-bootstrap/pull/8) Upgrade Extent Reports to version 4 (#8) (Sérgio Martins)
 - [#7](https://github.com/sergiomartins8/ui-automation-bootstrap/pull/7) add browser to system properties (#7) (Sérgio Martins)
-- [#13](https://github.com/sergiomartins8/ui-automation-bootstrap/pull/13) revamp current system properties management (#13) (Sérgio Martins)
