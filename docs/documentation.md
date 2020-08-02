@@ -124,7 +124,7 @@ jobs:
           mvn -B test \
           -Dselenide.remote=http://0.0.0.0:4444/wd/hub \
           -Dmock.server.address=0.0.0.0:3000 \
-          -Dlistener=io/company/utils/listeners/MockServerListener.java,io/company/utils/listeners/ExtentReportListener.java
+          -Dlistener=io/company/utils/listeners/MockListener.java,io/company/utils/listeners/ExtentReportListener.java
 
       - name: Publish reports (if failure)
         uses: actions/upload-artifact@v1

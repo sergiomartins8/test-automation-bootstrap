@@ -1,0 +1,9 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="awesome-template" verbose="2" parallel="false" thread-count="1">
+    <test name="Example">
+        <packages>
+            <package name="io.company.tests.*"/>
+        </packages>
+    </test>
+</suite>
