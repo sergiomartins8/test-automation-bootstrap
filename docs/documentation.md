@@ -9,7 +9,7 @@ These are mostly guidelines, not rules. Use your best judgment, and feel free to
 
 [Parallel Test Execution](#parallel-test-execution)
 
-[ExtentReports](#extent-reports)
+[Extent Reports](#extent-reports)
 
 [Mocking Responses](#mocking-responses)
 
@@ -32,7 +32,7 @@ Within page objects you may find two kinds:
 ## Suites
 You can have multiple suites under [/suites](../src/test/resources/suites). And, in order to run any of them you can use a system property `-Dsuite=<suite-name>`.
 
-Example
+##### Example
 ```shell script
 $ mvn clean test -Dsuite=suiteA
 ```
@@ -42,7 +42,7 @@ $ mvn clean test -Dsuite=suiteA
 ## Parallel Test Execution
 You can run tests in parallel, configuring your suite file or with system properties.
  
-Example
+##### Example
  ```shell script
 $ mvn clean test -Dparallel=<method> -DthreadCount=<n-threads>
 ```
@@ -65,7 +65,7 @@ In order to mock http requests the framework uses browserup proxy behind selenid
 First you've to model your request, so you can work with it anyhow you see fit. 
 Therefore, in order to create a new object to model a mocked request (eg. `ExampleMockModel.java`) it has to implement [MockDefinition](../src/test/java/io/company/utils/mocks/MockDefinition.java) interface.
 
-Example
+##### Example
 ````java
 public class ExampleMockModel implements MockDefinition { ... }
 ````
@@ -83,7 +83,7 @@ public @interface Mock {
 
 The annotation may be declared for methods or class types.
 
-Example
+##### Example
 ````java
 @Mock(clazz = ExampleMockModel.class)
 @Test(groups = {TestTypes.REGRESSION, TestTypes.MOCKED})
@@ -98,7 +98,7 @@ public void exampleMockedTest() { ... }
 ## Checkstyle
 This feature integrates your project with a code linter, so that everyone follows the same code style within the team. 
 
-Example
+##### Example
 ```shell script
 $ mvn validate
 ```
@@ -106,7 +106,7 @@ $ mvn validate
 ## SonarQube
 Using [SonarQube](https://www.sonarqube.org/) feature integration, it allows you to execute tasks such as static analysis, code coverage or even implement your code quality gate.
 
-Example
+##### Example
 ```shell script
 $ mvn -B clean verify sonar:sonar \
                                 -Dskip.validate=true \
