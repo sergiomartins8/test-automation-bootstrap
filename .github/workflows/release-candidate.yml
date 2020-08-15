@@ -18,10 +18,10 @@ jobs:
           java-version: 11
 
       - name: Compile
-        run: mvn compile
+        run: mvn -B compile
 
       - name: Lint
-        run: mvn validate
+        run: mvn -B validate
 
       - name: Initialize containers
         run: docker-compose up -d
