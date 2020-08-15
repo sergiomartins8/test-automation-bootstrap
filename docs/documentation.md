@@ -20,7 +20,7 @@ These are mostly guidelines, not rules. Use your best judgment, and feel free to
 [Jenkins](#jenkins-)
 
 ## POM - the Page Object Model
-*ui-automation-bootstrap* uses the Page Object Model (**POM**) (https://martinfowler.com/bliki/PageObject.html) to structure code.
+The *ui-automation-bootstrap* uses the Page Object Model (**POM**) (https://martinfowler.com/bliki/PageObject.html) to structure code.
 
 Within page objects you may find two kinds:
 1. `Pages` a complete page (eg. login page, home page)
@@ -72,7 +72,7 @@ public class ExampleMockModel implements MockDefinition { ... }
 
 Then, use the [@Mock](../src/test/java/io/company/utils/mocks/Mock.java) annotation in order to apply it for a given test case.
 
-Snippet
+##### Snippet
 ```java
 @Target({ElementType.METHOD, ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
