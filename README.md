@@ -21,7 +21,7 @@ A template for selenium based ui automation projects using _[selenide](https://g
 ```java
 @Test
 @Mock(clazz = MockExampleModel.class)
-public void shouldPerformSearch() {
+public void shouldPerformSearchSuccessfully() {
     open("http://google.com");
 
     googleSearchPage
