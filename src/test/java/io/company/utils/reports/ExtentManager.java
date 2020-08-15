@@ -26,7 +26,7 @@ public class ExtentManager {
         if (extentReports == null) {
             extentReports = new ExtentReports();
             ExtentHtmlReporter htmlReporter = new ExtentHtmlReporter(System.getProperty("user.dir") + "/reports/ExtentReport.html");
-            htmlReporter.loadXMLConfig("extent-config.xml");
+            htmlReporter.loadXMLConfig("reports/extent-config.xml");
             extentReports.attachReporter(htmlReporter);
 
             // General information related to application

@@ -85,8 +85,8 @@ The annotation may be declared for methods or class types.
 
 ##### Example
 ````java
+@Test
 @Mock(clazz = ExampleMockModel.class)
-@Test(groups = {TestTypes.REGRESSION, TestTypes.MOCKED})
 public void exampleMockedTest() { ... }
 ````
 
