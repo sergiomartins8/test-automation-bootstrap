@@ -34,10 +34,12 @@ public class GoogleSearchTest extends BaseTest {
     public void shouldPerformSearch() {
         open("http://google.com");
 
-        googleSearchPage.searchComponent()
+        googleSearchPage
+                .searchComponent()
                 .searchFor("dogs");
 
-        googleResultsPage.searchComponent()
+        googleResultsPage
+                .searchComponent()
                 .self()
                 .shouldHave(value("dogs"));
     }
@@ -46,7 +48,8 @@ public class GoogleSearchTest extends BaseTest {
     public void shouldSearchResultsBeDisplayed() {
         open("http://www.google.pt/search?source=hp&q=dogs&oq=dogs");
 
-        googleResultsPage.getResults()
+        googleResultsPage
+                .getResults()
                 .shouldHave(sizeGreaterThan(1));
     }
 }

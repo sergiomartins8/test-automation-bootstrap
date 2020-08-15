@@ -5,7 +5,11 @@ These are mostly guidelines, not rules. Use your best judgment, and feel free to
 
 [POM](#pom---the-page-object-model)
 
-[ExtentReports](#extentreports)
+[Suites](#suites)
+
+[Parallel Test Execution](#parallel-test-execution)
+
+[ExtentReports](#extent-reports)
 
 [Mocking Responses](#mocking-responses)
 
@@ -25,7 +29,25 @@ Within page objects you may find two kinds:
 > NOTE: Components are not supposed to be restricted to single pages. Components are designed to be reused throughout the framework. 
 > Thus, if you've to group them, group them by component type, not page; eg. forms, sidebars, modals.
 
-## ExtentReports
+## Suites
+You can have multiple suites under [/suites](../src/test/resources/suites). And, in order to run any of them you can use a system property `-Dsuite=<suite-name>`.
+
+Example
+```shell script
+$ mvn clean test -Dsuite=suiteA
+```
+
+> NOTE: Change the default suite on [pom.xml](../pom.xml) properties.
+
+## Parallel Test Execution
+You can run tests in parallel, configuring your suite file or with system properties.
+ 
+Example
+ ```shell script
+$ mvn clean test -Dparallel=<method> -DthreadCount=<n-threads>
+```
+
+## Extent Reports
 Using [ExtentReports](https://extentreports.com/), you are able to automatically generate reports after test execution. These are stored under `reports/ExtentReport.html`. 
 Furthermore, and by default, screenshots are taken upon test failure and attached to the report.
 
@@ -37,6 +59,8 @@ Furthermore, and by default, screenshots are taken upon test failure and attache
 
 ## Mocking Responses
 In order to mock http requests the framework uses browserup proxy behind selenide. This allows you to intercept, filter and manipulate requests and responses.
+
+![](img/mocked_response.png)
 
 First you've to model your request, so you can work with it anyhow you see fit. 
 Therefore, in order to create a new object to model a mocked request (eg. `ExampleMockModel.java`) it has to implement [MockDefinition](../src/test/java/io/company/utils/mocks/MockDefinition.java) interface.
@@ -69,8 +93,7 @@ public void exampleMockedTest() { ... }
 > **NOTE:** Safari does not support this use case.
 >
 > ⚠️ Requires proxy to be enabled. Luckily selenide has a custom configuration for this.
->
-> Example: `Configuration.proxyEnabled = true`
+> Programmatically `Configuration.proxyEnabled = true` or by system property `-Dselenide.proxyEnabled=true`
 
 ## Checkstyle
 This feature integrates your project with a code linter, so that everyone follows the same code style within the team. 

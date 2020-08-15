@@ -10,7 +10,7 @@ public class MockExampleModel implements MockDefinition {
 
     @Override
     public String url() {
-        return "https://www.google.pt/dogs";
+        return "https://www.google.pt/mock";
     }
 
     @Override
@@ -25,7 +25,7 @@ public class MockExampleModel implements MockDefinition {
 
     @Override
     public String contentBody() {
-        return "{\"example\":\"MESSAGE\"}";
+        return "{\"MESSAGE\":\"MOCKED_MESSAGE\"}";
     }
 
     @Override

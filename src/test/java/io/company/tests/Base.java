@@ -13,11 +13,11 @@ public abstract class Base implements Loggable {
 
     @BeforeSuite
     public void initializeGlobalConfiguration() {
-        logger().info("Initialize global configurations");
+        logger().info("Initialize global configuration");
     }
 
     @AfterSuite
     public void teardownGlobalConfiguration() {
-        logger().info("Teardown global configurations");
+        logger().info("Teardown global configuration");
     }
 }

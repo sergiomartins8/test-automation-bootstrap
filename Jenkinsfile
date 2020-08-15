@@ -39,7 +39,7 @@ podTemplate(label: "jenkins-slave-base-pod", serviceAccount: "jenkins", containe
                         "Lint": {
                             sh "mvn -B validate"
                         },
-                        "SonarQube Alanysis": {
+                        "SonarQube Analysis": {
                             sh """mvn -B clean verify sonar:sonar \
                                 -Dskip.validate=true \
                                 -Dmaven.test.skip=true \
@@ -60,7 +60,8 @@ podTemplate(label: "jenkins-slave-base-pod", serviceAccount: "jenkins", containe
                     sh """set -e; mvn -B test \
                         -Dselenide.remote=${REMOTE_GRID_ADDRESS} \
                         -Dlistener=io/company/utils/listeners/MockListener.java,io/company/utils/listeners/ExtentReportListener.java \
-                        -Dselenide.browser=firefox"""
+                        -Dselenide.browser=firefox \
+                        -Dselenide.proxyEnabled=true"""
                 }
 
                 publishHTML (target: [
