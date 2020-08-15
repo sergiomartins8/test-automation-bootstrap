@@ -11,6 +11,12 @@ package io.company.utils.config;
 public class CustomConfiguration {
 
     /**
+     * Private constructor to avoid instantiation.
+     */
+    private CustomConfiguration() {
+    }
+
+    /**
      * Default configuration settings holder.
      */
     private static final CustomConfigurationHolder DEFAULTS = new CustomConfigurationHolder();

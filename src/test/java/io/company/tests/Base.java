@@ -12,12 +12,12 @@ import org.testng.annotations.BeforeSuite;
 public abstract class Base implements Loggable {
 
     @BeforeSuite
-    public void initializeGlobalConfigurations() {
+    public void initializeGlobalConfiguration() {
         logger().info("Initialize global configurations");
     }
 
     @AfterSuite
-    public void teardownGlobalConfigurations() {
+    public void teardownGlobalConfiguration() {
         logger().info("Teardown global configurations");
     }
 }

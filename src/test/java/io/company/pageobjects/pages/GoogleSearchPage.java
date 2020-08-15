@@ -7,12 +7,12 @@ public class GoogleSearchPage extends BasePage<GoogleSearchPage> {
     /**
      * Google search input text selector.
      */
-    private final String searchSelector = "[name='q']";
+    private static final String SEARCH_SELECTOR = "[name='q']";
 
     private final SearchComponent searchComponent;
 
     public GoogleSearchPage() {
-        searchComponent = new SearchComponent(searchSelector);
+        searchComponent = new SearchComponent(SEARCH_SELECTOR);
     }
 
     public SearchComponent searchComponent() {

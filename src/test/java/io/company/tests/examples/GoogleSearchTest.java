@@ -12,7 +12,6 @@ import static com.codeborne.selenide.Condition.value;
 import static com.codeborne.selenide.Selenide.open;
 
 public class GoogleSearchTest extends BaseTest {
-
     private GoogleSearchPage googleSearchPage;
     private GoogleResultsPage googleResultsPage;
 

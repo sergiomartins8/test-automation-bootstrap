@@ -22,11 +22,6 @@ import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 public class ExtentReportListener implements ITestListener, Loggable {
 
     @Override
-    public void onStart(ITestContext iTestContext) {
-        logger().debug(iTestContext.getName() + " starting");
-    }
-
-    @Override
     public void onFinish(ITestContext iTestContext) {
         logger().debug(iTestContext.getName() + " finished");
         ExtentManager.getInstance().flush();
@@ -35,25 +30,28 @@ public class ExtentReportListener implements ITestListener, Loggable {
 
     @Override
     public void onTestStart(ITestResult iTestResult) {
-        logger().debug("Test " + iTestResult.getName() + " starting");
+        logger().debug("Test {} starting", iTestResult.getName());
         ExtentTestReport.createTest(iTestResult.getInstanceName(), iTestResult.getName());
     }
 
     @Override
     public void onTestSuccess(ITestResult iTestResult) {
-        logger().debug("Test " + iTestResult.getName() + " passed");
+        logger().debug("Test {} passed", iTestResult.getName());
         ExtentTestReport.getTest().pass("Test passed");
     }
 
     @Override
     public void onTestFailure(ITestResult iTestResult) {
-        logger().error("Test " + iTestResult.getName() + " failed");
+        logger().error("Test {} failed", iTestResult.getName());
 
         ExtentTestReport.getTest().fail(MarkupHelper.createLabel(iTestResult.getThrowable().getMessage(), ExtentColor.RED));
 
         try {
-            ExtentTestReport.getTest().fail("Screenshot - ",
-                    MediaEntityBuilder.createScreenCaptureFromBase64String(getScreenshotBase64()).build());
+            ExtentTestReport
+                    .getTest()
+                    .fail("Screenshot - ", MediaEntityBuilder
+                            .createScreenCaptureFromBase64String(getScreenshotBase64())
+                            .build());
         } catch (IOException e) {
             logger().error(e.getMessage());
         }
@@ -61,7 +59,7 @@ public class ExtentReportListener implements ITestListener, Loggable {
 
     @Override
     public void onTestSkipped(ITestResult iTestResult) {
-        logger().debug("Test " + iTestResult.getName() + " skipped");
+        logger().debug("Test {} skipped", iTestResult.getName());
         ExtentTestReport.getTest().skip("Test Skipped");
     }
 

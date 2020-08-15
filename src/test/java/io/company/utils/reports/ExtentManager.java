@@ -12,6 +12,12 @@ public class ExtentManager {
     private static ExtentReports extentReports;
 
     /**
+     * Private constructor to avoid instantiation.
+     */
+    private ExtentManager() {
+    }
+
+    /**
      * Call this method to get the extent report singleton instance.
      *
      * @return extent reports instance

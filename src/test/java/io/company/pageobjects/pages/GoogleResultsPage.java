@@ -10,13 +10,13 @@ public class GoogleResultsPage extends BasePage<GoogleResultsPage> {
     /**
      * Google search input text selector.
      */
-    private final String searchSelector = "[name='q']";
-    private final String searchResults = "#res .g";
+    private static final String SEARCH_SELECTOR = "[name='q']";
+    private static final String SEARCH_RESULTS = "#res .g";
 
     private final SearchComponent searchComponent;
 
     public GoogleResultsPage() {
-        searchComponent = new SearchComponent(searchSelector);
+        searchComponent = new SearchComponent(SEARCH_SELECTOR);
     }
 
     public SearchComponent searchComponent() {
@@ -24,6 +24,6 @@ public class GoogleResultsPage extends BasePage<GoogleResultsPage> {
     }
 
     public ElementsCollection getResults() {
-        return $$(searchResults);
+        return $$(SEARCH_RESULTS);
     }
 }

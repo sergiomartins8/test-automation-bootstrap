@@ -16,6 +16,12 @@ public class ExtentTestReport {
      */
     private static final Map<Long, ExtentTest> EXTENT_TEST_MAP = new HashMap<>();
 
+    /**
+     * Private constructor to avoid instantiation.
+     */
+    private ExtentTestReport() {
+    }
+
     public static synchronized ExtentTest getTest() {
         return EXTENT_TEST_MAP.get(Thread.currentThread().getId());
     }
