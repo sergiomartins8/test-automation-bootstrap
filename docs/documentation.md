@@ -3,51 +3,51 @@ These are mostly guidelines, not rules. Use your best judgment, and feel free to
 
 #### Table of contents
 
-[Default](#default)
-    
-[ExtentReports](#extentreports)
+[POM](#pom---the-page-object-model)
 
-[MockServer](#mockserver)
+[Suites](#suites)
+
+[Parallel Test Execution](#parallel-test-execution)
+
+[Extent Reports](#extent-reports)
+
+[Mocking Responses](#mocking-responses)
 
 [Checkstyle](#checkstyle)
 
 [SonarQube](#sonarqube)
 
-[Github-actions](#github-actions-)
-
-[Travis](#travis-)
-
 [Jenkins](#jenkins-)
 
-## Default
+## POM - the Page Object Model
+The *ui-automation-bootstrap* uses the Page Object Model (**POM**) (https://martinfowler.com/bliki/PageObject.html) to structure code.
 
-The standard template without extra features will already enable you to use some interesting system properties.
+Within page objects you may find two kinds:
+1. `Pages` a complete page (eg. login page, home page)
+1. `Components` Reusable components within a page (eg. search bar, login form)
 
+> NOTE: Components are not supposed to be restricted to single pages. Components are designed to be reused throughout the framework. 
+> Thus, if you've to group them, group them by component type, not page; eg. forms, sidebars, modals.
+
+## Suites
+You can have multiple suites under [/suites](../src/test/resources/suites). And, in order to run any of them you can use a system property `-Dsuite=<suite-name>`.
+
+##### Example
 ```shell script
-Usage: $ mvn test [options]
-
-Options:
-   -Dparallel              # enables parallel threads (choices: false, methods, tests, classes, instances) [false]
-   -DthreadCount           # number of threads to use when running tests in parallel [1]
-   -Dlistener              # comma-separated list of java classes that can be found on your classpath [null]
+$ mvn clean test -Dsuite=suiteA
 ```
 
-As we are using the goods of [Selenide](https://github.com/selenide/selenide) by default, you are also able to use its system properties alongside with the custom ones already available.
+> NOTE: Change the default suite on [pom.xml](../pom.xml) properties.
 
-##### Example:
-```shell script
-$ mvn test -Dparallel=methods \
-           -DthreadCount=2 \
-           -Dselenide.remote=http://<<docker_ip>>:4444/wd/hub \
-           -Dselenide.headless=true \
-           -Dselenide.browser=firefox \
-           -Dselenide.baseUrl=http:/google.com
+## Parallel Test Execution
+You can run tests in parallel, configuring your suite file or with system properties.
+ 
+##### Example
+ ```shell script
+$ mvn clean test -Dparallel=<method> -DthreadCount=<n-threads>
 ```
 
-> More about Selenide's configuration settings and documentation [here](https://selenide.org/javadoc/current/com/codeborne/selenide/Configuration.html)
-
-## ExtentReports
-
+## Extent Reports
 Using [ExtentReports](https://extentreports.com/), you are able to automatically generate reports after test execution. These are stored under `reports/ExtentReport.html`. 
 Furthermore, and by default, screenshots are taken upon test failure and attached to the report.
 
@@ -57,15 +57,27 @@ Furthermore, and by default, screenshots are taken upon test failure and attache
 >
 > Example: `-Dlistener=${package}/utils/listeners/ExtentReportListener.java`
 
-## MockServer
+## Mocking Responses
+In order to mock http requests the framework uses browserup proxy behind selenide. This allows you to intercept, filter and manipulate requests and responses.
 
-Using [MockServer](https://www.mock-server.com/), it allows injecting mocks during runtime by listening to `@Mock` annotations.
+![](img/mocked_response.png)
 
+First you've to model your request, so you can work with it anyhow you see fit. 
+Therefore, in order to create a new object to model a mocked request (eg. `ExampleMockModel.java`) it has to implement [MockDefinition](../src/test/java/io/company/utils/mocks/MockDefinition.java) interface.
+
+##### Example
+````java
+public class ExampleMockModel implements MockDefinition { ... }
+````
+
+Then, use the [@Mock](../src/test/java/io/company/utils/mocks/Mock.java) annotation in order to apply it for a given test case.
+
+##### Snippet
 ```java
 @Target({ElementType.METHOD, ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Mock {
-    String[] path();
+    Class<? extends MockDefinition> clazz();
 }
 ```
 
@@ -73,92 +85,42 @@ The annotation may be declared for methods or class types.
 
 ##### Example
 ````java
-@Mock(path = {"path1", "path2", ...})
-@Test()
-public void shouldDoThis() { ... }
+@Test
+@Mock(clazz = ExampleMockModel.class)
+public void exampleMockedTest() { ... }
 ````
 
-> ⚠️ Requires the mock server address to be set using the property `-Dmock.server.address` and the mock server listener.
+> **NOTE:** Safari does not support this use case.
 >
-> Example: `-Dmock.server.address=0.0.0.0:3000  -Dlistener=${package}/utils/listeners/MockServerListener.java`
+> ⚠️ Requires proxy to be enabled. Luckily selenide has a custom configuration for this.
+> Programmatically `Configuration.proxyEnabled = true` or by system property `-Dselenide.proxyEnabled=true`
 
 ## Checkstyle
-
 This feature integrates your project with a code linter, so that everyone follows the same code style within the team. 
-Executable through: `$ mvn validate`.
+
+##### Example
+```shell script
+$ mvn validate
+```
  
 ## SonarQube
-
 Using [SonarQube](https://www.sonarqube.org/) feature integration, it allows you to execute tasks such as static analysis, code coverage or even implement your code quality gate.
-Executable through: `$ mvn sonar:sonar -Dsonar.host.url=http://<<docker_ip>>:9090`.
 
-## Github-actions 🤖
-
-Use this feature if you are using github for your source code. It provides a pretty handy continuous integration pipeline using [github-actions](https://help.github.com/en/actions), under `.github/workflows/`.
-Executable using `-Dgithub-actions=true`.
-
-##### Snippet
-```yaml
-name: github-actions
-
-on:
-  push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
-
-jobs:
-  ci:
-    runs-on: ubuntu-latest
-    steps:
-      
-      (...)
-
-      - name: Validate checkstyle
-        run: mvn -B validate
-      
-      (...)
-
-      - name: Run tests
-        run: |
-          mvn -B test \
-          -Dselenide.remote=http://0.0.0.0:4444/wd/hub \
-          -Dmock.server.address=0.0.0.0:3000 \
-          -Dlistener=io/company/utils/listeners/MockServerListener.java,io/company/utils/listeners/ExtentReportListener.java
-
-      - name: Publish reports (if failure)
-        uses: actions/upload-artifact@v1
-        if: failure()
-        with:
-          name: extent-report
-          path: reports/ExtentReport.html
+##### Example
+```shell script
+$ mvn -B clean verify sonar:sonar \
+            -Dskip.validate=true \
+            -Dmaven.test.skip=true \
+            -Dsonar.host.url=${SONARQUBE_ADDRESS} \
+            -Dsonar.qualitygate.wait=true \
+            -Dsonar.sources=src/test/java \
+            -Dsonar.tests=src/main/java \
+            -Dsonar.inclusions=src/test/java/**/*.java \
+            -Dsonar.tests.exclusions=src/test/java/**/*.java
 ```
 
-## Travis 🤖
-
-Use this feature if you are using github for your source code. It creates a travis configuration file example for you!
-Executable using: `-Dtravis=true`.
-
-##### Snippet
-````yaml
-(...)
-
-services:
-  - docker
-
-before_install:
-  - docker-compose up --build -d
-
-script: |
-  mvn -B clean test \
-  -Dselenide.remote=http://0.0.0.0:4444/wd/hub \
-  -Dlistener=io/company/utils/listeners/ExtentReportListener.java
-````
-
 ## Jenkins 🤖
-
-This feature creates a Jenkinsfile example for you!
-Executable using: `-Djenkins=true`.
+There is a [jenkinsfile](../Jenkinsfile) example available. Use it to get started. However, it might need some tailoring.
 
 ##### Snippet
 ```groovy

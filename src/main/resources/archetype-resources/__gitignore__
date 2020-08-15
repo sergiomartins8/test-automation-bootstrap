@@ -1,9 +1,0 @@
-.idea/
-.settings/
-build/
-.classpath
-target/
-.project
-*.iml
-/reports/ExtentReport.html
-/.vscode

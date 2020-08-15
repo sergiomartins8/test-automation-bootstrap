@@ -1,9 +1,0 @@
-<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-
-<suite name="${artifactId}" verbose="2" parallel="false" thread-count="1">
-    <test name="Example">
-        <packages>
-            <package name="${package}.tests.*"/>
-        </packages>
-    </test>
-</suite>
