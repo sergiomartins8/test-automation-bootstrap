@@ -108,7 +108,7 @@ Using [SonarQube](https://www.sonarqube.org/) feature integration, it allows you
 
 Example
 ```shell script
-mvn -B clean verify sonar:sonar \
+$ mvn -B clean verify sonar:sonar \
                                 -Dskip.validate=true \
                                 -Dmaven.test.skip=true \
                                 -Dsonar.host.url=${SONARQUBE_ADDRESS} \
