@@ -5,7 +5,7 @@
 
 A template for selenium based ui automation projects using _[selenide](https://github.com/selenide/selenide)_ ✨
 
-[![version](https://img.shields.io/maven-central/v/com.github.sergiomartins8/ui-automation-bootstrap?label=release)](https://search.maven.org/search?q=g:com.github.sergiomartins8)
+[![version](https://img.shields.io/github/v/release/sergiomartins8/ui-automation-bootstrap)](https://github.com/sergiomartins8/ui-automation-bootstrap/releases)
 [![release-candidate](https://github.com/sergiomartins8/ui-automation-bootstrap/workflows/release-candidate/badge.svg)](https://github.com/sergiomartins8/ui-automation-bootstrap/actions?query=workflow%3Arelease-candidate)
 [![contributors](https://img.shields.io/github/contributors/sergiomartins8/ui-automation-bootstrap)](https://github.com/sergiomartins8/ui-automation-bootstrap/graphs/contributors)
 [![issues](https://img.shields.io/github/issues/sergiomartins8/ui-automation-bootstrap)](https://github.com/sergiomartins8/ui-automation-bootstrap/issues)
