@@ -44,10 +44,10 @@ The goal is to build a solid and generic template so that Test Automation Engine
 
 > _🐳 stands for dockerized_
 
-## Getting Started
+## Getting Started 🚀
 ![](docs/img/template.png)
 
-Use this project as a template, or clone it. That easy! 🚀
+Use this project as a template, or clone it. That easy!
 
 ## Documentation
 Explore the [documentation](docs/documentation.md) and customize it for your needs.

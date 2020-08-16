@@ -21,6 +21,8 @@ These are mostly guidelines, not rules. Use your best judgment, and feel free to
 ## POM - the Page Object Model
 The *ui-automation-bootstrap* uses the Page Object Model (**POM**) (https://martinfowler.com/bliki/PageObject.html) to structure code.
 
+![](img/structure.gif)
+
 Within page objects you may find two kinds:
 1. `Pages` a complete page (eg. login page, home page)
 1. `Components` Reusable components within a page (eg. search bar, login form)
