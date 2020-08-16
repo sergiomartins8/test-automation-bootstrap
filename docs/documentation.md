@@ -2,7 +2,6 @@ The following is a set of guidelines and documentation to better experience the 
 These are mostly guidelines, not rules. Use your best judgment, and feel free to propose changes to this document in a pull request.
 
 #### Table of contents
-
 [POM](#pom---the-page-object-model)
 
 [Suites](#suites)
@@ -34,7 +33,7 @@ You can have multiple suites under [/suites](../src/test/resources/suites). And,
 
 ##### Example
 ```shell script
-$ mvn clean test -Dsuite=suiteA
+$ mvn clean test -Dsuite=<suite-name>
 ```
 
 > NOTE: Change the default suite on [pom.xml](../pom.xml) properties.
@@ -44,7 +43,7 @@ You can run tests in parallel, configuring your suite file or with system proper
  
 ##### Example
  ```shell script
-$ mvn clean test -Dparallel=<method> -DthreadCount=<n-threads>
+$ mvn clean test -Dparallel=<method-name> -DthreadCount=<n-threads>
 ```
 
 ## Extent Reports

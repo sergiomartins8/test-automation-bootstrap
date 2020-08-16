@@ -11,8 +11,5 @@ public class Constants {
     private Constants() {
     }
 
-    /**
-     * Time out in seconds.
-     */
-    public static final long TIME_OUT_SECONDS = 10;
+    public static final long EXAMPLE_CONSTANT = 123;
 }
