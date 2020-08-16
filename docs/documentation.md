@@ -24,10 +24,10 @@ The *ui-automation-bootstrap* uses the Page Object Model (**POM**) (https://mart
 ![](img/structure.gif)
 
 Within page objects you may find two kinds:
-1. `Pages` a complete page (eg. login page, home page)
-1. `Components` Reusable components within a page (eg. search bar, login form)
+1. `Pages` complete page (eg. login page, home page)
+1. `Components` reusable components within a page (eg. search bar, login form)
 
-> NOTE: Components are not supposed to be restricted to single pages. Components are designed to be reused throughout the framework. 
+> **NOTE:** components are not supposed to be restricted to single pages. Components are designed to be reused throughout the framework. 
 > Thus, if you've to group them, group them by component type, not page; eg. forms, sidebars, modals.
 
 ## Suites
@@ -38,7 +38,7 @@ You can have multiple suites under [/suites](../src/test/resources/suites). And,
 $ mvn clean test -Dsuite=<suite-name>
 ```
 
-> NOTE: Change the default suite on [pom.xml](../pom.xml) properties.
+> You can change the default suite on [pom.xml](../pom.xml) properties.
 
 ## Parallel Test Execution
 You can run tests in parallel, configuring your suite file or with system properties.
@@ -91,10 +91,14 @@ The annotation may be declared for methods or class types.
 public void exampleMockedTest() { ... }
 ````
 
-> **NOTE:** Safari does not support this use case.
->
-> ⚠️ Requires proxy to be enabled. Luckily selenide has a custom configuration for this.
-> Programmatically `Configuration.proxyEnabled = true` or by system property `-Dselenide.proxyEnabled=true`
+⚠️ For this to work you have to enable the proxy and use the [MockListener](../src/test/java/io/company/utils/listeners/MockListener.java) class.
+
+##### Example
+```shell script
+$ mvn clean test -Dselenide.proxyEnabled=true -Dlistener=${package}/utils/listeners/MockListener.java
+```
+
+> **NOTE:** safari does not support this use case.
 
 ## Checkstyle
 This feature integrates your project with a code linter, so that everyone follows the same code style within the team. 
@@ -150,4 +154,4 @@ podTemplate(label: "jenkins-slave-base-pod", serviceAccount: "jenkins", containe
 }
 ```
 
-> Note that the example uses Jenkins on Kubernetes. Follow this [article](https://medium.com/@sergiomartins8/highly-scalable-jenkins-on-minikube-8cc289a31850) to have a similar environment in no time!
+> The example above uses Jenkins on Kubernetes. Follow this [article](https://medium.com/@sergiomartins8/highly-scalable-jenkins-on-minikube-8cc289a31850) to have a similar environment in no time!
