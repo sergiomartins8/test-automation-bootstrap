@@ -6,7 +6,7 @@ public class CustomConfigurationHolder implements Loggable {
     private final String customConfiguration = System.getProperty("custom.configuration");
 
     public String exampleConfiguration() {
-        logger().info("Mock server address: " + customConfiguration);
+        logger().info("Custom config: " + customConfiguration);
         return customConfiguration;
     }
 }
