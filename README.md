@@ -10,7 +10,7 @@ A template for selenium based ui automation projects using _[selenide](https://g
 [![license](https://img.shields.io/github/license/sergiomartins8/ui-automation-bootstrap)](http://www.apache.org/licenses/LICENSE-2.0)
 
 * [About](#about)
-* [Getting Started](#getting-started)
+* [Getting Started](#getting-started-)
 * [Changelog](#changelog)
 * [Contributing](#contributing)
 
