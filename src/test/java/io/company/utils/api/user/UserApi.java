@@ -11,8 +11,6 @@ import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 
-import static java.util.Objects.requireNonNull;
-
 /**
  * Example model of an API to get info from users.
  * Contains methods such as post, get and patch.
@@ -37,7 +35,7 @@ public class UserApi extends ClientApi {
             Request request = new Request.Builder()
                     .url(url + Urls.Api.USERS)
                     .addHeader(HEADER_AUTHORIZATION, authentication.getAccessToken())
-                    .post(requireNonNull(requestBody))
+                    .post(requestBody)
                     .build();
 
             return responseHandler(request, User.class);
@@ -97,7 +95,7 @@ public class UserApi extends ClientApi {
             Request request = new Request.Builder()
                     .url(url + Urls.Api.USERS + user.getId())
                     .addHeader(HEADER_AUTHORIZATION, authentication.getAccessToken())
-                    .patch(requireNonNull(requestBody))
+                    .patch(requestBody)
                     .build();
 
             return responseHandler(request, User.class);
