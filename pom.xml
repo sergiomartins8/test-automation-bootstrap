@@ -15,7 +15,7 @@
 
     <properties>
         <!-- Defines a default suite -->
-        <SUITE>suiteA</SUITE>
+        <suite>suiteA</suite>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     </properties>
@@ -51,7 +51,7 @@
                         </property>
                     </properties>
                     <suiteXmlFiles>
-                        <suiteXmlFile>src/test/resources/suites/${SUITE}.xml</suiteXmlFile>
+                        <suiteXmlFile>src/test/resources/suites/${suite}.xml</suiteXmlFile>
                     </suiteXmlFiles>
                 </configuration>
             </plugin>
