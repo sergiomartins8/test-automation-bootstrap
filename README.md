@@ -1,15 +1,15 @@
-<h1 align="center">UI Automation Bootstrap</h1>
+<h1 style="width:auto; margin:0 auto;">UI Automation Bootstrap</h1>
 
-<div align="center">
+<div style="width:auto; margin:0 auto;">
 
 <img src="docs/img/my_unicorn.png" alt="logo"/>
 
 <br>
 
+<a href="https://www.linkedin.com/in/sergiomartins8/"><img src="https://img.shields.io/badge/-sergiomartins8-blue?logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/sergiomartins8/" alt="linkedin"/></a>
 <img src="https://img.shields.io/static/v1?label=%F0%9F%8C%9F&message=If%20Useful&style=style=flat&color=BC4E99" alt="stars"/>
 <a href="https://github.com/sergiomartins8/ui-automation-bootstrap/stargazers"><img src="https://img.shields.io/github/stars/sergiomartins8/ui-automation-bootstrap" alt="stars"/></a>
 <a href="https://github.com/sergiomartins8/ui-automation-bootstrap/network/members"><img src="https://img.shields.io/github/forks/sergiomartins8/ui-automation-bootstrap" alt="forks"/></a>
-<a href="https://www.linkedin.com/in/sergiomartins8/"><img src="https://img.shields.io/badge/-sergiomartins8-blue?logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/sergiomartins8/" alt="linkedin"/></a>
 
 <i>An awesome test automation framework template to jumpstart your projects!</i>
 
@@ -20,10 +20,10 @@
 <a href="https://github.com/sergiomartins8/ui-automation-bootstrap/blob/master/LICENSE"><img src="https://img.shields.io/github/license/sergiomartins8/ui-automation-bootstrap" alt="license"/></a>
 
 <p>
-<a href="https://github.com/sergiomartins8/ui-automation-bootstrap"><strong>Explore the docs »</strong></a>
+<a href="docs/documentation.md"><strong>Explore the docs »</strong></a>
 <br />
 <br />
-<a href="https://github.com/sergiomartins8/ui-automation-bootstrap">Ask Question</a>
+<a href="https://github.com/sergiomartins8/ui-automation-bootstrap/issues">Ask Question</a>
 ·
 <a href="https://github.com/sergiomartins8/ui-automation-bootstrap/issues">Report Bug</a>
 ·
@@ -70,7 +70,7 @@ A simple and effective template to quickstart any ui test automation framework i
 
 ## Getting Started 🚀
 
-<img src="docs/img/template.png" alt="stars" width="994">
+<img src="docs/img/template.png" alt="stars" width="90%">
 
 Use this project as a template, or clone it. That easy!
 
