@@ -4,6 +4,8 @@
 
 <img src="docs/img/my_unicorn.png" alt="logo"/>
 
+<br>
+
 <img src="https://img.shields.io/static/v1?label=%F0%9F%8C%9F&message=If%20Useful&style=style=flat&color=BC4E99" alt="stars"/>
 <a href="https://github.com/sergiomartins8/ui-automation-bootstrap/stargazers"><img src="https://img.shields.io/github/stars/sergiomartins8/ui-automation-bootstrap" alt="stars"/></a>
 <a href="https://github.com/sergiomartins8/ui-automation-bootstrap/network/members"><img src="https://img.shields.io/github/forks/sergiomartins8/ui-automation-bootstrap" alt="forks"/></a>
@@ -68,9 +70,7 @@ A simple and effective template to quickstart any ui test automation framework i
 
 ## Getting Started 🚀
 
-<div align="center">
-<img src="docs/img/template.png" alt="stars" width="300">
-</div>
+<img src="docs/img/template.png" alt="stars" width="994">
 
 Use this project as a template, or clone it. That easy!
 
