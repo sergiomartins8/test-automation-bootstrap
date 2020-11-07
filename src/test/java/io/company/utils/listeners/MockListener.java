@@ -36,13 +36,20 @@ public class MockListener implements ITestListener, Loggable {
                         .getDeclaredConstructor()
                         .newInstance();
 
+                logger().info("Adding response filter for class name '{}'", mock.clazz().getSimpleName());
                 WebDriverRunner
                         .getSelenideProxy()
-                        .addResponseFilter(mock.getClass().getSimpleName(), (response, contents, messageInfo) -> {
+                        .addResponseFilter(mock.clazz().getSimpleName(), (response, contents, messageInfo) -> {
                             if (messageInfo.getOriginalRequest().method().equals(mockDefinition.methodName())
                                     && Pattern.compile(mockDefinition.url()).matcher(messageInfo.getOriginalUrl()).matches()) {
+
+                                logger().info("Mocking content body: {}", mockDefinition.contentBody());
                                 contents.setTextContents(mockDefinition.contentBody());
+
+                                logger().info("Mocking response status: {}", mockDefinition.responseStatus());
                                 response.setStatus(mockDefinition.responseStatus());
+
+                                logger().info("Mocking response headers: {}", mockDefinition.headers());
                                 response.headers().add(mockDefinition.headers());
                             }
                         });
