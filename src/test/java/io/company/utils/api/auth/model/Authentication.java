@@ -18,4 +18,7 @@ import lombok.Setter;
 public class Authentication {
     @JsonProperty("AccessToken")
     private String accessToken;
+
+    @JsonProperty("RefreshToken")
+    private String refreshToken;
 }

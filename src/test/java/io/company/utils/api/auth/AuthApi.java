@@ -11,20 +11,21 @@ import io.company.utils.api.auth.model.Authentication;
 public class AuthApi extends ClientApi {
 
     /**
-     * Used to get access token in order to perform authorized requests.
+     * Used to get authentication tokens in order to perform authorized requests.
      *
      * @param email    user email
      * @param password user password
      * @return {@link Authentication} object
      */
     public static Authentication getAuthentication(String email, String password) {
-        // 1. get authentication token
+        // 1. get authentication tokens
 
         // your code here
 
         // 2. build your authentication object
         Authentication authentication = new Authentication();
         authentication.setAccessToken("YourAccessToken");
+        authentication.setRefreshToken("YourRefreshToken");
 
         // 3. return authentication object
         return authentication;
