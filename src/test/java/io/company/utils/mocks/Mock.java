@@ -11,11 +11,11 @@ import java.lang.annotation.Target;
  * <br>
  * Example: {@code @Mock({"path1", "path2", ...})}
  */
-@Target({ElementType.METHOD, ElementType.TYPE})
+@Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Mock {
     /**
      * Class that represents the mocked data.
      */
-    Class<? extends MockDefinition> clazz();
+    Class<? extends MockDefinition>[] clazz();
 }

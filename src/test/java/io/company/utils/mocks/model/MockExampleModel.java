@@ -9,7 +9,7 @@ import io.netty.handler.codec.http.HttpResponseStatus;
 public class MockExampleModel implements MockDefinition {
 
     @Override
-    public String url() {
+    public String urlPattern() {
         return "https://www.google.pt/mock";
     }
 

@@ -75,10 +75,10 @@ Then, use the [@Mock](../src/test/java/io/company/utils/mocks/Mock.java) annotat
 
 ##### Snippet
 ```java
-@Target({ElementType.METHOD, ElementType.TYPE})
+@Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Mock {
-    Class<? extends MockDefinition> clazz();
+    Class<? extends MockDefinition>[] clazz();
 }
 ```
 
@@ -87,7 +87,7 @@ The annotation may be declared for methods or class types.
 ##### Example
 ````java
 @Test
-@Mock(clazz = ExampleMockModel.class)
+@Mock(clazz = {ExampleMockModel.class, OtherExampleMockModel.class})
 public void exampleMockedTest() { ... }
 ````
 
@@ -132,7 +132,7 @@ There is a [jenkinsfile](../Jenkinsfile) example available. Use it to get starte
 podTemplate(label: "jenkins-slave-base-pod", serviceAccount: "jenkins", containers: [
         containerTemplate(
                 name: "base",
-                image: "sergiomartins8/jenkins-slave-base:1.0",
+                image: "sergiomartins8/jenkins-slave-base:latest",
                 ttyEnabled: true,
                 command: "cat"
         )
