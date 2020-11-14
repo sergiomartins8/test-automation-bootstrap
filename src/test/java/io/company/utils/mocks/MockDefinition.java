@@ -9,7 +9,7 @@ import io.netty.handler.codec.http.HttpResponseStatus;
  * <br>
  */
 public interface MockDefinition {
-    String url();
+    String urlPattern();
 
     default HttpMethod methodName() {
         return HttpMethod.GET;

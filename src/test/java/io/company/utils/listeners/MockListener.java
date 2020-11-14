@@ -20,8 +20,8 @@ public class MockListener implements ITestListener, Loggable {
      * <b>TL;DR:</b>
      * For this to work, we're using the selenide proxy implementation. Thus, allowing us to intercept and swap any http responses.
      * <br>
-     * This piece of logic extracts the parameter class within the {@link Mock} annotation.
-     * Then, converts it into a {@link MockDefinition} object.
+     * This piece of logic extracts the clazz field within the {@link Mock} annotation, containing the array of model objects to be mocked.
+     * Then, for each model, instantiates it back into a {@link MockDefinition} object.
      * <br>
      * Having the object, we use it to add its fields to the http response - through a filter.
      *
@@ -29,30 +29,33 @@ public class MockListener implements ITestListener, Loggable {
      */
     @Override
     public void onTestStart(ITestResult result) {
-        extractMockAnnotation(result).ifPresent(mock -> {
+        extractMockAnnotation(result).ifPresent(mockAnnotation -> {
             try {
-                MockDefinition mockDefinition = mock
-                        .clazz()
-                        .getDeclaredConstructor()
-                        .newInstance();
+                for (Class<? extends MockDefinition> mockedModel : mockAnnotation.clazz()) {
+                    MockDefinition mockDefinition = mockedModel.getDeclaredConstructor().newInstance();
 
-                logger().info("Adding response filter for class name '{}'", mock.clazz().getSimpleName());
-                WebDriverRunner
-                        .getSelenideProxy()
-                        .addResponseFilter(mock.clazz().getSimpleName(), (response, contents, messageInfo) -> {
-                            if (messageInfo.getOriginalRequest().method().equals(mockDefinition.methodName())
-                                    && Pattern.compile(mockDefinition.url()).matcher(messageInfo.getOriginalUrl()).matches()) {
+                    logger().info("Adding response filter from model '{}.class'", mockedModel.getSimpleName());
+                    logger().info("Adding response filter '{}'", mockedModel.getSimpleName().toLowerCase());
 
-                                logger().info("Mocking content body: {}", mockDefinition.contentBody());
-                                contents.setTextContents(mockDefinition.contentBody());
+                    WebDriverRunner
+                            .getSelenideProxy()
+                            .addResponseFilter(mockedModel.getSimpleName().toLowerCase(), (response, contents, messageInfo) -> {
+                                if (messageInfo.getOriginalRequest().method().equals(mockDefinition.methodName())
+                                        && Pattern.compile(mockDefinition.urlPattern()).matcher(messageInfo.getOriginalUrl()).matches()) {
+                                    logger().info("Original url request: {} {}", mockDefinition.methodName(), mockDefinition.urlPattern());
+                                    logger().info("Matching pattern: {}", mockDefinition.urlPattern());
 
-                                logger().info("Mocking response status: {}", mockDefinition.responseStatus());
-                                response.setStatus(mockDefinition.responseStatus());
+                                    logger().info("Mocking content body: {}", mockDefinition.contentBody());
+                                    contents.setTextContents(mockDefinition.contentBody());
 
-                                logger().info("Mocking response headers: {}", mockDefinition.headers());
-                                response.headers().add(mockDefinition.headers());
-                            }
-                        });
+                                    logger().info("Mocking response status: {}", mockDefinition.responseStatus());
+                                    response.setStatus(mockDefinition.responseStatus());
+
+                                    logger().info("Mocking response headers: {}", mockDefinition.headers());
+                                    response.headers().add(mockDefinition.headers());
+                                }
+                            });
+                }
             } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
                 logger().error(e.getMessage());
             }
