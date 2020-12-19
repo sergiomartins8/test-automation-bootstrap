@@ -1,11 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
-        <encoder>
+        <layout class="ch.qos.logback.classic.PatternLayout">
             <pattern>%green(%d{yyyy-MM-dd HH:mm:ss.SSS}) %magenta([%thread]) %highlight(%-5level) %yellow(%logger{36}) - %msg%n</pattern>
-        </encoder>
+        </layout>
     </appender>
+
+<!--    Enable this in order to use ELK stack implementation-->
+<!--    TUTORIAL: __link here__-->
+<!--    <appender name="STASH" class="net.logstash.logback.appender.LogstashTcpSocketAppender">-->
+<!--        <destination>localhost:5000</destination>-->
+<!--        <encoder class="net.logstash.logback.encoder.LogstashEncoder"/>-->
+<!--    </appender>-->
+
     <root level="INFO">
-        <appender-ref ref="STDOUT" />
+        <appender-ref ref="STDOUT"/>
+<!--        <appender-ref ref="STASH"/>-->
     </root>
 </configuration>
