@@ -7,3 +7,4 @@ target/
 *.iml
 /reports/ExtentReport.html
 /.vscode
+/secrets
