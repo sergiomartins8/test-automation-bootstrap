@@ -25,9 +25,3 @@ elasticsearch.ssl.certificateAuthorities: [ "/certs/ca.crt" ]
 
 ## Misc
 elasticsearch.requestTimeout: 90000
-
-
-
-## ElastAlert Plugin
-#elastalert-kibana-plugin.serverHost: elastalert
-#elastalert-kibana-plugin.serverPort: 3030
