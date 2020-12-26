@@ -1,4 +1,4 @@
-<h1 align="center">UI Automation Bootstrap</h1>
+<h1 align="center">Test Automation Bootstrap</h1>
 
 <div align="center">
 
@@ -38,18 +38,16 @@
 * [Changelog](#changelog)
 * [Contributing](#contributing)
 
-## What does a _ui-automation-bootstrap_ test look like?
+## What does a _test-automation-bootstrap_ test look like?
 ```java
 @Test
 @Mock(clazz = MockExampleModel.class)
 public void shouldPerformSearchSuccessfully() {
-    open("http://google.com");
+    open("https://google.com");
 
     googleSearchPage
             .searchComponent()
-            .searchFor("mock");
-
-    googleResultsPage
+            .searchFor("mock")
             .searchComponent()
             .self()
             .shouldHave(value("mock"));
@@ -65,6 +63,7 @@ A simple and effective template to quickstart any ui test automation framework i
 * _[SonarQube](https://www.sonarqube.org/)_ 🐳 - A static analysis tool
 * _[SeleniumGrid](https://github.com/SeleniumHQ/docker-selenium)_ 🐳 - Allows to scale the test execution as well as providing the required browser types
 * _[Checkstyle](https://maven.apache.org/plugins/maven-checkstyle-plugin/)_ - Code linter
+* _[ELK Stack](https://www.elastic.co/blog/elastic-stack-7-10-1-released)_ 🐳 - Enables distributed log aggregation and visualization
 
 > _🐳 stands for dockerized_
 
