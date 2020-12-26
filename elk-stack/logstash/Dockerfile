@@ -1,7 +1,10 @@
 ARG ELK_VERSION
 
-# https://www.docker.elastic.co/
+# https://github.com/elastic/logstash-docker
 FROM docker.elastic.co/logstash/logstash:${ELK_VERSION}
 
-# Install plugins
+HEALTHCHECK --interval=240s --timeout=120s --retries=5 \
+  CMD curl -s -XGET 'http://127.0.0.1:9600'
+
+# Add your logstash plugins setup here
 RUN logstash-plugin install logstash-filter-grok
