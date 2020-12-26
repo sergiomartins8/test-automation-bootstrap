@@ -7,7 +7,7 @@
     </appender>
 
 <!--    Enable this in order to use ELK stack implementation-->
-<!--    TUTORIAL: __link here__-->
+<!--    TUTORIAL: COMING SOON. -->
 <!--    <appender name="STASH" class="net.logstash.logback.appender.LogstashTcpSocketAppender">-->
 <!--        <destination>localhost:5000</destination>-->
 <!--        <encoder class="net.logstash.logback.encoder.LogstashEncoder"/>-->

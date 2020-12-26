@@ -48,7 +48,6 @@ images:			## Show all Images of ELK and all its extra components.
 	@docker-compose $(COMPOSE_ALL_FILES) images ${ELK_ALL_SERVICES}
 
 prune:			## Remove ELK Containers and Delete Volume Data
-	@make swarm-rm || echo ""
 	@make stop && make rm
 	@docker volume prune -f
 

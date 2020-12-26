@@ -3,8 +3,10 @@ package io.company.tests.examples;
 import io.company.pageobjects.pages.GoogleResultsPage;
 import io.company.pageobjects.pages.GoogleSearchPage;
 import io.company.tests.BaseTest;
+import io.company.utils.listeners.DistributedReportListener;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import static com.codeborne.selenide.CollectionCondition.sizeGreaterThan;
@@ -32,13 +34,11 @@ public class GoogleSearchTest extends BaseTest {
 
     @Test(description = "Open up a google page and search for the word 'dogs'")
     public void shouldPerformSearch() {
-        open("http://google.com");
+        open("https://google.com");
 
         googleSearchPage
                 .searchComponent()
-                .searchFor("dogs");
-
-        googleResultsPage
+                .searchFor("dogs")
                 .searchComponent()
                 .self()
                 .shouldHave(value("dogs"));
@@ -46,7 +46,7 @@ public class GoogleSearchTest extends BaseTest {
 
     @Test
     public void shouldSearchResultsBeDisplayed() {
-        open("http://www.google.pt/search?source=hp&q=dogs&oq=dogs");
+        open("https://www.google.pt/search?source=hp&q=dogs&oq=dogs");
 
         googleResultsPage
                 .getResults()

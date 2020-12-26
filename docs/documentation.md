@@ -45,7 +45,7 @@ You can run tests in parallel, configuring your suite file or with system proper
  
 ##### Example
  ```shell script
-$ mvn clean test -Dparallel=<method-name> -DthreadCount=<n-threads>
+$ mvn clean test -Dparallel=<method-name> -Dthread.count=<n-threads>
 ```
 
 ## Extent Reports

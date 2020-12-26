@@ -5,19 +5,36 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>awesome.group.id</groupId>
-    <artifactId>ui-automation-bootstrap</artifactId>
+    <artifactId>test-automation-bootstrap</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>ui-automation-bootstrap</name>
-    <description>A template for selenium based ui automation projects using selenide</description>
-    <url>https://github.com/sergiomartins8/ui-automation-bootstrap</url>
+    <name>test-automation-bootstrap</name>
+    <description>A template to jumpstart test automation frameworks</description>
+    <url>https://github.com/sergiomartins8/test-automation-bootstrap</url>
 
     <properties>
-        <!-- Defines a default suite -->
-        <suite>suiteA</suite>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <java.version>11</java.version>
+
+        <!-- Default suite variables -->
+        <suite>suiteA</suite>
+        <parallel></parallel>
+        <listener></listener>
+        <thread.count></thread.count>
+
+        <selenide.version>5.16.2</selenide.version>
+        <testng.version>7.1.0</testng.version>
+        <maven.surefire.plugin>2.22.2</maven.surefire.plugin>
+        <maven.compiler.plugin>3.8.1</maven.compiler.plugin>
+        <maven.checkstyle.plugin>3.1.1</maven.checkstyle.plugin>
+        <logstash.logback.encoder>6.4</logstash.logback.encoder>
+        <logback.classic>1.2.3</logback.classic>
+        <extent.reports>4.0.6</extent.reports>
+        <browserup.proxy.core>2.1.1</browserup.proxy.core>
+        <jackson.annotations>2.11.1</jackson.annotations>
+        <lombok.version>1.18.16</lombok.version>
     </properties>
 
     <build>
@@ -25,16 +42,16 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.8.1</version>
+                <version>${maven.compiler.plugin}</version>
                 <configuration>
-                    <source>11</source>
-                    <target>11</target>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
                 </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.22.2</version>
+                <version>${maven.surefire.plugin}</version>
                 <configuration>
                     <properties>
                         <property>
@@ -43,7 +60,7 @@
                         </property>
                         <property>
                             <name>threadCount</name>
-                            <value>${threadCount}</value>
+                            <value>${thread.count}</value>
                         </property>
                         <property>
                             <name>listener</name>
@@ -58,7 +75,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-checkstyle-plugin</artifactId>
-                <version>3.1.1</version>
+                <version>${maven.checkstyle.plugin}</version>
                 <configuration>
                     <configLocation>src/test/resources/checkstyle/checkstyle.xml</configLocation>
                 </configuration>
@@ -83,40 +100,45 @@
 
     <dependencies>
         <dependency>
+            <groupId>net.logstash.logback</groupId>
+            <artifactId>logstash-logback-encoder</artifactId>
+            <version>${logstash.logback.encoder}</version>
+        </dependency>
+        <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
-            <version>1.2.3</version>
+            <version>${logback.classic}</version>
         </dependency>
         <dependency>
             <groupId>com.codeborne</groupId>
             <artifactId>selenide</artifactId>
-            <version>5.15.0</version>
+            <version>${selenide.version}</version>
         </dependency>
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
-            <version>7.1.0</version>
+            <version>${testng.version}</version>
         </dependency>
         <dependency>
             <groupId>com.aventstack</groupId>
             <artifactId>extentreports</artifactId>
-            <version>4.0.6</version>
+            <version>${extent.reports}</version>
         </dependency>
         <dependency>
             <groupId>com.browserup</groupId>
             <artifactId>browserup-proxy-core</artifactId>
-            <version>2.1.1</version>
+            <version>${browserup.proxy.core}</version>
         </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-annotations</artifactId>
-            <version>2.11.1</version>
+            <version>${jackson.annotations}</version>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <optional>true</optional>
-            <version>1.18.10</version>
+            <version>${lombok.version}</version>
         </dependency>
     </dependencies>
 </project>
