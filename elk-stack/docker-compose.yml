@@ -86,7 +86,6 @@ services:
         target: /certs/ca.crt
     ports:
       - "5000:5000/tcp"
-      - "5044:5044"
       - "9600:9600"
 
   kibana:

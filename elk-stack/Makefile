@@ -1,15 +1,9 @@
 .DEFAULT_GOAL:=help
 
-COMPOSE_ALL_FILES := -f docker-compose.yml -f docker-compose.monitor.yml -f docker-compose.tools.yml -f docker-compose.nodes.yml
-COMPOSE_MONITORING := -f docker-compose.yml -f docker-compose.monitor.yml
-COMPOSE_TOOLS := -f docker-compose.yml -f docker-compose.tools.yml
-COMPOSE_NODES := -f docker-compose.yml -f docker-compose.nodes.yml
+COMPOSE_ALL_FILES := -f docker-compose.yml
 ELK_SERVICES   := elasticsearch logstash kibana
-ELK_MONITORING := elasticsearch-exporter logstash-exporter filebeat-cluster-logs
-ELK_TOOLS  := curator elastalert rubban
-ELK_NODES := elasticsearch-1 elasticsearch-2
-ELK_MAIN_SERVICES := ${ELK_SERVICES} ${ELK_MONITORING} ${ELK_TOOLS}
-ELK_ALL_SERVICES := ${ELK_MAIN_SERVICES} ${ELK_NODES}
+ELK_MAIN_SERVICES := ${ELK_SERVICES}
+ELK_ALL_SERVICES := ${ELK_MAIN_SERVICES}
 # --------------------------
 
 # load .env so that Docker Swarm Commands has .env values too. (https://github.com/moby/moby/issues/29133)
@@ -29,20 +23,8 @@ setup:		    ## Generate Elasticsearch SSL Certs and Keystore.
 	@make certs
 	@make keystore
 
-all:		    ## Start Elk and all its component (ELK, Monitoring, and Tools).
-	docker-compose ${COMPOSE_ALL_FILES} up -d --build ${ELK_MAIN_SERVICES}
-
 elk:		    ## Start ELK.
 	docker-compose up -d --build
-
-monitoring:		## Start ELK Monitoring.
-	@docker-compose ${COMPOSE_MONITORING} up -d --build ${ELK_MONITORING}
-
-tools:		    ## Start ELK Tools (ElastAlert, Curator).
-	@docker-compose ${COMPOSE_TOOLS} up -d --build ${ELK_TOOLS}
-
-nodes:		    ## Start Two Extra Elasticsearch Nodes
-	@docker-compose ${COMPOSE_NODES} up -d --build ${ELK_NODES}
 
 build:			## Build ELK and all its extra components.
 	@docker-compose ${COMPOSE_ALL_FILES} build ${ELK_ALL_SERVICES}
@@ -52,7 +34,7 @@ down:			## Down ELK and all its extra components.
 
 stop:			## Stop ELK and all its extra components.
 	@docker-compose ${COMPOSE_ALL_FILES} stop ${ELK_ALL_SERVICES}
-	
+
 restart:		## Restart ELK and all its extra components.
 	@docker-compose ${COMPOSE_ALL_FILES} restart ${ELK_ALL_SERVICES}
 
@@ -69,22 +51,6 @@ prune:			## Remove ELK Containers and Delete Volume Data
 	@make swarm-rm || echo ""
 	@make stop && make rm
 	@docker volume prune -f
-
-swarm-deploy-elk:
-	@make build
-	docker stack deploy -c docker-compose.yml elastic
-
-swarm-deploy-monitoring:
-	@make build
-	@docker stack deploy -c docker-compose.yml -c docker-compose.monitor.yml elastic
-
-swarm-deploy-tools:
-	@make build
-	@docker stack deploy -c docker-compose.yml -c docker-compose.tools.yml elastic
-
-swarm-rm:
-	docker stack rm elastic
-
 
 help:       	## Show this help.
 	@echo "Make Application Docker Images and Containers using Docker-Compose files in 'docker' Dir."
