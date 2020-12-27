@@ -161,6 +161,9 @@ podTemplate(label: "jenkins-slave-base-pod", serviceAccount: "jenkins", containe
 > Furthermore, the source code for the base image is open source and available [here](https://github.com/sergiomartins8/jenkins-slave-base).
 
 ## ELK Stack
+
+> Check out the distributed test reporting tutorial on [medium](https://medium.com/@sergiomartins8/distributed-test-reporting-using-elk-stack-97dd699d6bb4).
+
 Elastic Stack (**ELK**) Docker Composition, preconfigured with **Security**, **Monitoring**, and **Tools**; Up with a Single Command.
 Based on [Official Elastic Docker Images](https://www.docker.elastic.co/)
 
@@ -169,8 +172,6 @@ Stack Version: [7.10.1](https://www.elastic.co/blog/elastic-stack-7-10-1-release
 
 This allows you to build your own distributed test reporting dashboards using pie charts, timeline analysis, and all other kinds of desired visualizations. 
 The options are endless.
-
-> Detailed tutorial on [medium](https://medium.com/@sergiomartins8/distributed-test-reporting-using-elk-stack-97dd699d6bb4).
 
 ##### Example 1
 ![](img/elk_1.png)
@@ -183,7 +184,7 @@ The options are endless.
 - [Docker-Compose 3 or higher](https://docs.docker.com/compose/install/)
 - 4GB RAM (For Windows and MacOS make sure Docker's VM has more than 4GB+ memory.)
 
-### Setup
+#### Setup
 1. Initialize Elasticsearch Keystore and TLS Self-Signed Certificates
 ```shell script
 $ make setup
@@ -202,7 +203,7 @@ Default Username: `elastic`, Password: `kibana`
 
 Whatever your host (e.g AWS EC2, Azure, DigitalOcean, or on-premise server), once you expose your host to the network, ELK component will be accessible on their respective ports.
 
-### Setting Up Keystore
+#### Setting Up Keystore
 You can extend the Keystore generation script by adding keys to `./setup/keystore.sh` script. (e.g Add S3 Snapshot Repository Credentials)
 
 To Re-generate Keystore:
@@ -210,7 +211,7 @@ To Re-generate Keystore:
 $ make keystore
 ```
 
-### Enable SSL on HTTP
+#### Enable SSL on HTTP
 By default, Transport Layer has SSL enabled as well as SSL on HTTP layer.
 
 > ⚠️ Thus, as SSL on HTTP layer is enabled, it will require that all clients that connect to Elasticsearch have to configure SSL connection for HTTP, this includes all the current configured parts of the stack (e.g Logstash, Kibana, Curator, etc) plus any library/binding that connects to Elasticsearch from your application code.
