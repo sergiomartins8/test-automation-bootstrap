@@ -3,10 +3,8 @@ package io.company.tests.examples;
 import io.company.pageobjects.pages.GoogleResultsPage;
 import io.company.pageobjects.pages.GoogleSearchPage;
 import io.company.tests.BaseTest;
-import io.company.utils.listeners.DistributedReportListener;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import static com.codeborne.selenide.CollectionCondition.sizeGreaterThan;
