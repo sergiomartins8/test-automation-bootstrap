@@ -1,5 +1,5 @@
 ---
-name: Need help with ui-automation-bootstrap
+name: Need help with test-automation-bootstrap
 about: Ask a general how-to question.
 title: ''
 labels: 'type: triage/discussion'

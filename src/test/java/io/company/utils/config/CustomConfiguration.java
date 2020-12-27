@@ -28,4 +28,14 @@ public class CustomConfiguration {
      * Default value: null (Custom configuration is not set)
      */
     public static String exampleConfiguration = DEFAULTS.exampleConfiguration();
+
+    /**
+     * The pipeline ID for the current execution.
+     * Can be configured either programmatically or by environment variable.
+     * <br>
+     * EXAMPLE: "export CI_PIPELINE_IID=9000"
+     * abr>
+     * Default value: null (environment variable not defined).
+     */
+    public static int pipelineID = DEFAULTS.pipelineID();
 }

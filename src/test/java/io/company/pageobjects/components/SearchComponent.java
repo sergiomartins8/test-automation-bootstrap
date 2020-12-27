@@ -1,5 +1,6 @@
 package io.company.pageobjects.components;
 
+import io.company.pageobjects.pages.GoogleResultsPage;
 import org.openqa.selenium.Keys;
 
 public class SearchComponent extends BaseComponent<SearchComponent> {
@@ -7,8 +8,8 @@ public class SearchComponent extends BaseComponent<SearchComponent> {
         super(selector);
     }
 
-    public SearchComponent searchFor(String word) {
+    public GoogleResultsPage searchFor(String word) {
         self().sendKeys(word, Keys.ENTER);
-        return this;
+        return new GoogleResultsPage();
     }
 }

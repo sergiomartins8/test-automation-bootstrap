@@ -1,0 +1,5 @@
+# For per pipeline config, check docs: https://www.elastic.co/guide/en/logstash/current/logstash-settings-file.html
+
+- pipeline.id: main
+  path.config: "/usr/share/logstash/pipeline/main.conf"
+  queue.type: memory

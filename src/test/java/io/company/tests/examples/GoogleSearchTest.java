@@ -32,13 +32,11 @@ public class GoogleSearchTest extends BaseTest {
 
     @Test(description = "Open up a google page and search for the word 'dogs'")
     public void shouldPerformSearch() {
-        open("http://google.com");
+        open("https://google.com");
 
         googleSearchPage
                 .searchComponent()
-                .searchFor("dogs");
-
-        googleResultsPage
+                .searchFor("dogs")
                 .searchComponent()
                 .self()
                 .shouldHave(value("dogs"));
@@ -46,7 +44,7 @@ public class GoogleSearchTest extends BaseTest {
 
     @Test
     public void shouldSearchResultsBeDisplayed() {
-        open("http://www.google.pt/search?source=hp&q=dogs&oq=dogs");
+        open("https://www.google.pt/search?source=hp&q=dogs&oq=dogs");
 
         googleResultsPage
                 .getResults()

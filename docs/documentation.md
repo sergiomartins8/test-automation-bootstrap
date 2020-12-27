@@ -1,4 +1,4 @@
-The following is a set of guidelines and documentation to better experience the ui-automation-bootstrap's features. 
+The following is a set of guidelines and documentation to better experience the test-automation-bootstrap's features. 
 These are mostly guidelines, not rules. Use your best judgment, and feel free to propose changes to this document in a pull request.
 
 #### Table of contents
@@ -18,8 +18,10 @@ These are mostly guidelines, not rules. Use your best judgment, and feel free to
 
 [Jenkins](#jenkins-)
 
+[ELK Stack](#elk-stack)
+
 ## POM - the Page Object Model
-The *ui-automation-bootstrap* uses the Page Object Model (**POM**) (https://martinfowler.com/bliki/PageObject.html) to structure code.
+The *test-automation-bootstrap* uses the Page Object Model (**POM**) (https://martinfowler.com/bliki/PageObject.html) to structure code.
 
 ![](img/structure.gif)
 
@@ -45,7 +47,7 @@ You can run tests in parallel, configuring your suite file or with system proper
  
 ##### Example
  ```shell script
-$ mvn clean test -Dparallel=<method-name> -DthreadCount=<n-threads>
+$ mvn clean test -Dparallel=<method-name> -Dthread.count=<n-threads>
 ```
 
 ## Extent Reports
@@ -125,7 +127,7 @@ $ mvn -B clean verify sonar:sonar \
 ```
 
 ## Jenkins 🤖
-There is a [jenkinsfile](../Jenkinsfile) example available. Use it to get started. However, it might need some tailoring.
+There is a [Jenkinsfile](../Jenkinsfile) example available. Use it to get started. However, it might need some tailoring.
 
 ##### Snippet
 ```groovy
@@ -155,3 +157,69 @@ podTemplate(label: "jenkins-slave-base-pod", serviceAccount: "jenkins", containe
 ```
 
 > The example above uses Jenkins on Kubernetes. Follow this [article](https://medium.com/@sergiomartins8/highly-scalable-jenkins-on-minikube-8cc289a31850) to have a similar environment in no time!
+>
+> Furthermore, the source code for the base image is open source and available [here](https://github.com/sergiomartins8/jenkins-slave-base).
+
+## ELK Stack
+
+> Check out the related distributed test reporting article on [medium](https://medium.com/@sergiomartins8/distributed-test-reporting-using-elk-stack-97dd699d6bb4).
+
+Elastic Stack (**ELK**) Docker Composition, preconfigured with **Security**, **Monitoring**, and **Tools**; Up with a Single Command.
+Based on [Official Elastic Docker Images](https://www.docker.elastic.co/)
+
+Stack Version: [7.10.1](https://www.elastic.co/blog/elastic-stack-7-10-1-released)
+> You can change Elastic Stack version by setting `ELK_VERSION` in `.env` file and rebuild your images. Any version >= 7.0.0 is compatible with this template.
+
+This allows you to build your own distributed test reporting dashboards using pie charts, timeline analysis, and all other kinds of desired visualizations. 
+The options are endless.
+
+##### Example 1
+![](img/elk_1.png)
+
+##### Example 2
+![](img/elk_2.png)
+
+#### Requirements
+- [Docker 17.05 or higher](https://docs.docker.com/install/)
+- [Docker-Compose 3 or higher](https://docs.docker.com/compose/install/)
+- 4GB RAM (For Windows and MacOS make sure Docker's VM has more than 4GB+ memory.)
+
+#### Setup
+1. Initialize Elasticsearch Keystore and TLS Self-Signed Certificates
+```shell script
+$ make setup
+```
+> **For Linux's docker hosts only**. By default virtual memory [is not enough](https://www.elastic.co/guide/en/elasticsearch/reference/current/vm-max-map-count.html) so run the next command as root `sysctl -w vm.max_map_count=262144`
+1. Start Elastic Stack
+```shell script
+$ make elk           <OR>         $ docker-compose up -d
+```
+1. Visit Kibana at [https://localhost:5601](https://localhost:5601) or `https://<your_public_ip>:5601`
+
+Default Username: `elastic`, Password: `kibana`
+
+> - Notice that Kibana is configured to use HTTPS, so you'll need to write `https://` before `localhost:5601` in the browser.
+> - Modify `.env` file for your needs, most importantly `ELASTIC_PASSWORD` that setup your superuser `elastic`'s password, `ELASTICSEARCH_HEAP` & `LOGSTASH_HEAP` for Elasticsearch & Logstash Heap Size.
+
+Whatever your host (e.g AWS EC2, Azure, DigitalOcean, or on-premise server), once you expose your host to the network, ELK component will be accessible on their respective ports.
+
+#### Setting Up Keystore
+You can extend the Keystore generation script by adding keys to `./setup/keystore.sh` script. (e.g Add S3 Snapshot Repository Credentials)
+
+To Re-generate Keystore:
+```shell script
+$ make keystore
+```
+
+#### Enable SSL on HTTP
+By default, Transport Layer has SSL enabled as well as SSL on HTTP layer.
+
+> ⚠️ Thus, as SSL on HTTP layer is enabled, it will require that all clients that connect to Elasticsearch have to configure SSL connection for HTTP, this includes all the current configured parts of the stack (e.g Logstash, Kibana, Curator, etc) plus any library/binding that connects to Elasticsearch from your application code.
+
+In order to send out your logs to logstash use the [DistributedReportListener](../src/test/java/io/company/utils/listeners/DistributedReportListener.java) class. 
+It has a base implementation, but tailored it accordingly.
+
+##### Example
+```shell script
+$ mvn clean test -Dlistener=${package}/utils/listeners/DistributedReportListener.java
+```

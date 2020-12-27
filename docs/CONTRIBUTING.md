@@ -1,6 +1,6 @@
 👍🎉 First off, thanks for taking the time to contribute! 🎉👍
 
-The following is a set of guidelines for contributing to ui-automation-bootstrap. 
+The following is a set of guidelines for contributing to test-automation-bootstrap. 
 These are mostly guidelines, not rules. Use your best judgment, and feel free to propose changes to this document in a pull request.
 
 #### Table of contents
@@ -18,21 +18,21 @@ These are mostly guidelines, not rules. Use your best judgment, and feel free to
 
 ## I just have a question!
 
-Questions and/or discussions are tracked as [issues](https://github.com/sergiomartins8/ui-automation-bootstrap/issues).
-Fill in [the template](../.github/ISSUE_TEMPLATE/need-help-with-ui-automation-bootstrap.md).
+Questions and/or discussions are tracked as [issues](https://github.com/sergiomartins8/test-automation-bootstrap/issues).
+Fill in [the template](../.github/ISSUE_TEMPLATE/need-help-with-test-automation-bootstrap.md).
 
 ## How can I contribute?
 
 ### Reporting bugs
 
-Bug reports are tracked as [issues](https://github.com/sergiomartins8/ui-automation-bootstrap/issues).
+Bug reports are tracked as [issues](https://github.com/sergiomartins8/test-automation-bootstrap/issues).
 Fill in [the template](../.github/ISSUE_TEMPLATE/bug_report.md), the information it asks for helps to resolve issues faster.
 
 > **Note:** If you find a **closed** issue that seems like it is the same thing that you're experiencing, open a new issue and include a link to the original issue in the body of your new one.
 
 ### Suggesting Enhancements
 
-Enhancement suggestions are tracked as [issues](https://github.com/sergiomartins8/ui-automation-bootstrap/issues).
+Enhancement suggestions are tracked as [issues](https://github.com/sergiomartins8/test-automation-bootstrap/issues).
 Fill in [the template](../.github/ISSUE_TEMPLATE/enhancement.md), including the steps that you imagine you would take if the feature you're requesting existed.
 
 ### Your first code contribution
@@ -46,9 +46,9 @@ Unsure where to begin contributing? You can start by looking for **utils** metho
 
 The process described here has several goals:
 
-- Maintain ui-automation-bootstrap's quality
+- Maintain test-automation-bootstrap's quality
 - Fix problems that are important to users
-- Engage the community in working toward the best possible ui automation template ✨
+- Engage the community in working toward the best possible test automation template ✨
 - Enable a sustainable system for maintaining and review contributions
 
 Please follow these steps to have your contribution considered:
