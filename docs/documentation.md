@@ -1,4 +1,4 @@
-The following is a set of guidelines and documentation to better experience the ui-automation-bootstrap's features. 
+The following is a set of guidelines and documentation to better experience the test-automation-bootstrap's features. 
 These are mostly guidelines, not rules. Use your best judgment, and feel free to propose changes to this document in a pull request.
 
 #### Table of contents

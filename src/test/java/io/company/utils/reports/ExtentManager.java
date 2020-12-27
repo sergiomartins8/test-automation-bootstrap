@@ -30,7 +30,7 @@ public class ExtentManager {
             extentReports.attachReporter(htmlReporter);
 
             // General information related to application
-            extentReports.setSystemInfo("Application Name", "ui automation bootstrap");
+            extentReports.setSystemInfo("Application Name", "test automation bootstrap");
             extentReports.setSystemInfo("User Name", "http://github.com/sergiomartins8");
             extentReports.setSystemInfo("Environment", "Production");
         }
