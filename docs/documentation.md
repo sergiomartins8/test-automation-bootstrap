@@ -162,7 +162,7 @@ podTemplate(label: "jenkins-slave-base-pod", serviceAccount: "jenkins", containe
 
 ## ELK Stack
 
-> Check out the distributed test reporting tutorial on [medium](https://medium.com/@sergiomartins8/distributed-test-reporting-using-elk-stack-97dd699d6bb4).
+> Check out the related distributed test reporting article on [medium](https://medium.com/@sergiomartins8/distributed-test-reporting-using-elk-stack-97dd699d6bb4).
 
 Elastic Stack (**ELK**) Docker Composition, preconfigured with **Security**, **Monitoring**, and **Tools**; Up with a Single Command.
 Based on [Official Elastic Docker Images](https://www.docker.elastic.co/)
