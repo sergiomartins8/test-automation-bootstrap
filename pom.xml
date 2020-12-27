@@ -10,7 +10,7 @@
     <packaging>jar</packaging>
 
     <name>test-automation-bootstrap</name>
-    <description>A template to jumpstart test automation frameworks</description>
+    <description>A template to jumpstart test automation frameworks!</description>
     <url>https://github.com/sergiomartins8/test-automation-bootstrap</url>
 
     <properties>

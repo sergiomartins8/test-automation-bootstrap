@@ -11,7 +11,7 @@
 <a href="https://github.com/sergiomartins8/test-automation-bootstrap/network/members"><img src="https://img.shields.io/github/forks/sergiomartins8/test-automation-bootstrap" alt="forks"/></a>
 <a href="https://www.linkedin.com/in/sergiomartins8/"><img src="https://img.shields.io/badge/-sergiomartins8-blue?logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/sergiomartins8/" alt="linkedin"/></a>
 
-<i>An awesome test automation framework template to jumpstart your projects!</i>
+<i>A template to jumpstart test automation frameworks!</i>
 
 <a href="https://github.com/sergiomartins8/test-automation-bootstrap/releases"><img src="https://img.shields.io/github/v/release/sergiomartins8/test-automation-bootstrap" alt="releases"/></a>
 <a href="https://github.com/sergiomartins8/test-automation-bootstrap/actions?query=workflow%3Arelease"><img src="https://github.com/sergiomartins8/test-automation-bootstrap/workflows/release/badge.svg" alt="Release build"/></a>
@@ -55,7 +55,7 @@ public void shouldPerformSearchSuccessfully() {
 ```
 
 ## About
-A simple and effective template to quickstart any ui test automation framework in no time!
+A simple and effective template to quickstart any test automation framework in no time!
 
 ##### Using the goods of 
 * _[Selenide](https://github.com/selenide/selenide)_ - A selenium wrapper for concise UI tests
