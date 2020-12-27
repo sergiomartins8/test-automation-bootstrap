@@ -170,7 +170,7 @@ Stack Version: [7.10.1](https://www.elastic.co/blog/elastic-stack-7-10-1-release
 This allows you to build your own distributed test reporting dashboards using pie charts, timeline analysis, and all other kinds of desired visualizations. 
 The options are endless.
 
-> Detailed tutorial coming soon!
+> Detailed tutorial on [medium](https://medium.com/@sergiomartins8/distributed-test-reporting-using-elk-stack-97dd699d6bb4).
 
 ##### Example 1
 ![](img/elk_1.png)
