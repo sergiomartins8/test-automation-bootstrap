@@ -1,9 +1,12 @@
 .DEFAULT_GOAL:=help
 
-COMPOSE_ALL_FILES := -f docker-compose.yml
-ELK_SERVICES   := elasticsearch logstash kibana
-ELK_MAIN_SERVICES := ${ELK_SERVICES}
-ELK_ALL_SERVICES := ${ELK_MAIN_SERVICES}
+COMPOSE_SETUP_FILE := -f docker-compose.setup.yml
+COMPOSE_FILE := -f docker-compose.yml
+
+ELK_MAIN_SERVICES   := elasticsearch logstash kibana
+ELK_MONITORING := heartbeat
+
+ELK_ALL_SERVICES := ${ELK_MAIN_SERVICES} ${ELK_MONITORING}
 # --------------------------
 
 # load .env so that Docker Swarm Commands has .env values too. (https://github.com/moby/moby/issues/29133)
@@ -14,38 +17,41 @@ export
 .PHONY: setup keystore certs all elk monitoring tools build down stop restart rm logs
 
 keystore:		## Setup Elasticsearch Keystore, by initializing passwords, and add credentials defined in `keystore.sh`.
-	docker-compose -f docker-compose.setup.yml run --rm keystore
+	docker-compose ${COMPOSE_SETUP_FILE} run --rm keystore
 
 certs:		    ## Generate Elasticsearch SSL Certs.
-	docker-compose -f docker-compose.setup.yml run --rm certs
+	docker-compose ${COMPOSE_SETUP_FILE} run --rm certs
 
 setup:		    ## Generate Elasticsearch SSL Certs and Keystore.
 	@make certs
 	@make keystore
 
 elk:		    ## Start ELK.
-	docker-compose up -d --build
+	docker-compose ${COMPOSE_FILE} up -d --build ${ELK_MAIN_SERVICES}
+
+monitoring:		## Start ELK Monitoring.
+	@docker-compose ${COMPOSE_FILE} up -d --build ${ELK_MONITORING}
 
 build:			## Build ELK and all its extra components.
-	@docker-compose ${COMPOSE_ALL_FILES} build ${ELK_ALL_SERVICES}
+	@docker-compose ${COMPOSE_FILE} build ${ELK_ALL_SERVICES}
 
 down:			## Down ELK and all its extra components.
-	@docker-compose ${COMPOSE_ALL_FILES} down
+	@docker-compose ${COMPOSE_FILE} down ${ELK_ALL_SERVICES}
 
 stop:			## Stop ELK and all its extra components.
-	@docker-compose ${COMPOSE_ALL_FILES} stop ${ELK_ALL_SERVICES}
+	@docker-compose ${COMPOSE_FILE} stop ${ELK_ALL_SERVICES}
 
 restart:		## Restart ELK and all its extra components.
-	@docker-compose ${COMPOSE_ALL_FILES} restart ${ELK_ALL_SERVICES}
+	@docker-compose ${COMPOSE_FILE} restart ${ELK_ALL_SERVICES}
 
 rm:				## Remove ELK and all its extra components containers.
-	@docker-compose $(COMPOSE_ALL_FILES) rm -f ${ELK_ALL_SERVICES}
+	@docker-compose $(COMPOSE_FILE) rm -f ${ELK_ALL_SERVICES}
 
 logs:			## Tail all logs with -n 1000.
-	@docker-compose $(COMPOSE_ALL_FILES) logs --follow --tail=1000 ${ELK_ALL_SERVICES}
+	@docker-compose $(COMPOSE_FILE) logs --follow --tail=1000 ${ELK_ALL_SERVICES}
 
 images:			## Show all Images of ELK and all its extra components.
-	@docker-compose $(COMPOSE_ALL_FILES) images ${ELK_ALL_SERVICES}
+	@docker-compose $(COMPOSE_FILE) images ${ELK_ALL_SERVICES}
 
 prune:			## Remove ELK Containers and Delete Volume Data
 	@make stop && make rm

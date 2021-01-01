@@ -26,7 +26,7 @@ secrets:
 
 services:
   elasticsearch:
-    image: elasticsearch:elastdocker-${ELK_VERSION}
+    image: elasticsearch:test-automation-${ELK_VERSION}
     build:
       context: elasticsearch/
       args:
@@ -39,8 +39,7 @@ services:
       ELASTIC_NODE_NAME: ${ELASTIC_NODE_NAME}
       ELASTIC_INIT_MASTER_NODE: ${ELASTIC_INIT_MASTER_NODE}
       ELASTIC_DISCOVERY_SEEDS: ${ELASTIC_DISCOVERY_SEEDS}
-      ES_JAVA_OPTS: -Xmx${ELASTICSEARCH_HEAP} -Xms${ELASTICSEARCH_HEAP} -Des.enforce.bootstrap.checks=true
-      bootstrap.memory_lock: "true"
+      ES_JAVA_OPTS: -Xmx${ELASTICSEARCH_HEAP} -Xms${ELASTICSEARCH_HEAP}
     volumes:
       - elasticsearch-data:/usr/share/elasticsearch/data
       - ./elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
@@ -58,7 +57,7 @@ services:
       - "9300:9300"
 
   logstash:
-    image: logstash:elastdocker-${ELK_VERSION}
+    image: logstash:test-automation-${ELK_VERSION}
     build:
       context: logstash/
       args:
@@ -80,8 +79,31 @@ services:
       - "5000:5000/tcp"
       - "9600:9600"
 
+  heartbeat:
+    image: heartbeat:test-automation-${ELK_VERSION}
+    build:
+      context: heartbeat/
+      args:
+        ELK_VERSION: $ELK_VERSION
+    volumes:
+      - type: bind
+        source: ./heartbeat/config/heartbeat.yml
+        target: /usr/share/heartbeat/heartbeat.yml
+        read_only: true
+    environment:
+      ELASTIC_USERNAME: ${ELASTIC_USERNAME}
+      ELASTIC_PASSWORD: ${ELASTIC_PASSWORD}
+      ELASTICSEARCH_HOST_PORT: https://${ELASTICSEARCH_HOST}:${ELASTICSEARCH_PORT}
+      KIBANA_HOST_PORT: https://${KIBANA_HOST}:${KIBANA_PORT}
+    secrets:
+      - source: elastic.ca
+        target: /certs/ca.crt
+    depends_on:
+      - elasticsearch
+    restart: unless-stopped
+
   kibana:
-    image: kibana:elastdocker-${ELK_VERSION}
+    image: kibana:test-automation-${ELK_VERSION}
     build:
       context: kibana/
       args:
