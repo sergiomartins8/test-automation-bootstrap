@@ -3,7 +3,7 @@
 COMPOSE_SETUP_FILE := -f docker-compose.setup.yml
 COMPOSE_FILE := -f docker-compose.yml
 
-ELK_MAIN_SERVICES   := elasticsearch logstash kibana
+ELK_MAIN_SERVICES := elasticsearch logstash kibana
 ELK_MONITORING := heartbeat
 
 ELK_ALL_SERVICES := ${ELK_MAIN_SERVICES} ${ELK_MONITORING}
