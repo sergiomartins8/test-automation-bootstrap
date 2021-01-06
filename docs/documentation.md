@@ -2,25 +2,24 @@ The following is a set of guidelines and documentation to better experience the 
 These are mostly guidelines, not rules. Use your best judgment, and feel free to propose changes to this document in a pull request.
 
 #### Table of contents
-[POM](#pom---the-page-object-model)
+* [UI Tests](#ui-tests)
+  * [POM](#pom---the-page-object-model)
+  * [Suites](#suites)
+  * [Parallel Test Execution](#parallel-test-execution)
+  * [Extent Reports](#extent-reports)
+  * [Mocking Responses](#mocking-responses)
+  * [Checkstyle](#checkstyle)
 
-[Suites](#suites)
+* [Selenium Grid](#selenium-grid)
+* [SonarQube](#sonarqube)
+* [Jenkins](#jenkins-)
+* [Elastic Stack](#elastic-stack)
+  * [Distributed Test Reporting](#distributed-test-reporting)
+  * [Service Monitoring](#service-monitoring)
 
-[Parallel Test Execution](#parallel-test-execution)
+## UI Tests
 
-[Extent Reports](#extent-reports)
-
-[Mocking Responses](#mocking-responses)
-
-[Checkstyle](#checkstyle)
-
-[SonarQube](#sonarqube)
-
-[Jenkins](#jenkins-)
-
-[ELK Stack](#elk-stack)
-
-## POM - the Page Object Model
+### POM - the Page Object Model
 The *test-automation-bootstrap* uses the Page Object Model (**POM**) (https://martinfowler.com/bliki/PageObject.html) to structure code.
 
 ![](img/structure.gif)
@@ -32,8 +31,8 @@ Within page objects you may find two kinds:
 > **NOTE:** components are not supposed to be restricted to single pages. Components are designed to be reused throughout the framework. 
 > Thus, if you've to group them, group them by component type, not page; eg. forms, sidebars, modals.
 
-## Suites
-You can have multiple suites under [/suites](../src/test/resources/suites). And, in order to run any of them you can use a system property `-Dsuite=<suite-name>`.
+### Suites
+You can have multiple suites under [/suites](../ui-tests/test/resources/suites). And, in order to run any of them you can use a system property `-Dsuite=<suite-name>`.
 
 ##### Example
 ```shell script
@@ -42,7 +41,7 @@ $ mvn clean test -Dsuite=<suite-name>
 
 > You can change the default suite on [pom.xml](../pom.xml) properties.
 
-## Parallel Test Execution
+### Parallel Test Execution
 You can run tests in parallel, configuring your suite file or with system properties.
  
 ##### Example
@@ -50,30 +49,28 @@ You can run tests in parallel, configuring your suite file or with system proper
 $ mvn clean test -Dparallel=<method-name> -Dthread.count=<n-threads>
 ```
 
-## Extent Reports
-Using [ExtentReports](https://extentreports.com/), you are able to automatically generate reports after test execution. These are stored under `reports/ExtentReport.html`. 
+### Extent Reports
+Using [ExtentReports](http://www.extentreports.com/), you are able to automatically generate reports after test execution. These are stored under `reports/ExtentReport.html`. 
 Furthermore, and by default, screenshots are taken upon test failure and attached to the report.
-
-![](img/reports.gif)
 
 > ⚠️ Requires the extent report listener property to be set.
 >
 > Example: `-Dlistener=${package}/utils/listeners/ExtentReportListener.java`
 
-## Mocking Responses
+### Mocking Responses
 In order to mock http requests the framework uses browserup proxy behind selenide. This allows you to intercept, filter and manipulate requests and responses.
 
 ![](img/mocked_response.png)
 
 First you've to model your request, so you can work with it anyhow you see fit. 
-Therefore, in order to create a new object to model a mocked request (eg. `ExampleMockModel.java`) it has to implement [MockDefinition](../src/test/java/io/company/utils/mocks/MockDefinition.java) interface.
+Therefore, in order to create a new object to model a mocked request (eg. `ExampleMockModel.java`) it has to implement [MockDefinition](../ui-tests/test/java/io/company/utils/mocks/MockDefinition.java) interface.
 
 ##### Example
 ````java
 public class ExampleMockModel implements MockDefinition { ... }
 ````
 
-Then, use the [@Mock](../src/test/java/io/company/utils/mocks/Mock.java) annotation in order to apply it for a given test case.
+Then, use the [@Mock](../ui-tests/test/java/io/company/utils/mocks/Mock.java) annotation in order to apply it for a given test case.
 
 ##### Snippet
 ```java
@@ -93,7 +90,7 @@ The annotation may be declared for methods or class types.
 public void exampleMockedTest() { ... }
 ````
 
-⚠️ For this to work you have to enable the proxy and use the [MockListener](../src/test/java/io/company/utils/listeners/MockListener.java) class.
+⚠️ For this to work you have to enable the proxy and use the [MockListener](../ui-tests/test/java/io/company/utils/listeners/MockListener.java) class.
 
 ##### Example
 ```shell script
@@ -102,16 +99,28 @@ $ mvn clean test -Dselenide.proxyEnabled=true -Dlistener=${package}/utils/listen
 
 > **NOTE:** safari does not support this use case.
 
-## Checkstyle
+### Checkstyle
 This feature integrates your project with a code linter, so that everyone follows the same code style within the team. 
 
 ##### Example
 ```shell script
 $ mvn validate
 ```
- 
-## SonarQube
-Using [SonarQube](https://www.sonarqube.org/) feature integration, it allows you to execute tasks such as static analysis, code coverage or even implement your code quality gate.
+
+## Selenium Grid
+
+Launch a Google Chrome and Firefox selenium grid with compose using `$ docker-compose up -d`. Then execute your tests.
+
+##### Example
+```shell
+$ mvn -B clean test \
+  -Dselenide.browser=firefox \
+  -Dselenide.headless=true \
+  -Dselenide.remote=http://0.0.0.0:4444/wd/hub
+```
+
+## Sonarqube
+Launch sonarqube with the command `$ docker-compose up -d`. It allows you to execute tasks such as static analysis, code coverage or even implement your code quality gate.
 
 ##### Example
 ```shell script
@@ -160,8 +169,9 @@ podTemplate(label: "jenkins-slave-base-pod", serviceAccount: "jenkins", containe
 >
 > Furthermore, the source code for the base image is open source and available [here](https://github.com/sergiomartins8/jenkins-slave-base).
 
-## ELK Stack
+## Elastic Stack
 
+### Distributed Test Reporting
 > Check out the related distributed test reporting article on [medium](https://medium.com/@sergiomartins8/distributed-test-reporting-using-elk-stack-97dd699d6bb4).
 
 Elastic Stack (**ELK**) Docker Composition, preconfigured with **Security**, **Monitoring**, and **Tools**; Up with a Single Command.
@@ -172,12 +182,6 @@ Stack Version: [7.10.1](https://www.elastic.co/blog/elastic-stack-7-10-1-release
 
 This allows you to build your own distributed test reporting dashboards using pie charts, timeline analysis, and all other kinds of desired visualizations. 
 The options are endless.
-
-##### Example 1
-![](img/elk_1.png)
-
-##### Example 2
-![](img/elk_2.png)
 
 #### Requirements
 - [Docker 17.05 or higher](https://docs.docker.com/install/)
@@ -190,11 +194,11 @@ The options are endless.
 $ make setup
 ```
 > **For Linux's docker hosts only**. By default virtual memory [is not enough](https://www.elastic.co/guide/en/elasticsearch/reference/current/vm-max-map-count.html) so run the next command as root `sysctl -w vm.max_map_count=262144`
-1. Start Elastic Stack
+2. Start ELK Stack
 ```shell script
 $ make elk           <OR>         $ docker-compose up -d
 ```
-1. Visit Kibana at [https://localhost:5601](https://localhost:5601) or `https://<your_public_ip>:5601`
+3. Visit Kibana at [https://localhost:5601](https://localhost:5601) or `https://<your_public_ip>:5601`
 
 Default Username: `elastic`, Password: `kibana`
 
@@ -214,12 +218,14 @@ $ make keystore
 #### Enable SSL on HTTP
 By default, Transport Layer has SSL enabled as well as SSL on HTTP layer.
 
-> ⚠️ Thus, as SSL on HTTP layer is enabled, it will require that all clients that connect to Elasticsearch have to configure SSL connection for HTTP, this includes all the current configured parts of the stack (e.g Logstash, Kibana, Curator, etc) plus any library/binding that connects to Elasticsearch from your application code.
+> ⚠️ Since SSL on HTTP layer is enabled, it will require that all clients that connect to Elasticsearch have to configure SSL connection for HTTP, this includes all the current configured parts of the stack (e.g Logstash, Kibana, Curator, etc) plus any library/binding that connects to Elasticsearch from your application code.
 
-In order to send out your logs to logstash use the [DistributedReportListener](../src/test/java/io/company/utils/listeners/DistributedReportListener.java) class. 
+In order to send out your logs to logstash use the [DistributedReportListener](../ui-tests/test/java/io/company/utils/listeners/DistributedReportListener.java) class. 
 It has a base implementation, but tailored it accordingly.
 
 ##### Example
 ```shell script
 $ mvn clean test -Dlistener=${package}/utils/listeners/DistributedReportListener.java
 ```
+
+### Service Monitoring
