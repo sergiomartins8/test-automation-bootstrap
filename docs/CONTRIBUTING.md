@@ -13,7 +13,7 @@ These are mostly guidelines, not rules. Use your best judgment, and feel free to
   * [Your First Code Contribution](#your-first-code-contribution)
   * [Pull Requests](#pull-requests)
 
-[Styleguides](#styleguides)
+[Styleguide](#styleguide)
   * [Git Commit Messages](#git-commit-messages)
 
 ## I just have a question!
@@ -66,7 +66,7 @@ If it's concluded that the failure was a false positive, then an issue will be o
 
 While the prerequisites above must be satisfied prior to having your pull request reviewed, the reviewer(s) may ask you to complete additional design work, tests, or other changes before your pull request can be ultimately accepted.
 
-## Styleguides
+## Styleguide
 
 ### Git Commit Messages
 

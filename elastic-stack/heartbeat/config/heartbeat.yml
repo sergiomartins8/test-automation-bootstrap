@@ -1,0 +1,42 @@
+## Default Heartbeat configuration from Elastic stack.
+## https://www.elastic.co/guide/en/beats/heartbeat/current/heartbeat-reference-yml.html
+#
+heartbeat.monitors:
+  - type: http
+    name: DEV-IAM
+    schedule: '@every 10s'
+    urls: [ "https://my.awesome.api.com/v1/healthcheck" ]
+    check.request:
+      method: GET
+      headers:
+        'authorization': 'your.auth.token'
+        'identity': 'your.other.auth.token'
+    check.response:
+      status: 200
+  - type: http
+    name: DEV-FIP
+    schedule: '@every 10s'
+    urls: [ "https://my.other.awesome.api.com/v1/healthcheck" ]
+    check.request:
+      method: GET
+      headers:
+        'authorization': 'your.auth.token'
+        'identity': 'your.other.auth.token'
+    check.response:
+      status: 200
+
+output.elasticsearch:
+  hosts: [ "${ELASTICSEARCH_HOST_PORT}" ]
+  protocol: "https"
+  ssl:
+    enabled: true
+    verification_mode: none
+    certificate_authorities: [ "/certs/ca.crt" ]
+  username: "${ELASTIC_USERNAME}"
+  password: "${ELASTIC_PASSWORD}"
+
+
+setup.kibana:
+  host: [ "${KIBANA_HOST_PORT}" ]
+  username: "${ELASTIC_USERNAME}"
+  password: "${ELASTIC_PASSWORD}"
