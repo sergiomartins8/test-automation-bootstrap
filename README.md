@@ -2,7 +2,7 @@
 
 <div align="center">
 
-<img src="docs/img/my_unicorn.png" alt="logo"/>
+<img src=".docs/img/my_unicorn.png" alt="logo"/>
 
 <br>
 
@@ -20,7 +20,7 @@
 <a href="https://github.com/sergiomartins8/test-automation-bootstrap/blob/master/LICENSE"><img src="https://img.shields.io/github/license/sergiomartins8/test-automation-bootstrap" alt="license"/></a>
 
 <p>
-<a href="docs/documentation.md"><strong>Explore the docs »</strong></a>
+<a href=".docs/documentation.md"><strong>Explore the docs »</strong></a>
 <br />
 <br />
 <a href="https://github.com/sergiomartins8/test-automation-bootstrap/issues">Ask Question</a>
