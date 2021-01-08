@@ -32,14 +32,14 @@ Within page objects you may find two kinds:
 > Thus, if you've to group them, group them by component type, not page; eg. forms, sidebars, modals.
 
 ### Suites
-You can have multiple suites under [/suites](../ui-tests/test/resources/suites). And, in order to run any of them you can use a system property `-Dsuite=<suite-name>`.
+You can have multiple suites under [/suites](../ui-tests/src/test/resources/suites). And, in order to run any of them you can use a system property `-Dsuite=<suite-name>`.
 
 ##### Example
 ```shell script
 $ mvn clean test -Dsuite=<suite-name>
 ```
 
-> You can change the default suite on [pom.xml](../pom.xml) properties.
+> You can change the default suite on [pom.xml](../ui-tests/pom.xml) properties.
 
 ### Parallel Test Execution
 You can run tests in parallel, configuring your suite file or with system properties.
@@ -63,14 +63,14 @@ In order to mock http requests the framework uses browserup proxy behind selenid
 ![](img/mocked_response.png)
 
 First you've to model your request, so you can work with it anyhow you see fit. 
-Therefore, in order to create a new object to model a mocked request (eg. `ExampleMockModel.java`) it has to implement [MockDefinition](../ui-tests/test/java/io/company/utils/mocks/MockDefinition.java) interface.
+Therefore, in order to create a new object to model a mocked request (eg. `ExampleMockModel.java`) it has to implement [MockDefinition](../ui-tests/src/test/java/io/company/utils/mocks/MockDefinition.java) interface.
 
 ##### Example
 ````java
 public class ExampleMockModel implements MockDefinition { ... }
 ````
 
-Then, use the [@Mock](../ui-tests/test/java/io/company/utils/mocks/Mock.java) annotation in order to apply it for a given test case.
+Then, use the [@Mock](../ui-tests/src/test/java/io/company/utils/mocks/Mock.java) annotation in order to apply it for a given test case.
 
 ##### Snippet
 ```java
@@ -90,7 +90,7 @@ The annotation may be declared for methods or class types.
 public void exampleMockedTest() { ... }
 ````
 
-⚠️ For this to work you have to enable the proxy and use the [MockListener](../ui-tests/test/java/io/company/utils/listeners/MockListener.java) class.
+⚠️ For this to work you have to enable the proxy and use the [MockListener](../ui-tests/src/test/java/io/company/utils/listeners/MockListener.java) class.
 
 ##### Example
 ```shell script
@@ -136,7 +136,7 @@ $ mvn -B clean verify sonar:sonar \
 ```
 
 ## Jenkins 🤖
-There is a [Jenkinsfile](../Jenkinsfile) example available. Use it to get started. However, it might need some tailoring.
+There is a [Jenkinsfile](../jenkins/Jenkinsfile) example available. Use it to get started. However, it might need some tailoring.
 
 ##### Snippet
 ```groovy
@@ -220,7 +220,7 @@ By default, Transport Layer has SSL enabled as well as SSL on HTTP layer.
 
 > ⚠️ Since SSL on HTTP layer is enabled, it will require that all clients that connect to Elasticsearch have to configure SSL connection for HTTP, this includes all the current configured parts of the stack (e.g Logstash, Kibana, Curator, etc) plus any library/binding that connects to Elasticsearch from your application code.
 
-In order to send out your logs to logstash use the [DistributedReportListener](../ui-tests/test/java/io/company/utils/listeners/DistributedReportListener.java) class. 
+In order to send out your logs to logstash use the [DistributedReportListener](../ui-tests/src/test/java/io/company/utils/listeners/DistributedReportListener.java) class. 
 It has a base implementation, but tailored it accordingly.
 
 ##### Example
