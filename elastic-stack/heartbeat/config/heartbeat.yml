@@ -3,7 +3,7 @@
 #
 heartbeat.monitors:
   - type: http
-    name: DEV-IAM
+    name: DEV-SERVICE
     schedule: '@every 10s'
     urls: [ "https://my.awesome.api.com/v1/healthcheck" ]
     check.request:
@@ -14,7 +14,7 @@ heartbeat.monitors:
     check.response:
       status: 200
   - type: http
-    name: DEV-FIP
+    name: PROD-OTHER-SERVICE
     schedule: '@every 10s'
     urls: [ "https://my.other.awesome.api.com/v1/healthcheck" ]
     check.request:

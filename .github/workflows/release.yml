@@ -18,13 +18,13 @@ jobs:
           java-version: 11
 
       - name: Compile
-        run: mvn -B compile
+        run: mvn -B -f ui-tests/pom.xml compile
 
       - name: Lint
-        run: mvn -B validate
+        run: mvn -B -f ui-tests/pom.xml validate
 
       - name: Initialize containers
-        run: docker-compose up -d
+        run: docker-compose -f selenium-grid/docker-compose.yml up -d
 
       - name: Wait containers
         uses: jakejarvis/wait-action@master
@@ -37,6 +37,7 @@ jobs:
       - name: Tests
         run: |
           mvn -B clean test \
+            -f ui-tests/pom.xml \
             -Dselenide.proxyEnabled=true \
             -Dselenide.headless=true \
             -Dselenide.remote=http://0.0.0.0:4444/wd/hub \

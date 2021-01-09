@@ -54,7 +54,7 @@ The process described here has several goals:
 Please follow these steps to have your contribution considered:
 
 1. Follow all instructions in [the template](../.github/pull_request_template.md)
-1. Follow the [styleguides](#styleguides)
+1. Follow the [styleguide](#styleguide)
 3. After you submit your pull request, verify that all [status checks](https://help.github.com/articles/about-status-checks/) are passing 
 
 <details>
