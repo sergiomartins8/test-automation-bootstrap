@@ -35,7 +35,7 @@
 ---
 
 ## About
-The goal is to have this repo with boilerplate code in a way that anyone can quickstart an automation framework in no time.
+The goal is to have this repo with boilerplate code in a way that anyone can quickstart an automation framework
 
 ## Features
 
