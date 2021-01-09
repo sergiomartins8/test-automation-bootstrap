@@ -11,7 +11,7 @@
 <a href="https://github.com/sergiomartins8/test-automation-bootstrap/network/members"><img src="https://img.shields.io/github/forks/sergiomartins8/test-automation-bootstrap" alt="forks"/></a>
 <a href="https://www.linkedin.com/in/sergiomartins8/"><img src="https://img.shields.io/badge/-sergiomartins8-blue?logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/sergiomartins8/" alt="linkedin"/></a>
 
-<i>A simple and effective boilerplate repo to quickstart test automation frameworks in no time.</i>
+<i>A simple and effective boilerplate repo to quickstart test automation frameworks</i>
 
 <a href="https://github.com/sergiomartins8/test-automation-bootstrap/releases"><img src="https://img.shields.io/github/v/release/sergiomartins8/test-automation-bootstrap" alt="releases"/></a>
 <a href="https://github.com/sergiomartins8/test-automation-bootstrap/actions?query=workflow%3Arelease"><img src="https://github.com/sergiomartins8/test-automation-bootstrap/workflows/release/badge.svg" alt="Release build"/></a>
@@ -35,7 +35,7 @@
 ---
 
 ### About
-The goal is to have this repo with boilerplate code in a way that anyone can quickstart an automation framework
+The goal is to have this repo with boilerplate code in a way that anyone can quickstart a variety of automation frameworks, from functional and non-functional testing.
 
 ### Features
 * User interface testing (_java_) containing:
