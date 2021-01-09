@@ -44,6 +44,7 @@ The goal is to have this repo with boilerplate code in a way that anyone can qui
   * Customizable testing suites
   * Lombok (boilerplate code generator)
   * Capabilities to run mocked tests
+  * HTML reports
   * Selenide (selenium webdriver library)
 * Selenium Grid 🐳
 * Jenkins templates (kubernetes compatible!)

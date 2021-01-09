@@ -1,7 +1,7 @@
 The following is a set of guidelines and documentation to better experience the test-automation-bootstrap's features. 
 These are mostly guidelines, not rules. Use your best judgment, and feel free to propose changes to this document in a pull request.
 
-#### Table of contents
+#### Contents
 * [UI Tests](#ui-tests)
   * [POM](#pom---the-page-object-model)
   * [Suites](#suites)
@@ -9,7 +9,6 @@ These are mostly guidelines, not rules. Use your best judgment, and feel free to
   * [Extent Reports](#extent-reports)
   * [Mocking Responses](#mocking-responses)
   * [Checkstyle](#checkstyle)
-
 * [Selenium Grid](#selenium-grid)
 * [SonarQube](#sonarqube)
 * [Jenkins](#jenkins-)
@@ -19,8 +18,11 @@ These are mostly guidelines, not rules. Use your best judgment, and feel free to
 
 ## UI Tests
 
+Built with _java-maven_ using the goods of [Selenide](https://selenide.org/), [TestNG](https://testng.org/doc/), [ExtentReports](https://extentreports.com/), [Checkstyle](https://maven.apache.org/plugins/maven-checkstyle-plugin/), [Lombok](https://projectlombok.org/), and some others. Here you'll find the boilerplate code you need to have your ui testing framework up and ready in no time.
+
 ### POM - the Page Object Model
-The *test-automation-bootstrap* uses the Page Object Model (**POM**) (https://martinfowler.com/bliki/PageObject.html) to structure code.
+
+The *ui-tests* uses the [Page Object Model](https://martinfowler.com/bliki/PageObject.html) to structure and organize its code. 
 
 ![](img/structure.gif)
 
@@ -108,7 +110,6 @@ $ mvn validate
 ```
 
 ## Selenium Grid
-
 Launch a Google Chrome and Firefox selenium grid with compose using `$ docker-compose up -d`. Then execute your tests.
 
 ##### Example
@@ -172,11 +173,16 @@ podTemplate(label: "jenkins-slave-base-pod", serviceAccount: "jenkins", containe
 ## Elastic Stack
 
 ### Distributed Test Reporting
+
+What happens if you run multiple test suites in parallel? Would you want to get a single report for the whole run of a report for each failed suite? Also, what if they're all failing? 🤔👇
+
+![](img/pipeline.png)
+
+To solve the above (and other reporting vizualization issues), you can use ELK stack to serve as your reporting tool. It will provide you with a distributed log aggregator with an integrated visualization platform.
+
 > Check out the related distributed test reporting article on [medium](https://medium.com/@sergiomartins8/distributed-test-reporting-using-elk-stack-97dd699d6bb4).
 
-Elastic Stack (**ELK**) Docker Composition, preconfigured with **Security**, **Monitoring**, and **Tools**; Up with a Single Command.
-Based on [Official Elastic Docker Images](https://www.docker.elastic.co/)
-
+#### About
 Stack Version: [7.10.1](https://www.elastic.co/blog/elastic-stack-7-10-1-released)
 > You can change Elastic Stack version by setting `ELK_VERSION` in `.env` file and rebuild your images. Any version >= 7.0.0 is compatible with this template.
 
@@ -220,12 +226,18 @@ By default, Transport Layer has SSL enabled as well as SSL on HTTP layer.
 
 > ⚠️ Since SSL on HTTP layer is enabled, it will require that all clients that connect to Elasticsearch have to configure SSL connection for HTTP, this includes all the current configured parts of the stack (e.g Logstash, Kibana, Curator, etc) plus any library/binding that connects to Elasticsearch from your application code.
 
-In order to send out your logs to logstash use the [DistributedReportListener](../ui-tests/src/test/java/io/company/utils/listeners/DistributedReportListener.java) class. 
-It has a base implementation, but tailored it accordingly.
+#### Example (based on the _ui-tests_ boilerplate)
+In order to send out your logs to logstash use the [DistributedReportListener](../ui-tests/src/test/java/io/company/utils/listeners/DistributedReportListener.java) class. It has a base implementation, but tailor it accordingly. Execute as examplified below.
 
-##### Example
 ```shell script
 $ mvn clean test -Dlistener=${package}/utils/listeners/DistributedReportListener.java
 ```
 
 ### Service Monitoring
+If you want to monitor multiple services to percieve their availability, you can use [heartbeat](https://www.elastic.co/beats/heartbeat) template which is already compatible with the ELK stack, described above, using the following commands:
+
+```shell script
+$ make monitoring     <OR>     $ docker-compose up beartbeat -d
+```
+
+> **NOTE**: Edit the [heartbeat.yml](../elastic-stack/heartbeat/config/heartbeat.yml) configuration file according to your needs.
