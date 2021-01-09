@@ -36,7 +36,6 @@ Within page objects you may find two kinds:
 ### Suites
 You can have multiple suites under [/suites](../ui-tests/src/test/resources/suites). And, in order to run any of them you can use a system property `-Dsuite=<suite-name>`.
 
-##### Example
 ```shell script
 $ mvn clean test -Dsuite=<suite-name>
 ```
@@ -46,7 +45,6 @@ $ mvn clean test -Dsuite=<suite-name>
 ### Parallel Test Execution
 You can run tests in parallel, configuring your suite file or with system properties.
  
-##### Example
  ```shell script
 $ mvn clean test -Dparallel=<method-name> -Dthread.count=<n-threads>
 ```
@@ -67,7 +65,6 @@ In order to mock http requests the framework uses browserup proxy behind selenid
 First you've to model your request, so you can work with it anyhow you see fit. 
 Therefore, in order to create a new object to model a mocked request (eg. `ExampleMockModel.java`) it has to implement [MockDefinition](../ui-tests/src/test/java/io/company/utils/mocks/MockDefinition.java) interface.
 
-##### Example
 ````java
 public class ExampleMockModel implements MockDefinition { ... }
 ````
@@ -85,7 +82,6 @@ public @interface Mock {
 
 The annotation may be declared for methods or class types.
 
-##### Example
 ````java
 @Test
 @Mock(clazz = {ExampleMockModel.class, OtherExampleMockModel.class})
@@ -94,7 +90,6 @@ public void exampleMockedTest() { ... }
 
 ⚠️ For this to work you have to enable the proxy and use the [MockListener](../ui-tests/src/test/java/io/company/utils/listeners/MockListener.java) class.
 
-##### Example
 ```shell script
 $ mvn clean test -Dselenide.proxyEnabled=true -Dlistener=${package}/utils/listeners/MockListener.java
 ```
@@ -104,7 +99,6 @@ $ mvn clean test -Dselenide.proxyEnabled=true -Dlistener=${package}/utils/listen
 ### Checkstyle
 This feature integrates your project with a code linter, so that everyone follows the same code style within the team. 
 
-##### Example
 ```shell script
 $ mvn validate
 ```
@@ -112,7 +106,6 @@ $ mvn validate
 ## Selenium Grid
 Launch a Google Chrome and Firefox selenium grid with compose using `$ docker-compose up -d`. Then execute your tests.
 
-##### Example
 ```shell
 $ mvn -B clean test \
   -Dselenide.browser=firefox \
@@ -123,7 +116,6 @@ $ mvn -B clean test \
 ## Sonarqube
 Launch sonarqube with the command `$ docker-compose up -d`. It allows you to execute tasks such as static analysis, code coverage or even implement your code quality gate.
 
-##### Example
 ```shell script
 $ mvn -B clean verify sonar:sonar \
             -Dskip.validate=true \
