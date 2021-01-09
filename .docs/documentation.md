@@ -1,7 +1,8 @@
+# Documentation
 The following is a set of guidelines and documentation to better experience the test-automation-bootstrap's features. 
 These are mostly guidelines, not rules. Use your best judgment, and feel free to propose changes to this document in a pull request.
 
-#### Contents
+## Contents
 * [UI Tests](#ui-tests)
   * [POM](#pom---the-page-object-model)
   * [Suites](#suites)
@@ -17,7 +18,6 @@ These are mostly guidelines, not rules. Use your best judgment, and feel free to
   * [Service Monitoring](#service-monitoring)
 
 ## UI Tests
-
 Built with _java-maven_ using the goods of [Selenide](https://selenide.org/), [TestNG](https://testng.org/doc/), [ExtentReports](https://extentreports.com/), [Checkstyle](https://maven.apache.org/plugins/maven-checkstyle-plugin/), [Lombok](https://projectlombok.org/), and some others. Here you'll find the boilerplate code you need to have your ui testing framework up and ready in no time.
 
 ### POM - the Page Object Model
