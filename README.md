@@ -35,7 +35,7 @@
 ---
 
 ### About
-The goal is to have this repo with boilerplate code in a way that anyone can quickstart a variety of automation frameworks, from functional and non-functional testing.
+The goal is to have this repo with boilerplate code in a way that anyone can quickstart a variety of automation frameworks, from functional to non-functional testing.
 
 ### Features
 * User interface testing (_java_) containing:
