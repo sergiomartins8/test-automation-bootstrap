@@ -1,5 +1,10 @@
 ## Change Log
 
+### v2.6.0 (2021/01/10 18:36 +00:00)
+- [#48](https://github.com/sergiomartins8/test-automation-bootstrap/pull/48) 🤖 Slack custom notifications! (#48) (@sergiomartins8)
+- [#43](https://github.com/sergiomartins8/test-automation-bootstrap/pull/43) 📚 Improve documentation and overall structure (#43) (@sergiomartins8)
+- [#35](https://github.com/sergiomartins8/test-automation-bootstrap/pull/35) ☀️ Healthcheck monitoring! (#35) (@sergiomartins8)
+
 ### v2.5.0 (2020/12/27 14:48 +00:00)
 - [#34](https://github.com/sergiomartins8/test-automation-bootstrap/pull/34) ☀️ Distributed Test Reporting (#34) (@sergiomartins8)
 
