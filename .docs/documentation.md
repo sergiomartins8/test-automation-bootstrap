@@ -16,6 +16,7 @@ These are mostly guidelines, not rules. Use your best judgment, and feel free to
 * [Elastic Stack](#elastic-stack)
   * [Distributed Test Reporting](#distributed-test-reporting)
   * [Service Monitoring](#service-monitoring)
+* [Slack](#slack)
 
 ## UI Tests
 Built with _java-maven_ using the goods of [Selenide](https://selenide.org/), [TestNG](https://testng.org/doc/), [ExtentReports](https://extentreports.com/), [Checkstyle](https://maven.apache.org/plugins/maven-checkstyle-plugin/), [Lombok](https://projectlombok.org/), and some others. Here you'll find the boilerplate code you need to have your ui testing framework up and ready in no time.
@@ -233,3 +234,28 @@ $ make monitoring     <OR>     $ docker-compose up beartbeat -d
 ```
 
 > **NOTE**: Edit the [heartbeat.yml](../elastic-stack/heartbeat/config/heartbeat.yml) configuration file according to your needs.
+
+## Slack
+Nowadays you can integrate with slack using pretty much every git repository or CI tool. However, if you feel like you want to take the full control and setup your own custom notifications this is for you. Thus, follow the steps below in order to use the template provided.
+
+### Create an app
+You'll need to create a slack bot app to post out notifications to your channels (install the app on the required channel if it's a private one).
+
+Follow this great [tutorial](https://github.com/slackapi/python-slack-sdk/tree/main/tutorial) in order to setup your slack bot app.
+
+### Custom notifications
+Then you can integrate the [custom_notifier.py](../slack/slack_notifier.py) in your CI pipeline to post notifications as examplified below.
+
+![](img/slack_pipeline_fail.png)
+
+![](img/slack_pipeline_success.png)
+
+##### Snippet (GitLab pipeline)
+```yaml
+nofity_results:
+  stage: notify
+  image: sergiomartins8/jenkins-slave-base:latest
+  script:
+    - pip install slack_sdk
+    - ./scripts/slack/slack_notifier.py
+```
