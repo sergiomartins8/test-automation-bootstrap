@@ -51,6 +51,7 @@ The goal is to have this repo with boilerplate code in a way that anyone can qui
 * Elastic Stack 🐳
   * Distributed Test Reporting
   * Service Monitoring
+* Slack custom notifications
 
 > 🐳 stands for _Dockerized_.
 
