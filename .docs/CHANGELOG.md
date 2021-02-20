@@ -1,5 +1,9 @@
 ## Change Log
 
+### upcoming (2021/02/20 12:58 +00:00)
+- [#51](https://github.com/sergiomartins8/test-automation-bootstrap/pull/51) 📚 Revamp documentation (#51) (@sergiomartins8)
+- [#50](https://github.com/sergiomartins8/test-automation-bootstrap/pull/50) ☀️ Load tests (#50) (@sergiomartins8)
+
 ### v2.6.0 (2021/01/10 18:36 +00:00)
 - [#48](https://github.com/sergiomartins8/test-automation-bootstrap/pull/48) 🤖 Slack custom notifications! (#48) (@sergiomartins8)
 - [#43](https://github.com/sergiomartins8/test-automation-bootstrap/pull/43) 📚 Improve documentation and overall structure (#43) (@sergiomartins8)
