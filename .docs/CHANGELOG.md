@@ -1,6 +1,7 @@
 ## Change Log
 
-### upcoming (2021/02/20 12:58 +00:00)
+### upcoming (2021/02/20 14:48 +00:00)
+- [#52](https://github.com/sergiomartins8/test-automation-bootstrap/pull/52) 🤖🐳 Selenium grid health-check (#52) (@sergiomartins8)
 - [#51](https://github.com/sergiomartins8/test-automation-bootstrap/pull/51) 📚 Revamp documentation (#51) (@sergiomartins8)
 - [#50](https://github.com/sergiomartins8/test-automation-bootstrap/pull/50) ☀️ Load tests (#50) (@sergiomartins8)
 
