@@ -62,7 +62,7 @@ The goal is to have this repo with boilerplate code in a way that anyone can qui
 Fork this project, or clone it. That easy!
 
 ## Documentation
-You'll find a readme with all the documentation within each package. These are mostly guidelines, not rules. Use your best judgment, and feel free to propose changes or implement new features in a pull request.
+You'll find a readme with all the documentation within each package. Those are mostly going to be guidelines, not rules. Use your best judgment, and feel free to propose changes or implement new features in a pull request.
 
 ## Changelog
 Available [here](.docs/CHANGELOG.md).
