@@ -9,6 +9,11 @@ services:
       - "4444:4444"
     expose:
       - 4444
+    healthcheck:
+      test: [ "CMD", "wget", "--spider", "http://0.0.0.0:4444/wd/hub/status" ]
+      interval: 5s
+      timeout: 5s
+      retries: 5
 
   chrome:
     image: selenium/node-chrome:3.141
@@ -18,7 +23,8 @@ services:
     volumes:
       - /dev/shm:/dev/shm
     depends_on:
-      - selenium-hub
+      selenium-hub:
+        condition: service_healthy
     environment:
       - HUB_HOST=selenium-hub
       - HUB_PORT=4444
@@ -31,7 +37,8 @@ services:
     volumes:
       - /dev/shm:/dev/shm
     depends_on:
-      - selenium-hub
+      selenium-hub:
+        condition: service_healthy
     environment:
       - HUB_HOST=selenium-hub
       - HUB_PORT=4444

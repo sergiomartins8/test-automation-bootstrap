@@ -26,11 +26,6 @@ jobs:
       - name: Initialize containers
         run: docker-compose -f selenium-grid/docker-compose.yml up -d
 
-      - name: Wait containers
-        uses: jakejarvis/wait-action@master
-        with:
-          time: '30s'
-
       - name: Check available containers
         run: docker ps
 
