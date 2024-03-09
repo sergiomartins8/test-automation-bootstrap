@@ -30,7 +30,7 @@
         <maven.compiler.plugin>3.8.1</maven.compiler.plugin>
         <maven.checkstyle.plugin>3.1.1</maven.checkstyle.plugin>
         <logstash.logback.encoder>6.4</logstash.logback.encoder>
-        <logback.classic>1.2.3</logback.classic>
+        <logback.classic>1.2.13</logback.classic>
         <extent.reports>4.0.6</extent.reports>
         <browserup.proxy.core>2.1.1</browserup.proxy.core>
         <jackson.annotations>2.11.1</jackson.annotations>
